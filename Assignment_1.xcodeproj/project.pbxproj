@@ -99,6 +99,7 @@
 		D83B8D4A2505B650004F81B6 /* Assignment_1 */ = {
 			isa = PBXGroup;
 			children = (
+				D83B8D5A2505B654004F81B6 /* Info.plist */,
 				D83B8E0125104DAF004F81B6 /* Other */,
 				D83B8DFF25104D75004F81B6 /* Controllers */,
 				D83B8DFE25104D6C004F81B6 /* Views */,
@@ -162,7 +163,6 @@
 				D83B8D4B2505B650004F81B6 /* AppDelegate.swift */,
 				D83B8D552505B654004F81B6 /* Assets.xcassets */,
 				D83B8D572505B654004F81B6 /* LaunchScreen.storyboard */,
-				D83B8D5A2505B654004F81B6 /* Info.plist */,
 				D83B8D522505B650004F81B6 /* Assignment_1.xcdatamodeld */,
 			);
 			path = Other;
@@ -476,7 +476,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Assignment_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -484,6 +485,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rmit.Assignment-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -493,7 +495,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Assignment_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -501,6 +504,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rmit.Assignment-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
