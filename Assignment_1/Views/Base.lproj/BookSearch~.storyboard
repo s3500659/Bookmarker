@@ -154,6 +154,22 @@
             </objects>
             <point key="canvasLocation" x="1284" y="506"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Oqw-n0-TNH">
+            <objects>
+                <viewController id="Z9x-ST-oCN" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dBf-by-7mL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="2vs-Ub-ZNb"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="bCO-74-NWf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uZF-j5-I7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="493" y="1176"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="N9o-Us-uEz">
             <objects>
@@ -165,7 +181,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="8AR-cJ-Lji" kind="relationship" relationship="viewControllers" id="ojs-a6-qgR"/>
-                        <segue destination="cem-Bf-p2t" kind="relationship" relationship="viewControllers" id="eGy-kz-0T4"/>
+                        <segue destination="Z9x-ST-oCN" kind="relationship" relationship="viewControllers" id="eGy-kz-0T4"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tQK-sP-0kS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -190,16 +206,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WAK-hN-pmu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="491.25" y="505.98591549295776"/>
-        </scene>
-        <!--SearchBooks-->
-        <scene sceneID="mXP-JF-2db">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SearchBooks" id="cem-Bf-p2t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="dwT-K4-sQd"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wdf-jL-5OJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="493" y="1176"/>
         </scene>
     </scenes>
     <resources>
