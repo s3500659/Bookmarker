@@ -9,15 +9,20 @@
 import UIKit
 
 class StudentInfoTableViewController: UITableViewController {
+    
+    var students:[Student] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        populateStudents()
+    }
+    
+    func populateStudents() {
+        students.append(Student(name: "Vinh", description: "Description here", image: UIImage(named: "lion_king_1")!))
+        students.append(Student(name: "Jordan", description: "Description here", image: UIImage(named: "lion_king_2")!))
+        students.append(Student(name: "Phillip", description: "Description here", image: UIImage(named: "lion_king_3")!))
+        students.append(Student(name: "Joshua", description: "Description here", image: UIImage(named: "simba_1")!))
     }
 
     // MARK: - Table view data source
@@ -29,14 +34,20 @@ class StudentInfoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Student.allCases.count
+        return students.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "studentCell", for: indexPath)
-
-
+        let cellIdentifier = "studentCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? StudentInfoTableViewCell else {
+            fatalError("The dequeued cell is not an instance of BookTableViewCell")
+        }
+        
+        let student = students[indexPath.row]
+        cell.studentLabel.text = student.name
+        cell.studentDescription.text = student.description
+        cell.studentImage.image = student.image
 
         return cell
     }
@@ -88,3 +99,5 @@ class StudentInfoTableViewController: UITableViewController {
     */
 
 }
+
+

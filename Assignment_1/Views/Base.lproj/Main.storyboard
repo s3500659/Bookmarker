@@ -206,7 +206,7 @@
         <scene sceneID="6hp-eD-mJu">
             <objects>
                 <viewControllerPlaceholder storyboardName="StudentInfo" id="D2n-Mh-xtw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="HHb-ld-nZK"/>
+                    <tabBarItem key="tabBarItem" title="Student" id="HHb-ld-nZK"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8T-fZ-ojl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

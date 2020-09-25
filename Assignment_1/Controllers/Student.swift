@@ -7,34 +7,18 @@
 //
 
 import Foundation
+import UIKit
 
-enum Student: CaseIterable {
-    case vinh, jordan, phillip, joshua
+class Student {
     
-    var name:String {
-        switch self {
-        case .vinh: return "Vinh"
-        case .jordan: return "Jordan"
-        case .phillip: return "Phillip"
-        case .joshua: return "Joshua"
-        }
+    private (set) var name:String
+    private (set) var description:String
+    private (set) var image: UIImage
+    
+    init(name:String, description:String, image:UIImage) {
+        self.name = name
+        self.description = description
+        self.image = image
     }
     
-    var imageName:String {
-        switch self {
-        case .vinh: return "lion_king_1"
-        case .jordan: return "lion_king_2"
-        case .phillip: return "lion_king_3"
-        case .joshua: return "simba_1"
-        }
-    }
-    
-    var description:String {
-        switch self {
-        case .vinh: return "lion_king_1"
-        case .jordan: return "lion_king_2"
-        case .phillip: return "lion_king_3"
-        case .joshua: return "simba_1"
-        }
-    }
 }
