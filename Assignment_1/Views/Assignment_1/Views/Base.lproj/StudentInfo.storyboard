@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--The Team behind BookMarker-->
         <scene sceneID="0BN-sf-f75">
             <objects>
                 <tableViewController id="9IK-L4-3II" customClass="StudentInfoTableViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -68,7 +68,7 @@
                             <outlet property="delegate" destination="9IK-L4-3II" id="gTF-lz-fFy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="A34-Jb-UUk"/>
+                    <navigationItem key="navigationItem" title="The Team behind BookMarker" id="A34-Jb-UUk"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FPg-KL-HIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
