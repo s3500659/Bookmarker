@@ -23,7 +23,7 @@
 		D8E83EA8251D8C5B00E20352 /* StudentInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EA7251D8C5B00E20352 /* StudentInfoTableViewController.swift */; };
 		D8E83EAA251D8CCA00E20352 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EA9251D8CCA00E20352 /* Student.swift */; };
 		D8E83EAC251D94D000E20352 /* StudentInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EAB251D94D000E20352 /* StudentInfoTableViewCell.swift */; };
-		F0F1075A251D617C00108494 /* SearchBooks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0F10758251D617C00108494 /* SearchBooks.storyboard */; };
+		F093EA552523ED84009F38C0 /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093EA542523ED84009F38C0 /* BookData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +66,7 @@
 		D8E83EA7251D8C5B00E20352 /* StudentInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoTableViewController.swift; sourceTree = "<group>"; };
 		D8E83EA9251D8CCA00E20352 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Student.swift; path = Assignment_1/Controllers/Student.swift; sourceTree = SOURCE_ROOT; };
 		D8E83EAB251D94D000E20352 /* StudentInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoTableViewCell.swift; sourceTree = "<group>"; };
-		F0F10759251D617C00108494 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Assignment_1/Views/Base.lproj/SearchBooks.storyboard; sourceTree = "<group>"; };
+		F093EA542523ED84009F38C0 /* BookData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +147,7 @@
 		D83B8DFD25104D64004F81B6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F093EA542523ED84009F38C0 /* BookData.swift */,
 				17E5BE5C2519FE8500EF88FD /* Book.swift */,
 				D8E83EA9251D8CCA00E20352 /* Student.swift */,
 			);
@@ -157,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				D8E83EA4251D8A7800E20352 /* StudentInfo.storyboard */,
-				F0F10758251D617C00108494 /* SearchBooks.storyboard */,
 				D83B8D4F2505B650004F81B6 /* Main.storyboard */,
 			);
 			path = Views;
@@ -300,7 +300,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D83B8D592505B654004F81B6 /* LaunchScreen.storyboard in Resources */,
-				F0F1075A251D617C00108494 /* SearchBooks.storyboard in Resources */,
 				D83B8D562505B654004F81B6 /* Assets.xcassets in Resources */,
 				D8E83EA6251D8A7800E20352 /* StudentInfo.storyboard in Resources */,
 				D83B8D512505B650004F81B6 /* Main.storyboard in Resources */,
@@ -331,6 +330,7 @@
 				17E5BE5B2519FCEF00EF88FD /* HomeController.swift in Sources */,
 				D8E83EA8251D8C5B00E20352 /* StudentInfoTableViewController.swift in Sources */,
 				D83B8D542505B650004F81B6 /* Assignment_1.xcdatamodeld in Sources */,
+				F093EA552523ED84009F38C0 /* BookData.swift in Sources */,
 				D83B8D4E2505B650004F81B6 /* BookViewController.swift in Sources */,
 				D8E83EAA251D8CCA00E20352 /* Student.swift in Sources */,
 				17E5BE5D2519FE8500EF88FD /* Book.swift in Sources */,
@@ -395,14 +395,6 @@
 				D8E83EA5251D8A7800E20352 /* Base */,
 			);
 			name = StudentInfo.storyboard;
-			sourceTree = "<group>";
-		};
-		F0F10758251D617C00108494 /* SearchBooks.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F0F10759251D617C00108494 /* Base */,
-			);
-			name = SearchBooks.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
