@@ -19,6 +19,7 @@
 		D83B8D592505B654004F81B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D83B8D572505B654004F81B6 /* LaunchScreen.storyboard */; };
 		D83B8D642505B654004F81B6 /* Assignment_1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83B8D632505B654004F81B6 /* Assignment_1Tests.swift */; };
 		D83B8D6F2505B654004F81B6 /* Assignment_1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83B8D6E2505B654004F81B6 /* Assignment_1UITests.swift */; };
+		D8A7FC8625230202000B4B1D /* StudentInfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7FC8525230202000B4B1D /* StudentInfoDetailViewController.swift */; };
 		D8E83EA6251D8A7800E20352 /* StudentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8E83EA4251D8A7800E20352 /* StudentInfo.storyboard */; };
 		D8E83EA8251D8C5B00E20352 /* StudentInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EA7251D8C5B00E20352 /* StudentInfoTableViewController.swift */; };
 		D8E83EAA251D8CCA00E20352 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EA9251D8CCA00E20352 /* Student.swift */; };
@@ -62,6 +63,7 @@
 		D83B8D6A2505B654004F81B6 /* Assignment_1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Assignment_1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D83B8D6E2505B654004F81B6 /* Assignment_1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment_1UITests.swift; sourceTree = "<group>"; };
 		D83B8D702505B654004F81B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8A7FC8525230202000B4B1D /* StudentInfoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoDetailViewController.swift; sourceTree = "<group>"; };
 		D8E83EA5251D8A7800E20352 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Assignment_1/Views/Base.lproj/StudentInfo.storyboard; sourceTree = "<group>"; };
 		D8E83EA7251D8C5B00E20352 /* StudentInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoTableViewController.swift; sourceTree = "<group>"; };
 		D8E83EA9251D8CCA00E20352 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Student.swift; path = Assignment_1/Controllers/Student.swift; sourceTree = SOURCE_ROOT; };
@@ -169,6 +171,7 @@
 				D83B8D4D2505B650004F81B6 /* BookViewController.swift */,
 				17E5BE60251A06A400EF88FD /* BookTableViewController.swift */,
 				D8E83EA7251D8C5B00E20352 /* StudentInfoTableViewController.swift */,
+				D8A7FC8525230202000B4B1D /* StudentInfoDetailViewController.swift */,
 				17E5BE5A2519FCEF00EF88FD /* HomeController.swift */,
 				D83B8E0025104D7E004F81B6 /* ViewModels */,
 			);
@@ -330,6 +333,7 @@
 			files = (
 				17E5BE5B2519FCEF00EF88FD /* HomeController.swift in Sources */,
 				D8E83EA8251D8C5B00E20352 /* StudentInfoTableViewController.swift in Sources */,
+				D8A7FC8625230202000B4B1D /* StudentInfoDetailViewController.swift in Sources */,
 				D83B8D542505B650004F81B6 /* Assignment_1.xcdatamodeld in Sources */,
 				D83B8D4E2505B650004F81B6 /* BookViewController.swift in Sources */,
 				D8E83EAA251D8CCA00E20352 /* Student.swift in Sources */,
