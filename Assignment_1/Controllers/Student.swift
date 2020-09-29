@@ -12,13 +12,20 @@ import UIKit
 class Student {
     
     private (set) var name:String
+    private (set) var studentNumber:String
     private (set) var description:String
     private (set) var image: UIImage
     
-    init(name:String, description:String, image:UIImage) {
+    private (set) var hobbies:String
+    private (set) var additionalInfo:String
+    
+    init(name:String, studentNumber:String, description:String, image:UIImage, hobbies:String, additionalInfo:String) {
         self.name = name
+        self.studentNumber = studentNumber
         self.description = description
         self.image = image
+        self.hobbies = hobbies
+        self.additionalInfo = additionalInfo
     }
     
 }
