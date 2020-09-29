@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -61,6 +62,7 @@
                                     <outlet property="studentDescription" destination="jFu-CY-sgG" id="uLI-uo-ObD"/>
                                     <outlet property="studentImage" destination="Ccs-22-MY5" id="T8w-aK-Bxx"/>
                                     <outlet property="studentLabel" destination="Bnq-9b-Xoo" id="tIN-z7-zGV"/>
+                                    <segue destination="usb-RV-v06" kind="show" id="Aaf-r2-0Zu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -69,11 +71,89 @@
                             <outlet property="delegate" destination="9IK-L4-3II" id="gTF-lz-fFy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="The Team behind BookMarker" id="A34-Jb-UUk"/>
+                    <navigationItem key="navigationItem" title="The Team behind BookMarker" id="A34-Jb-UUk">
+                        <barButtonItem key="backBarButtonItem" title="The Team" id="LVe-ju-NXE"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FPg-KL-HIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="489.375" y="1637.323943661972"/>
+        </scene>
+        <!--Student Info Detail View Controller-->
+        <scene sceneID="L2S-af-ywm">
+            <objects>
+                <viewController id="usb-RV-v06" customClass="StudentInfoDetailViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fcj-i5-xbU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lion_king_1" translatesAutoresizingMaskIntoConstraints="NO" id="JBQ-KD-UNT">
+                                <rect key="frame" x="16" y="64" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="5xW-kY-7hw"/>
+                                    <constraint firstAttribute="width" constant="100" id="QWb-54-H4q"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pX9-bh-6Wv">
+                                <rect key="frame" x="124" y="64" width="180" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="about" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4UC-JJ-VjK">
+                                <rect key="frame" x="124" y="93" width="180" height="144"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="hobbies" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2mH-cn-5sm">
+                                <rect key="frame" x="16" y="245" width="288" height="84"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="2jP-yB-LXU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="additional info" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pvs-MW-pYE">
+                                <rect key="frame" x="16" y="337" width="288" height="211"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pX9-bh-6Wv" firstAttribute="trailing" secondItem="4UC-JJ-VjK" secondAttribute="trailing" id="6vs-cB-egu"/>
+                            <constraint firstAttribute="bottom" secondItem="pvs-MW-pYE" secondAttribute="bottom" constant="20" symbolic="YES" id="7Sb-o2-Yhq"/>
+                            <constraint firstItem="pX9-bh-6Wv" firstAttribute="leading" secondItem="JBQ-KD-UNT" secondAttribute="trailing" constant="8" symbolic="YES" id="Ai9-id-qke"/>
+                            <constraint firstItem="pX9-bh-6Wv" firstAttribute="leading" secondItem="4UC-JJ-VjK" secondAttribute="leading" id="BJ1-lG-15z"/>
+                            <constraint firstItem="2mH-cn-5sm" firstAttribute="trailing" secondItem="pvs-MW-pYE" secondAttribute="trailing" id="GyP-2p-U6p"/>
+                            <constraint firstItem="pX9-bh-6Wv" firstAttribute="trailing" secondItem="fcj-i5-xbU" secondAttribute="trailingMargin" id="Hkf-6e-4YT"/>
+                            <constraint firstItem="JBQ-KD-UNT" firstAttribute="leading" secondItem="2mH-cn-5sm" secondAttribute="leading" id="Pcw-Ss-p9L"/>
+                            <constraint firstItem="4UC-JJ-VjK" firstAttribute="top" secondItem="pX9-bh-6Wv" secondAttribute="bottom" constant="8" symbolic="YES" id="XQB-t4-kyp"/>
+                            <constraint firstItem="2mH-cn-5sm" firstAttribute="leading" secondItem="pvs-MW-pYE" secondAttribute="leading" id="dKk-oU-uNU"/>
+                            <constraint firstItem="pvs-MW-pYE" firstAttribute="top" secondItem="2mH-cn-5sm" secondAttribute="bottom" constant="8" symbolic="YES" id="hEF-pm-xJZ"/>
+                            <constraint firstItem="JBQ-KD-UNT" firstAttribute="top" secondItem="pX9-bh-6Wv" secondAttribute="top" id="hRb-T4-qfU"/>
+                            <constraint firstItem="4UC-JJ-VjK" firstAttribute="trailing" secondItem="2mH-cn-5sm" secondAttribute="trailing" id="msW-jX-GcQ"/>
+                            <constraint firstItem="2mH-cn-5sm" firstAttribute="top" secondItem="4UC-JJ-VjK" secondAttribute="bottom" constant="8" symbolic="YES" id="nyp-z9-ngm"/>
+                            <constraint firstItem="2mH-cn-5sm" firstAttribute="top" secondItem="JBQ-KD-UNT" secondAttribute="bottom" constant="81" id="qPm-Kx-rmV"/>
+                            <constraint firstItem="JBQ-KD-UNT" firstAttribute="top" secondItem="k7H-if-djN" secondAttribute="top" id="sg5-Rq-oEa"/>
+                            <constraint firstItem="JBQ-KD-UNT" firstAttribute="leading" secondItem="fcj-i5-xbU" secondAttribute="leadingMargin" id="yde-5r-Vaf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="k7H-if-djN"/>
+                    </view>
+                    <connections>
+                        <outlet property="about" destination="4UC-JJ-VjK" id="41j-xR-ng9"/>
+                        <outlet property="additionalInfo" destination="pvs-MW-pYE" id="0kD-mv-B8j"/>
+                        <outlet property="hobbies" destination="2mH-cn-5sm" id="1lH-6E-OKc"/>
+                        <outlet property="image" destination="JBQ-KD-UNT" id="GNZ-Bf-avB"/>
+                        <outlet property="studentName" destination="pX9-bh-6Wv" id="Ihs-7G-bf1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Evb-Rf-lL7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1402.5" y="1638.3802816901409"/>
         </scene>
         <!--Students-->
         <scene sceneID="SLq-cs-fUC">
