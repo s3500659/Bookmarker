@@ -48,18 +48,19 @@ class SearchBookTableViewController: UITableViewController ,UISearchBarDelegate 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
         // change this
-//        let imageView = cell.viewWithTag(1000) as? UIImageView
-//        let bookTitle = cell.viewWithTag(1001) as? UILabel
-//        let bookAuthor = cell.viewWithTag(1002) as? UILabel
-//        // creates local variables of same vars as above
-//        if let imageView = imageView, let bookTitle = bookTitle, let bookAuthor = bookAuthor
-//        {
-//            let currentBook = viewModel.getBooks(byIndex: indexPath.row)
-//            imageView.image = currentBook.image
-//            bookTitle.text = currentBook.title
-//            bookAuthor.text = currentBook.author
-//        }
+        let imageView = cell.viewWithTag(1000) as? UIImageView
+        let bookTitle = cell.viewWithTag(1001) as? UILabel
+        let bookAuthor = cell.viewWithTag(1002) as? UILabel
+        // creates local variables of same vars as above
+        if let imageView = imageView, let bookTitle = bookTitle, let bookAuthor = bookAuthor
+        {
+            let currentBook = viewModel.getBooks(byIndex: indexPath.row)
+            imageView.image = currentBook.image
+            bookTitle.text = currentBook.title
+            bookAuthor.text = currentBook.author
+        }
         cell.textLabel?.text = filteredData[indexPath.row]
+        
         
         return cell
     }
@@ -86,6 +87,11 @@ class SearchBookTableViewController: UITableViewController ,UISearchBarDelegate 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        guard let selectedRow = self.tableView.indexPathForSelectedRow else {return}
+        let destination = segue.destination as? DetailSearchBooksViewController
+        let selectedBook = viewModel.getBooks(byIndex: selectedRow.row)
+        destination?.selectedBook = selectedBook
+        
     }
     
     
