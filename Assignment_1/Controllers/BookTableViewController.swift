@@ -42,12 +42,12 @@ class BookTableViewController: UITableViewController {
         }
 
         let book = books[indexPath.row]
-        let progress: Float = Float(book.currentPage) / Float(book.totalPages)
+        let progress: Float = Float(book.getCurrentPage()) / Float(book.getTotalPages())
         
-        cell.titleLabel.text = book.title
-        cell.authorLabel.text = book.author
-        cell.progressLabel.text = "Page \(book.currentPage) of \(book.totalPages)"
-        cell.photoImageView.image = book.photo
+        cell.titleLabel.text = book.getTitle()
+        cell.authorLabel.text = book.getAuthor()
+        cell.progressLabel.text = "Page \(book.getCurrentPage()) of \(book.getTotalPages())"
+        cell.photoImageView.image = book.getPhoto()
         cell.completedProgressView.setProgress(progress, animated: true)
         
         return cell

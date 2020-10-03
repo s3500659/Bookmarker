@@ -19,9 +19,9 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         super.viewDidLoad()
      
         if let book = book {
-            titleLabel.text = book.title
-            authorLabel.text = book.author
-            photoImageView.image = book.photo
+            titleLabel.text = book.getTitle()
+            authorLabel.text = book.getAuthor()
+            photoImageView.image = book.getPhoto()
         }
     }
 

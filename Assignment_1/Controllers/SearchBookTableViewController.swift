@@ -15,25 +15,18 @@ class SearchBookTableViewController: UITableViewController ,UISearchBarDelegate 
     var viewModel = SearchBooksViewModel()
 
     @IBOutlet weak var searchBar: UISearchBar!
-    var data :[String] = []
-    
-    var filteredData: [String]!
-    
-    func loadBookData() {
-        for i in viewModel.books {
-            data.append(i.title)
-        }
-    }
-    
-    
-    
+    //var data :[String] = []
+    var data:[Book?]=[]
+    var filteredData: [Book?]!
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadBookData()
+        viewModel.loadData()
+        data = viewModel.getBooks()
         tableView.dataSource = self
         searchBar.delegate = self
         filteredData = data
-        
     }
     
     // MARK: - Table view data source
@@ -54,14 +47,12 @@ class SearchBookTableViewController: UITableViewController ,UISearchBarDelegate 
         // creates local variables of same vars as above
         if let imageView = imageView, let bookTitle = bookTitle, let bookAuthor = bookAuthor
         {
-            let currentBook = viewModel.getBooks(byIndex: indexPath.row)
-            imageView.image = currentBook.image
-            bookTitle.text = currentBook.title
-            bookAuthor.text = currentBook.author
+            let currentBook = viewModel.getBook(byIndex: indexPath.row)
+            imageView.image = currentBook?.getPhoto()
+            bookTitle.text = currentBook?.getTitle()
+            bookAuthor.text = currentBook?.getAuthor()
         }
-        cell.textLabel?.text = filteredData[indexPath.row]
-        
-        
+        cell.textLabel?.text = filteredData[indexPath.row]?.getTitle()
         return cell
     }
     
@@ -72,10 +63,18 @@ class SearchBookTableViewController: UITableViewController ,UISearchBarDelegate 
         // Use the filter method to iterate over all items in the data array
         // For each item, return true if the item should be included and false if the
         // item should NOT be included
+        /*
         filteredData = searchText.isEmpty ? data : data.filter({(dataString: String) -> Bool in
             // If dataItem matches the searchText, return true to include it
             return dataString.range(of: searchText, options: .caseInsensitive) != nil
         })
+ */
+       
+        for case let book? in data {
+            if  !book.getTitle().isEmpty && book.getTitle().contains(searchText){
+                filteredData.append(book)
+            }
+        }
         
         tableView.reloadData()
     }
@@ -89,9 +88,8 @@ class SearchBookTableViewController: UITableViewController ,UISearchBarDelegate 
         // Pass the selected object to the new view controller.
         guard let selectedRow = self.tableView.indexPathForSelectedRow else {return}
         let destination = segue.destination as? DetailSearchBooksViewController
-        let selectedBook = viewModel.getBooks(byIndex: selectedRow.row)
-        destination?.selectedBook = selectedBook
-        
+        let selectedBook = viewModel.getBook(byIndex: selectedRow.row)
+        destination?.selectedBook = selectedBook 
     }
     
     

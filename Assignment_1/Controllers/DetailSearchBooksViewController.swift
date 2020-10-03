@@ -10,7 +10,8 @@ import UIKit
 
 class DetailSearchBooksViewController: UIViewController {
 
-     var selectedBook:(title: String, author: String, image: UIImage?)?
+    //var selectedBook:(title: String, author: String, image: UIImage?)?
+    var selectedBook:Book?
     
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var bookTitle: UILabel!
@@ -20,11 +21,21 @@ class DetailSearchBooksViewController: UIViewController {
         super.viewDidLoad()
         
         if let selectedBook = selectedBook{
+            bookTitle.text=selectedBook.getTitle()
+            bookAuthor.text=selectedBook.getAuthor()
+            bookImage.image=selectedBook.getPhoto()
+        }
+        
+        // MARK: todo handle the display for nil books
+     
+        /*
+        if let selectedBook = selectedBook{
             bookImage.image = selectedBook.image
             bookTitle.text = selectedBook.title
             bookAuthor.text = selectedBook.author
             
         }
+ */
 
         // Do any additional setup after loading the view.
     }
