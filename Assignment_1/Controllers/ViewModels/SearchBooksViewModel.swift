@@ -32,7 +32,7 @@ struct SearchBooksViewModel {
         
     }
     func getBooks(byIndex index: Int) -> (title: String, author: String, image: UIImage?){
-        let title = books[index].rawValue
+        let title = books[index].title
         let author =  books[index].author
         let image = UIImage(named: books[index].imageName)
         
