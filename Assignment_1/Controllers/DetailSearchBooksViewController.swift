@@ -10,7 +10,7 @@ import UIKit
 
 class DetailSearchBooksViewController: UIViewController {
 
-     var selectedBook:(title: String, author: String, image: UIImage?)?
+    var selectedBook:(title: String, author: String, image: UIImage?)?
     
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var bookTitle: UILabel!
