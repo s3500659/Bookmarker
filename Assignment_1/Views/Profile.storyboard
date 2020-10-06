@@ -29,7 +29,6 @@
         <!--Profile-->
         <scene sceneID="Bqo-0F-j7T">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eru-Sc-ARo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Profile" id="KBz-ow-Eh4" customClass="ProfileViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QK9-y9-ViN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -99,7 +98,15 @@
                         <viewLayoutGuide key="safeArea" id="cWd-Da-dfi"/>
                     </view>
                     <navigationItem key="navigationItem" id="dNO-6y-pJa"/>
+                    <connections>
+                        <outlet property="booksFinished" destination="6ZS-BY-mZg" id="MSq-8C-Jbm"/>
+                        <outlet property="booksFinishedCount" destination="Of4-xc-eEN" id="sio-w0-jJJ"/>
+                        <outlet property="favouriteBooks" destination="oQo-4o-kEN" id="a2p-hA-rOF"/>
+                        <outlet property="favouriteBooksTable" destination="zGu-FL-irP" id="SpZ-UF-6rI"/>
+                        <outlet property="yourProfile" destination="yCR-rR-Bdq" id="mOk-2O-Zkd"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eru-Sc-ARo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-399.375" y="89.788732394366193"/>
         </scene>
