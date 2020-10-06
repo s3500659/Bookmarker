@@ -10,20 +10,41 @@ import UIKit
 
 class BookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var startDate: UILabel!
+    @IBOutlet weak var startDateUpdateBtn: UIButton!
+    @IBOutlet weak var progress: UILabel!
+    @IBOutlet weak var progressUpdateBtn: UIButton!
+    @IBOutlet weak var bookDescription: UITextView!
+    @IBOutlet weak var notes: UITextView!
+    @IBOutlet weak var isbn: UILabel!
+    @IBOutlet weak var publisher: UILabel!
+    
+
     
     var book: Book?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
+        
+        
         if let book = book {
-            titleLabel.text = book.title
-            authorLabel.text = book.author
-            photoImageView.image = book.photo
+            // date text
+            
+            // date button
+            
+            // progress text
+            progress.text = "\(book.currentPage) of \(book.totalPages)"
+            // progress button
+            
+            // book description
+            bookDescription.text = book.description
+            notes.text = book.notes
+            isbn.text = book.isbn
+            publisher.text = book.publisher
         }
+     
+
     }
 
 

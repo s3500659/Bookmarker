@@ -23,31 +23,31 @@ struct BookDataViewModel {
     
     
     mutating func loadBooks() {
-        let book1 = Book(title: "Horus Rising", author: "Dan Abnett", totalPages: 416, currentPage: 10, photo: UIImage(named: "sample"))!
+        let book1 = Book(title: "Horus Rising", author: "Dan Abnett", totalPages: 416, currentPage: 10, photo: UIImage(named: "sample"), isbn: "97818844162949", publisher: "Goodreads", description: "book description here")!
         BookDataViewModel.books.append(book1)
         
-        let book2 = Book(title: "Gone with the Wind", author: "Margaret Mitchell", totalPages: 416, currentPage: 10, photo: UIImage(named: "gone"))!
+        let book2 = Book(title: "Gone with the Wind", author: "Margaret Mitchell", totalPages: 416, currentPage: 10, photo: UIImage(named: "gone"), isbn: "97818844162949", publisher: "Goodreads", description: "book description here")!
         BookDataViewModel.books.append(book2)
         
-        let book3 = Book(title: "Essays", author: "George Orwell", totalPages: 416, currentPage: 10, photo: UIImage(named: "essays"))!
+        let book3 = Book(title: "Essays", author: "George Orwell", totalPages: 416, currentPage: 10, photo: UIImage(named: "essays"), isbn: "97818844162949", publisher: "Goodreads", description: "book description here")!
         BookDataViewModel.books.append(book3)
         
-        let book4 = Book(title: "Cloud Computing", author: "John Smith", totalPages: 416, currentPage: 10, photo: UIImage(named: "cloud"))!
+        let book4 = Book(title: "Cloud Computing", author: "John Smith", totalPages: 416, currentPage: 10, photo: UIImage(named: "cloud"), isbn: "97818844162949", publisher: "Goodreads", description: "book description here")!
         BookDataViewModel.books.append(book4)
         
-        let book5 = Book(title: "Introduction to Java Programming", author: "Paul Jones", totalPages: 416, currentPage: 10, photo: UIImage(named: "intro"))!
+        let book5 = Book(title: "Introduction to Java Programming", author: "Paul Jones", totalPages: 416, currentPage: 10, photo: UIImage(named: "intro"), isbn: "97818844162949", publisher: "Goodreads", description: "book description here")!
         BookDataViewModel.books.append(book5)
         
-        let book6 = Book(title: "Lord of the Flies", author: "William Golding", totalPages: 416, currentPage: 10, photo: UIImage(named: "lord"))!
+        let book6 = Book(title: "Lord of the Flies", author: "William Golding", totalPages: 416, currentPage: 10, photo: UIImage(named: "lord"), isbn: "97818844162949", publisher: "Goodreads", description: "book description here")!
         BookDataViewModel.books.append(book6)
         
-        let book7 = Book(title: "Catch 22", author: "Joseph Heller", totalPages: 416, currentPage: 10, photo: UIImage(named: "catch"))!
+        let book7 = Book(title: "Catch 22", author: "Joseph Heller", totalPages: 416, currentPage: 10, photo: UIImage(named: "catch"), isbn: "97818844162949", publisher: "Goodreads", description: "book description here")!
         BookDataViewModel.books.append(book7)
         
-        let book8 = Book(title: "Middle", author: "George Elliot", totalPages: 416, currentPage: 10, photo: UIImage(named: "middle"))!
+        let book8 = Book(title: "Middle", author: "George Elliot", totalPages: 416, currentPage: 10, photo: UIImage(named: "middle"), isbn: "97818844162949", publisher: "Goodreads", description: "book description here")!
         BookDataViewModel.books.append(book8)
         
-        let book9 = Book(title: "The Time Machine", author: "H.G. Wells", totalPages: 416, currentPage: 10, photo: UIImage(named: "time"))!
+        let book9 = Book(title: "The Time Machine", author: "H.G. Wells", totalPages: 416, currentPage: 10, photo: UIImage(named: "time"), isbn: "97818844162949", publisher: "Goodreads", description: "book description here")!
         BookDataViewModel.books.append(book9)
         
     }
