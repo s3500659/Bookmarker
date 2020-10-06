@@ -10,7 +10,6 @@ import UIKit
 
 class Book {
     // MARK: Properties
-    
     var title: String
     var author: String
     var totalPages: intmax_t
@@ -24,6 +23,7 @@ class Book {
         guard !title.isEmpty else {
             return nil
         }
+        
         
         // Current page the user is up to must be greater than or equal to zero
         // It must also be less than the total number of pages in the book

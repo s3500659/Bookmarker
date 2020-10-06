@@ -21,13 +21,12 @@
 		D83B8D6F2505B654004F81B6 /* Assignment_1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83B8D6E2505B654004F81B6 /* Assignment_1UITests.swift */; };
 		D8A7FC8625230202000B4B1D /* StudentInfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7FC8525230202000B4B1D /* StudentInfoDetailViewController.swift */; };
 		D8A7FC8A2526F24D000B4B1D /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7FC892526F24D000B4B1D /* StudentViewModel.swift */; };
+		D8A7FCAC252C1035000B4B1D /* BookDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7FCAB252C1035000B4B1D /* BookDataViewModel.swift */; };
 		D8E83EA6251D8A7800E20352 /* StudentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8E83EA4251D8A7800E20352 /* StudentInfo.storyboard */; };
 		D8E83EA8251D8C5B00E20352 /* StudentInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EA7251D8C5B00E20352 /* StudentInfoTableViewController.swift */; };
 		D8E83EAA251D8CCA00E20352 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EA9251D8CCA00E20352 /* Student.swift */; };
 		D8E83EAC251D94D000E20352 /* StudentInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EAB251D94D000E20352 /* StudentInfoTableViewCell.swift */; };
 		F077502225259D670004929C /* DetailSearchBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F077502125259D670004929C /* DetailSearchBooksViewController.swift */; };
-		F093EA552523ED84009F38C0 /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093EA542523ED84009F38C0 /* BookData.swift */; };
-		F093EA592523F266009F38C0 /* SearchBooksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093EA582523F266009F38C0 /* SearchBooksViewModel.swift */; };
 		F093EA5B25240013009F38C0 /* SearchBookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093EA5A25240013009F38C0 /* SearchBookTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,13 +68,12 @@
 		D83B8D702505B654004F81B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8A7FC8525230202000B4B1D /* StudentInfoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoDetailViewController.swift; sourceTree = "<group>"; };
 		D8A7FC892526F24D000B4B1D /* StudentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewModel.swift; sourceTree = "<group>"; };
+		D8A7FCAB252C1035000B4B1D /* BookDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDataViewModel.swift; sourceTree = "<group>"; };
 		D8E83EA5251D8A7800E20352 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Assignment_1/Views/Base.lproj/StudentInfo.storyboard; sourceTree = "<group>"; };
 		D8E83EA7251D8C5B00E20352 /* StudentInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoTableViewController.swift; sourceTree = "<group>"; };
 		D8E83EA9251D8CCA00E20352 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Student.swift; path = Assignment_1/Controllers/Student.swift; sourceTree = SOURCE_ROOT; };
 		D8E83EAB251D94D000E20352 /* StudentInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F077502125259D670004929C /* DetailSearchBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchBooksViewController.swift; sourceTree = "<group>"; };
-		F093EA542523ED84009F38C0 /* BookData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
-		F093EA582523F266009F38C0 /* SearchBooksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBooksViewModel.swift; sourceTree = "<group>"; };
 		F093EA5A25240013009F38C0 /* SearchBookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,7 +155,6 @@
 		D83B8DFD25104D64004F81B6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F093EA542523ED84009F38C0 /* BookData.swift */,
 				17E5BE5C2519FE8500EF88FD /* Book.swift */,
 				D8E83EA9251D8CCA00E20352 /* Student.swift */,
 			);
@@ -193,8 +190,8 @@
 			children = (
 				17E5BE5E251A012F00EF88FD /* BookTableViewCell.swift */,
 				D8E83EAB251D94D000E20352 /* StudentInfoTableViewCell.swift */,
-				F093EA582523F266009F38C0 /* SearchBooksViewModel.swift */,
 				D8A7FC892526F24D000B4B1D /* StudentViewModel.swift */,
+				D8A7FCAB252C1035000B4B1D /* BookDataViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -346,10 +343,9 @@
 				D8E83EA8251D8C5B00E20352 /* StudentInfoTableViewController.swift in Sources */,
 				D8A7FC8625230202000B4B1D /* StudentInfoDetailViewController.swift in Sources */,
 				D83B8D542505B650004F81B6 /* Assignment_1.xcdatamodeld in Sources */,
+				D8A7FCAC252C1035000B4B1D /* BookDataViewModel.swift in Sources */,
 				D8A7FC8A2526F24D000B4B1D /* StudentViewModel.swift in Sources */,
-				F093EA552523ED84009F38C0 /* BookData.swift in Sources */,
 				D83B8D4E2505B650004F81B6 /* BookViewController.swift in Sources */,
-				F093EA592523F266009F38C0 /* SearchBooksViewModel.swift in Sources */,
 				D8E83EAA251D8CCA00E20352 /* Student.swift in Sources */,
 				17E5BE5D2519FE8500EF88FD /* Book.swift in Sources */,
 				F093EA5B25240013009F38C0 /* SearchBookTableViewController.swift in Sources */,
