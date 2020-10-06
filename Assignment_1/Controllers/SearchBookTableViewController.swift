@@ -12,7 +12,7 @@ class SearchBookTableViewController: UITableViewController ,UISearchBarDelegate 
     
     // 1 - need connection to the ViewModel
     
-    var viewModel = BookDataViewModel()
+    //var viewModel = BookDataViewModel()
 
     @IBOutlet weak var searchBar: UISearchBar!
     var data :[String] = []
@@ -20,7 +20,7 @@ class SearchBookTableViewController: UITableViewController ,UISearchBarDelegate 
     var filteredData: [String]!
     
     func loadBookData() {
-        for i in viewModel.books {
+        for i in BookDataViewModel.books {
             data.append(i.title)
         }
     }
@@ -75,7 +75,7 @@ class SearchBookTableViewController: UITableViewController ,UISearchBarDelegate 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let selectedRow = self.tableView.indexPathForSelectedRow else {return}
         let destination = segue.destination as? BookViewController
-        let selectedBook = viewModel.books[selectedRow.row]
+        let selectedBook = BookDataViewModel.books[selectedRow.row]
         destination?.book = selectedBook
         
         
