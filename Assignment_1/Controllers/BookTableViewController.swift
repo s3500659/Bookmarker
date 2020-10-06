@@ -11,12 +11,11 @@ import UIKit
 class BookTableViewController: UITableViewController {
     
     // MARK: Properties
-    var books = [Book]()
+    //var viewModel = BookDataViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadSampleBook()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -32,7 +31,7 @@ class BookTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books.count
+        return BookDataViewModel.books.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,7 +40,7 @@ class BookTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of BookTableViewCell")
         }
 
-        let book = books[indexPath.row]
+        let book = BookDataViewModel.books[indexPath.row]
         let progress: Float = Float(book.currentPage) / Float(book.totalPages)
         
         cell.titleLabel.text = book.title
@@ -107,7 +106,7 @@ class BookTableViewController: UITableViewController {
                 fatalError("The selected cell is not beig displayed by the table")
             }
             
-            let selectedBook = books[indexPath.row]
+            let selectedBook = BookDataViewModel.books[indexPath.row]
             bookDetailViewController.book = selectedBook
             
         default:
@@ -117,11 +116,11 @@ class BookTableViewController: UITableViewController {
 
     // MARK: Private methods
     
-    private func loadSampleBook() {
-        let sampleImage = UIImage(named: "sample")
-        guard let sampleBook = Book(title: "Horus Rising", author: "Dan Abnett", totalPages: 416, currentPage: 10, photo: sampleImage) else {
-            fatalError("Unable to create sample book")
-        }
-        books += [sampleBook]
-    }
+//    private func loadSampleBook() {
+//        let sampleImage = UIImage(named: "sample")
+//        guard let sampleBook = Book(title: "Horus Rising", author: "Dan Abnett", totalPages: 416, currentPage: 10, photo: sampleImage) else {
+//            fatalError("Unable to create sample book")
+//        }
+//        books += [sampleBook]
+//    }
 }
