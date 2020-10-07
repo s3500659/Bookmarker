@@ -8,36 +8,59 @@
 
 import UIKit
 
-class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bookData.count
+        return filteredData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bookSearchCell", for: indexPath)
-        cell.textLabel?.text=bookData[indexPath.row]
+        cell.textLabel?.text=filteredData[indexPath.row]
         return cell
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredData=[]
+        for book in bookData{
+            if(book.lowercased().contains(searchText.lowercased())){
+                filteredData.append(book)
+            }
+        }
+        bookSearchTable.reloadData()
+    }
+    
 
+    @IBOutlet var profilePopOverView: UIView!
+    
+    
     @IBOutlet weak var bookSearchTable: UITableView!
     @IBOutlet weak var bookSearchBar: UISearchBar!
     
     var bookData:[String] = []
+    var filteredData: [String]!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bookSearchTable.delegate=self
         bookSearchTable.dataSource=self
-        
-        
+        bookSearchBar.delegate = self
+
         //temp dummy data
         for index in 0...20{
             bookData.append(String(index))
         }
-
+        filteredData = bookData
     }
+    
+    /*
+     // Close PopUp
+     @IBAction func closePopup(_ sender: Any) {
+     
+     dismiss(animated: true, completion: nil)
+     }
+
+     */
     
 
     /*

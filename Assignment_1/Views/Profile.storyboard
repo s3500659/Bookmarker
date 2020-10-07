@@ -168,14 +168,50 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B5b-KF-BVP"/>
                     </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="120" height="120"/>
                     <connections>
                         <outlet property="bookSearchBar" destination="Zfg-T7-TDL" id="3Gm-Ih-lG3"/>
                         <outlet property="bookSearchTable" destination="DZi-fg-6J6" id="pQY-Bu-2YR"/>
+                        <outlet property="profilePopOverView" destination="jKW-IR-AYq" id="gCV-ts-mY6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7L-6R-LJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="727.5" y="89.788732394366193"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="K3Z-el-Geh">
+            <objects>
+                <viewController id="iXd-nm-qOg" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NaA-Tg-OfC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Em-lX-Slu">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="cancel" id="edB-be-ZGR"/>
+                                    <barButtonItem style="plain" systemItem="fixedSpace" id="bVY-zn-Hzq"/>
+                                    <barButtonItem style="plain" id="a1K-f4-3Nk">
+                                        <searchBar key="customView" contentMode="redraw" id="N0p-zY-pFv">
+                                            <rect key="frame" x="80" y="0.0" width="169" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </searchBar>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ni7-o3-7UJ"/>
+                                    <barButtonItem systemItem="done" id="niC-Gg-mSd"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="CqQ-6i-cfa"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5pw-KJ-m15" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1449" y="90"/>
         </scene>
     </scenes>
     <resources>
