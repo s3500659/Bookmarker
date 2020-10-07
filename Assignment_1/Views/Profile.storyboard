@@ -129,10 +129,10 @@
             </objects>
             <point key="canvasLocation" x="-399.375" y="89.788732394366193"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile Pop Over View Controller-->
         <scene sceneID="m5N-Iy-asY">
             <objects>
-                <viewController id="DFV-Y6-gH3" sceneMemberID="viewController">
+                <viewController id="DFV-Y6-gH3" customClass="ProfilePopOverViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jKW-IR-AYq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -152,7 +152,7 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Zfg-T7-TDL">
-                                <rect key="frame" x="16" y="20" width="40" height="56"/>
+                                <rect key="frame" x="16" y="20" width="288" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -168,6 +168,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B5b-KF-BVP"/>
                     </view>
+                    <connections>
+                        <outlet property="bookSearchBar" destination="Zfg-T7-TDL" id="3Gm-Ih-lG3"/>
+                        <outlet property="bookSearchTable" destination="DZi-fg-6J6" id="pQY-Bu-2YR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7L-6R-LJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
