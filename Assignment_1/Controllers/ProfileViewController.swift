@@ -30,6 +30,10 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBOutlet weak var favouriteBooksTable: UITableView!
     
+    @IBAction func addBook(_ sender: Any) {
+    }
+    
+    
     var bookData:[String] = []
 
     
