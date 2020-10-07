@@ -14,15 +14,12 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "favouriteBookCell", for: indexPath) as? UITableViewCell else {
-            fatalError("The dequeued cell with identifier 'favouriteBookCell' is invalid")
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favouriteBookCell", for: indexPath)
         cell.textLabel?.text=bookData[indexPath.row]
         return cell
     }
     
 
-    
     @IBOutlet weak var yourProfile: UILabel!
     
     @IBOutlet weak var booksFinished: UILabel!
