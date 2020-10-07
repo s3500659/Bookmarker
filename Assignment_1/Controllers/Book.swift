@@ -20,6 +20,7 @@ class Book {
     private (set) var isbn:String
     private (set) var publisher:String
     private (set) var description:String
+    private (set) var startDate:Date?
 
     
     
