@@ -15,13 +15,13 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bookSearchCell", for: indexPath)
-        cell.textLabel?.text=filteredData[indexPath.row]
+        let title = cell.viewWithTag(1000) as! UILabel
+        title.text = filteredData[indexPath.row]
         return cell
     }
 
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("called")
         filteredData=[]
         for book in bookData{
             if(book.lowercased().contains(searchText.lowercased())){
