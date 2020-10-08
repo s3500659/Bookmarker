@@ -16,7 +16,7 @@ class Book {
     var currentPage: Int
     var photo: UIImage?
     
-    private (set) var notes:String = "Enter notes here"
+    var notes:String = "Enter notes here"
     private (set) var isbn:String
     private (set) var publisher:String
     private (set) var description:String

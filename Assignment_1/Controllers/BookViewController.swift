@@ -8,7 +8,9 @@
 
 import UIKit
 
-class BookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
+class BookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+    
+    var book: Book?
     
     @IBOutlet weak var startDate: UILabel!
     @IBOutlet weak var progress: UILabel!
@@ -66,7 +68,6 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         alert.addTextField { (textField) in
             textField.text = ""
         }
-        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             if let book = self.book {
@@ -74,19 +75,19 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
                 self.progress.text = "\(book.currentPage) of \(book.totalPages)"
             }
         }))
-        
         self.present(alert, animated: true, completion: nil)
     }
     
+    // notes text view
+    func textViewDidChange(_ textView: UITextView) {
+        book?.notes = textView.text
+
+    }
     
 
-    
-    var book: Book?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        notes.delegate = self
         
         if let book = book {
             // date text
@@ -94,11 +95,8 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             formatter.dateFormat = "dd mm yyyy"
             startDate.text = book.startDate == nil ? "not started" : String(formatter.string(from: book.startDate!))
             
-            // date button
-            
             // progress text
             progress.text = "\(book.currentPage) of \(book.totalPages)"
-            // progress button
             
             // book description
             bookDescription.text = book.description
@@ -106,10 +104,6 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             isbn.text = book.isbn
             publisher.text = book.publisher
         }
-     
-
     }
-
-
 }
 
