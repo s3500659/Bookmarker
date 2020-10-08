@@ -89,7 +89,7 @@
                                         <state key="normal" image="math-plus"/>
                                         <connections>
                                             <action selector="addBook:" destination="KBz-ow-Eh4" eventType="touchUpInside" id="GM9-7o-mI3"/>
-                                            <segue destination="DFV-Y6-gH3" kind="popoverPresentation" popoverAnchorView="Xwu-IP-fAR" id="Nfp-0L-SWd">
+                                            <segue destination="UYa-am-X9D" kind="popoverPresentation" popoverAnchorView="Xwu-IP-fAR" id="f1l-a6-vvd">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -130,88 +130,71 @@
             <point key="canvasLocation" x="-399.375" y="89.788732394366193"/>
         </scene>
         <!--Profile Pop Over View Controller-->
-        <scene sceneID="m5N-Iy-asY">
+        <scene sceneID="TNU-Gp-yqp">
             <objects>
-                <viewController id="DFV-Y6-gH3" customClass="ProfilePopOverViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jKW-IR-AYq">
+                <viewController storyboardIdentifier="popOverSearch" id="UYa-am-X9D" customClass="ProfilePopOverViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kvd-wV-f6h">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DZi-fg-6J6">
-                                <rect key="frame" x="16" y="95" width="288" height="453"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bum-wQ-RD5">
+                                <rect key="frame" x="16" y="150" width="288" height="398"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookSearchCell" id="7s6-Lz-4s4">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookSearchCell" id="ap9-u3-9Nl">
                                         <rect key="frame" x="0.0" y="28" width="288" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7s6-Lz-4s4" id="kNO-e9-2Br">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ap9-u3-9Nl" id="dLP-NT-d01">
                                             <rect key="frame" x="0.0" y="0.0" width="288" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Zfg-T7-TDL">
-                                <rect key="frame" x="16" y="20" width="288" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Zfg-T7-TDL" firstAttribute="top" secondItem="B5b-KF-BVP" secondAttribute="top" id="Ez6-TX-Ysf"/>
-                            <constraint firstItem="B5b-KF-BVP" firstAttribute="bottom" secondItem="DZi-fg-6J6" secondAttribute="bottom" constant="20" id="J1S-EK-Rph"/>
-                            <constraint firstItem="DZi-fg-6J6" firstAttribute="leading" secondItem="B5b-KF-BVP" secondAttribute="leading" constant="16" id="NmG-Jd-JHL"/>
-                            <constraint firstItem="DZi-fg-6J6" firstAttribute="top" secondItem="Zfg-T7-TDL" secondAttribute="bottom" constant="19" id="Quj-BP-YGV"/>
-                            <constraint firstItem="B5b-KF-BVP" firstAttribute="trailing" secondItem="DZi-fg-6J6" secondAttribute="trailing" constant="16" id="gvu-hh-M7A"/>
-                            <constraint firstItem="Zfg-T7-TDL" firstAttribute="leading" secondItem="B5b-KF-BVP" secondAttribute="leading" constant="16" id="i3O-ne-ezS"/>
-                            <constraint firstItem="B5b-KF-BVP" firstAttribute="trailing" secondItem="Zfg-T7-TDL" secondAttribute="trailing" constant="16" id="mMG-7U-oQb"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="B5b-KF-BVP"/>
-                    </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="120" height="120"/>
-                    <connections>
-                        <outlet property="bookSearchBar" destination="Zfg-T7-TDL" id="3Gm-Ih-lG3"/>
-                        <outlet property="bookSearchTable" destination="DZi-fg-6J6" id="pQY-Bu-2YR"/>
-                        <outlet property="profilePopOverView" destination="jKW-IR-AYq" id="gCV-ts-mY6"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J7L-6R-LJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="727.5" y="89.788732394366193"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="K3Z-el-Geh">
-            <objects>
-                <viewController id="iXd-nm-qOg" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="NaA-Tg-OfC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Em-lX-Slu">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z84-4B-5pa">
+                                <rect key="frame" x="16" y="36" width="288" height="56"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
-                                    <barButtonItem systemItem="cancel" id="edB-be-ZGR"/>
-                                    <barButtonItem style="plain" systemItem="fixedSpace" id="bVY-zn-Hzq"/>
-                                    <barButtonItem style="plain" id="a1K-f4-3Nk">
-                                        <searchBar key="customView" contentMode="redraw" id="N0p-zY-pFv">
-                                            <rect key="frame" x="80" y="0.0" width="169" height="44"/>
+                                    <barButtonItem systemItem="cancel" id="kYI-e7-wGS">
+                                        <connections>
+                                            <action selector="cancelButton:" destination="UYa-am-X9D" id="9Yi-63-ZPt"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6Ch-we-bZp"/>
+                                    <barButtonItem style="plain" id="myy-0c-qyE">
+                                        <searchBar key="customView" contentMode="redraw" id="OrO-xo-cMf">
+                                            <rect key="frame" x="82" y="0.0" width="137" height="56"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </searchBar>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ni7-o3-7UJ"/>
-                                    <barButtonItem systemItem="done" id="niC-Gg-mSd"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="wjh-XL-Swx"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="qSZ-2I-EGT"/>
+                                    <barButtonItem systemItem="done" id="xke-eU-uGJ"/>
                                 </items>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="CqQ-6i-cfa"/>
+                        <constraints>
+                            <constraint firstItem="z84-4B-5pa" firstAttribute="leading" secondItem="AKA-6U-c0O" secondAttribute="leading" constant="16" id="7gH-k1-pMu"/>
+                            <constraint firstItem="z84-4B-5pa" firstAttribute="top" secondItem="AKA-6U-c0O" secondAttribute="top" constant="16" id="8wY-L1-RGi"/>
+                            <constraint firstItem="AKA-6U-c0O" firstAttribute="trailing" secondItem="z84-4B-5pa" secondAttribute="trailing" constant="16" id="91n-Ix-aLi"/>
+                            <constraint firstItem="AKA-6U-c0O" firstAttribute="trailing" secondItem="Bum-wQ-RD5" secondAttribute="trailing" constant="16" id="FtG-C8-GV0"/>
+                            <constraint firstItem="Bum-wQ-RD5" firstAttribute="leading" secondItem="AKA-6U-c0O" secondAttribute="leading" constant="16" id="LC7-Ep-now"/>
+                            <constraint firstItem="AKA-6U-c0O" firstAttribute="bottom" secondItem="Bum-wQ-RD5" secondAttribute="bottom" constant="20" id="nwJ-Os-ECR"/>
+                            <constraint firstItem="Bum-wQ-RD5" firstAttribute="top" secondItem="z84-4B-5pa" secondAttribute="bottom" constant="58" id="thx-Bq-Pr9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="AKA-6U-c0O"/>
                     </view>
+                    <connections>
+                        <outlet property="bookSearchBar" destination="OrO-xo-cMf" id="S8J-LJ-PaS"/>
+                        <outlet property="bookSearchTable" destination="Bum-wQ-RD5" id="OAM-7s-Hok"/>
+                        <outlet property="profilePopOverView" destination="kvd-wV-f6h" id="CES-PR-48o"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5pw-KJ-m15" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LeI-vL-KOQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1449" y="90"/>
+            <point key="canvasLocation" x="727.5" y="880.9859154929577"/>
         </scene>
     </scenes>
     <resources>
