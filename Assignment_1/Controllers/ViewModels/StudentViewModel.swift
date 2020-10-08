@@ -45,10 +45,10 @@ struct StudentViewModel {
         let jordan = Student(
             name: "Jordan",
             studentNumber: "s3611566",
-            description: "I'm currently working as a web developer and I am also a student at RMIT university pursuing my bachelor of Information Technology. I really enjoy the problem solving aspects of rogramming along with designing user interfaces",
+            description: "I currently work full time as a web developer using Ruby on Rails while completing my final unit for my Bachelor of IT. I enjoy solving complex programming problems.",
             image: UIImage(named: "simba_1")!,
-            hobbies: "Video games, programming, designing web apps",
-            additionalInfo: "")
+            hobbies: "Video games, boxing, web development and fishing",
+            additionalInfo: "In my spare time I am trying to find the best fishing spots, playing video games or working on hobby development projects.")
         
         students.append(vinh)
         students.append(jordan)
