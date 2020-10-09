@@ -18,9 +18,12 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         let title = cell.viewWithTag(1000) as! UILabel
         let author = cell.viewWithTag(1001) as! UILabel
         let isbn = cell.viewWithTag(1002) as! UILabel
+        let image = cell.viewWithTag(1003) as! UIImageView
+
         title.text=filteredData[indexPath.row].title
         author.text=filteredData[indexPath.row].author
         isbn.text=filteredData[indexPath.row].isbn
+        image.image=filteredData[indexPath.row].photo
 
        // bookImage=BookDataViewModel.favouriteBooksLibrary[indexPath.row].photo!
         //explicitly enable interaction in cells

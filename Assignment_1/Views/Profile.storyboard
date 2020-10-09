@@ -42,14 +42,14 @@
                                 <rect key="frame" x="16" y="205" width="288" height="333"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" tag="1004" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favouriteBookCell" rowHeight="180" id="r0W-I2-m79" customClass="BookTableViewCell" customModule="Assignment_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favouriteBookCell" rowHeight="180" id="r0W-I2-m79" customClass="BookTableViewCell" customModule="Assignment_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="288" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r0W-I2-m79" id="4Do-RR-1gT">
                                             <rect key="frame" x="0.0" y="0.0" width="288" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BuK-IM-Qgd">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BuK-IM-Qgd">
                                                     <rect key="frame" x="152" y="11" width="120" height="150"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="Srw-uA-mh8"/>
@@ -204,7 +204,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="288" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample" translatesAutoresizingMaskIntoConstraints="NO" id="FJo-A5-e5H">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1003" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FJo-A5-e5H">
                                                     <rect key="frame" x="16" y="21" width="90" height="118"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="118" id="1oU-cP-ptl"/>
@@ -301,6 +301,5 @@
     <resources>
         <image name="math-plus" width="512" height="512"/>
         <image name="plus" width="512" height="512"/>
-        <image name="sample" width="157.5" height="254"/>
     </resources>
 </document>

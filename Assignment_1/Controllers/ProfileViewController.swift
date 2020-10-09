@@ -19,6 +19,8 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let author = cell.viewWithTag(1001) as! UILabel
         let progress = cell.viewWithTag(1002) as! UILabel
         let progressView = cell.viewWithTag(1003) as! UIProgressView
+        let image = cell.viewWithTag(1004) as! UIImageView
+
         //var bookImage = cell.viewWithTag(1004) as! UIImage
 
         let currentProgress: Float = Float(BookDataViewModel.favouriteBooksLibrary[indexPath.row].currentPage) / Float(BookDataViewModel.favouriteBooksLibrary[indexPath.row].totalPages)
@@ -27,7 +29,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         author.text=BookDataViewModel.favouriteBooksLibrary[indexPath.row].author
         progress.text="Page \(BookDataViewModel.favouriteBooksLibrary[indexPath.row].currentPage) of \(BookDataViewModel.favouriteBooksLibrary[indexPath.row].totalPages)"
         progressView.setProgress(currentProgress, animated: true)
-       // bookImage=BookDataViewModel.favouriteBooksLibrary[indexPath.row].photo!
+        image.image = BookDataViewModel.favouriteBooksLibrary[indexPath.row].photo
         return cell
     }
     
