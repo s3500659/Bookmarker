@@ -16,7 +16,13 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bookSearchCell", for: indexPath)
         let title = cell.viewWithTag(1000) as! UILabel
-        title.text = filteredData[indexPath.row]
+        let author = cell.viewWithTag(1001) as! UILabel
+        let isbn = cell.viewWithTag(1002) as! UILabel
+        title.text=filteredData[indexPath.row].title
+        author.text=filteredData[indexPath.row].author
+        isbn.text=filteredData[indexPath.row].isbn
+
+       // bookImage=BookDataViewModel.favouriteBooksLibrary[indexPath.row].photo!
         //explicitly enable interaction in cells
         cell.contentView.isUserInteractionEnabled = true
         return cell
@@ -26,13 +32,12 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredData=[]
         for book in bookData{
-            if(book.lowercased().contains(searchText.lowercased())){
+            if(book.title.lowercased().contains(searchText.lowercased())){
                 filteredData.append(book)
             }
         }
         bookSearchTable.reloadData()
     }
-    
     
     @IBAction func addBookButton(_ sender: UIButton) {
         let buttonPos = sender.convert(sender.bounds.origin, to: bookSearchTable)
@@ -44,15 +49,14 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
             //if the element exists add it
             tempBookData.append(Book(title: currentText, author: "", totalPages: 0, currentPage: 0, photo:nil, isbn: "1", publisher: "", description: "")!)
             //hide the button
-            let currentButton = currentCell!.viewWithTag(1001) as! UIButton
+            let currentButton = currentCell!.viewWithTag(1005) as! UIButton
             currentButton.isHidden=true
-
+            
         }
     }
-
     
+   
     @IBAction func cancelButton(_ sender: Any) {
-
         dismiss(animated: true, completion: nil)
     }
     
@@ -69,13 +73,13 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
 
     @IBOutlet weak var bookSearchTable: UITableView!
     
-    @IBOutlet weak var bookSearchBar: UISearchBar!
     
     @IBOutlet var profilePopOverView: UIView!
 
+    @IBOutlet weak var bookSearchBar: UISearchBar!
     
-    var bookData:[String] = []
-    var filteredData: [String]!
+    var bookData:[Book] = []
+    var filteredData: [Book]!
     var tempBookData:[Book] = [] //holds bookData to be added to favourites
     
     override func viewDidLoad() {
@@ -99,7 +103,7 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         */
       
         for book in BookDataViewModel.books{
-            bookData.append(book.title)
+            bookData.append(book)
         }
         filteredData = bookData
     }

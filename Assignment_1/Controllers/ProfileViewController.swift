@@ -15,7 +15,19 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favouriteBookCell", for: indexPath)
-        cell.textLabel?.text=BookDataViewModel.favouriteBooksLibrary[indexPath.row].title
+        let title = cell.viewWithTag(1000) as! UILabel
+        let author = cell.viewWithTag(1001) as! UILabel
+        let progress = cell.viewWithTag(1002) as! UILabel
+        let progressView = cell.viewWithTag(1003) as! UIProgressView
+        //var bookImage = cell.viewWithTag(1004) as! UIImage
+
+        let currentProgress: Float = Float(BookDataViewModel.favouriteBooksLibrary[indexPath.row].currentPage) / Float(BookDataViewModel.favouriteBooksLibrary[indexPath.row].totalPages)
+
+        title.text=BookDataViewModel.favouriteBooksLibrary[indexPath.row].title
+        author.text=BookDataViewModel.favouriteBooksLibrary[indexPath.row].author
+        progress.text="Page \(BookDataViewModel.favouriteBooksLibrary[indexPath.row].currentPage) of \(BookDataViewModel.favouriteBooksLibrary[indexPath.row].totalPages)"
+        progressView.setProgress(currentProgress, animated: true)
+       // bookImage=BookDataViewModel.favouriteBooksLibrary[indexPath.row].photo!
         return cell
     }
     
