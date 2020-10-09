@@ -32,9 +32,32 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         }
         bookSearchTable.reloadData()
     }
+    
+    
+    @IBAction func addBookButton(_ sender: UIButton) {
+        let buttonPos = sender.convert(sender.bounds.origin, to: bookSearchTable)
+        if let indexPath = bookSearchTable.indexPathForRow(at: buttonPos) {
+            let currentCell = bookSearchTable.cellForRow(at: indexPath)
+            let currentLabel = currentCell!.viewWithTag(1000) as! UILabel
+            guard let currentText = currentLabel.text else{ return }
+            print(currentText)
+            //if the element exists add it
+            for book in bookData{
+                if book == currentText{
+                    tempBookData.append(book)
+                }
+            }
+            //hide the button
+            let currentButton = currentCell!.viewWithTag(1001) as! UIButton
+            currentButton.isHidden=true
+
+        }
+    }
 
     
     @IBAction func cancelButton(_ sender: Any) {
+        //add the selected books to favourites
+        filteredData.append(contentsOf: tempBookData)
         dismiss(animated: true, completion: nil)
     }
     
@@ -42,7 +65,6 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         //todo should save data
         dismiss(animated: true, completion: nil)
     }
-    
 
     @IBOutlet weak var bookSearchTable: UITableView!
     
@@ -51,32 +73,9 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
     @IBOutlet var profilePopOverView: UIView!
 
     
-    @IBAction func addBookButton(_ sender: UIButton) {
-        let buttonPos = sender.convert(sender.bounds.origin, to: bookSearchTable)
-        if let indexPath = bookSearchTable.indexPathForRow(at: buttonPos) {
-            let currentCell = bookSearchTable.cellForRow(at: indexPath)
-            let currentLabel = currentCell!.viewWithTag(1000) as! UILabel
-            guard let currentText = currentLabel.text else{return }
-            print(currentText)
-        }
-    }
-    /*
-    @IBAction func addBookButton(_ sender: UIButton) {
-        print("clicked")
-       
-        let buttonPos = sender.convert(sender.bounds.origin, to: bookSearchTable)
-        if let indexPath = bookSearchTable.indexPathForRow(at: buttonPos) {
-            let rowIndex =  indexPath.row
-        }
-
-    }
-     */
-    
-    
-    
     var bookData:[String] = []
     var filteredData: [String]!
-
+    var tempBookData: [String] = [] //holds bookData to be added to favourites
 
     
     override func viewDidLoad() {
