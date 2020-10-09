@@ -12,11 +12,13 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bookSearchCell", for: indexPath)
         let title = cell.viewWithTag(1000) as! UILabel
         title.text = filteredData[indexPath.row]
+        //explicitly enable interaction in cells
+        cell.contentView.isUserInteractionEnabled = true
         return cell
     }
 
@@ -36,12 +38,40 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func doneButton(_ sender: Any) {
+        //todo should save data
+        dismiss(animated: true, completion: nil)
+    }
+    
 
     @IBOutlet weak var bookSearchTable: UITableView!
     
     @IBOutlet weak var bookSearchBar: UISearchBar!
     
     @IBOutlet var profilePopOverView: UIView!
+
+    
+    @IBAction func addBookButton(_ sender: UIButton) {
+        let buttonPos = sender.convert(sender.bounds.origin, to: bookSearchTable)
+        if let indexPath = bookSearchTable.indexPathForRow(at: buttonPos) {
+            let currentCell = bookSearchTable.cellForRow(at: indexPath)
+            let currentLabel = currentCell!.viewWithTag(1000) as! UILabel
+            guard let currentText = currentLabel.text else{return }
+            print(currentText)
+        }
+    }
+    /*
+    @IBAction func addBookButton(_ sender: UIButton) {
+        print("clicked")
+       
+        let buttonPos = sender.convert(sender.bounds.origin, to: bookSearchTable)
+        if let indexPath = bookSearchTable.indexPathForRow(at: buttonPos) {
+            let rowIndex =  indexPath.row
+        }
+
+    }
+     */
+    
     
     
     var bookData:[String] = []
