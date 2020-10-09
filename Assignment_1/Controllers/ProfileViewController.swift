@@ -10,12 +10,12 @@ import UIKit
 
 class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bookData.count
+        return BookDataViewModel.favouriteBooksLibrary.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favouriteBookCell", for: indexPath)
-        cell.textLabel?.text=bookData[indexPath.row]
+        cell.textLabel?.text=BookDataViewModel.favouriteBooksLibrary[indexPath.row].title
         return cell
     }
     
@@ -33,21 +33,11 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBAction func addBook(_ sender: Any) {
     }
     
-    
-    var bookData:[String] = []
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         favouriteBooksTable.delegate=self
         favouriteBooksTable.dataSource=self
-        
-        
-        //temp dummy data
-        for index in 0...20{
-            bookData.append(String(index))
-        }
-        booksFinishedCount.text=String(bookData.count)
+        booksFinishedCount.text=String(BookDataViewModel.favouriteBooksLibrary.count)
     }
     
     

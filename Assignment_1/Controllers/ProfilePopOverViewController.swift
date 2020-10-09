@@ -42,11 +42,7 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
             guard let currentText = currentLabel.text else{ return }
             print(currentText)
             //if the element exists add it
-            for book in bookData{
-                if book == currentText{
-                    tempBookData.append(book)
-                }
-            }
+            tempBookData.append(Book(title: currentText, author: "", totalPages: 0, currentPage: 0, photo:nil, isbn: "1", publisher: "", description: "")!)
             //hide the button
             let currentButton = currentCell!.viewWithTag(1001) as! UIButton
             currentButton.isHidden=true
@@ -56,13 +52,18 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
 
     
     @IBAction func cancelButton(_ sender: Any) {
-        //add the selected books to favourites
-        filteredData.append(contentsOf: tempBookData)
+
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func doneButton(_ sender: Any) {
-        //todo should save data
+        //add the selected books to favourites
+        BookDataViewModel.favouriteBooksLibrary.append(contentsOf: tempBookData)
+        bookSearchTable.reloadData()
+        //todo remove this and refresh favouriteBooksTable
+        for book in BookDataViewModel.favouriteBooksLibrary{
+            print(book.title)
+        }
         dismiss(animated: true, completion: nil)
     }
 
@@ -75,8 +76,7 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
     
     var bookData:[String] = []
     var filteredData: [String]!
-    var tempBookData: [String] = [] //holds bookData to be added to favourites
-
+    var tempBookData:[Book] = [] //holds bookData to be added to favourites
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,9 +98,8 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         self.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
         */
       
-        //temp dummy data
-        for index in 0...20{
-            bookData.append(String(index))
+        for book in BookDataViewModel.books{
+            bookData.append(book.title)
         }
         filteredData = bookData
     }
