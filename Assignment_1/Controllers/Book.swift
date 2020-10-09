@@ -10,20 +10,28 @@ import UIKit
 
 class Book {
     // MARK: Properties
-    
     var title: String
     var author: String
-    var totalPages: intmax_t
-    var currentPage: intmax_t
+    var totalPages: Int
+    var currentPage: Int
     var photo: UIImage?
+    
+    var notes:String = "Enter notes here"
+    private (set) var isbn:String
+    private (set) var publisher:String
+    private (set) var description:String
+    var startDate:Date?
+
+    
     
     // MARK: Initialize
     
-    init?(title: String, author: String, totalPages: intmax_t, currentPage: intmax_t, photo: UIImage?) {
+    init?(title: String, author: String, totalPages: intmax_t, currentPage: intmax_t, photo: UIImage?, isbn:String, publisher:String, description:String) {
         // Book name can't be empty
         guard !title.isEmpty else {
             return nil
         }
+        
         
         // Current page the user is up to must be greater than or equal to zero
         // It must also be less than the total number of pages in the book
@@ -36,5 +44,8 @@ class Book {
         self.totalPages = totalPages
         self.currentPage = currentPage
         self.photo = photo
+        self.isbn = isbn
+        self.publisher = publisher
+        self.description = description
     }
 }
