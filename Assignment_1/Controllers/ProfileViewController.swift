@@ -60,6 +60,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let _ = sender as? UITableViewCell else{return}
         guard let selectedRow = self.favouriteBooksTable.indexPathForSelectedRow else {return}
         let destination = segue.destination as? BookViewController
         let selectedBook = BookDataViewModel.favouriteBooksLibrary[selectedRow.row]
