@@ -34,6 +34,16 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return cell
     }
     
+    // delete cell
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            BookDataViewModel.favouriteBooksLibrary.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+        }
+    }
+    
     @IBOutlet weak var yourProfile: UILabel!
     
     @IBOutlet weak var booksFinished: UILabel!
