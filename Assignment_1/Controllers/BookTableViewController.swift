@@ -67,24 +67,11 @@ class BookTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        switch(segue.identifier ?? "") {
-        case "ShowDetail":
-            guard let bookDetailViewController = segue.destination as? BookViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            guard let selectedBookCell = sender as? BookTableViewCell else {
-                fatalError("Unexpected sender: \(sender ?? "")")
-            }
-            guard let indexPath = tableView.indexPath(for: selectedBookCell) else {
-                fatalError("The selected cell is not beig displayed by the table")
-            }
-            
-            let selectedBook = BookDataViewModel.books[indexPath.row]
-            bookDetailViewController.book = selectedBook
-            
-        default:
-            fatalError("Unexpected Segue Identifier: \(segue.identifier ?? "")")
-        }
+        guard let selectedRow = self.tableView.indexPathForSelectedRow else {return}
+        
+        let destination = segue.destination as? BookViewController
+        let selectedBook = BookDataViewModel.books[selectedRow.row]
+        destination?.book = selectedBook
     }
     
 }
