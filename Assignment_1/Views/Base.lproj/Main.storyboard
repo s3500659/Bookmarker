@@ -239,7 +239,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zw7-ZI-rsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1284" y="506"/>
+            <point key="canvasLocation" x="1282.5" y="505.98591549295776"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="N9o-Us-uEz">
@@ -289,7 +289,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="aZu-3p-lzy">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
@@ -367,6 +367,6 @@
         <image name="sample" width="157.5" height="254"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nbj-Ps-vYa"/>
+        <segue reference="Qp1-Xb-5pZ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,6 +10,10 @@ import UIKit
 
 class BookTableViewController: UITableViewController {
     
+    @IBAction func deleteBookBtn(_ sender: Any) {
+        
+    }
+    
     // MARK: Properties
     //var viewModel = BookDataViewModel()
 
@@ -23,6 +27,9 @@ class BookTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+
+    
 
     // MARK: - Table view data source
 
@@ -43,6 +50,7 @@ class BookTableViewController: UITableViewController {
         let book = BookDataViewModel.books[indexPath.row]
         let progress: Float = Float(book.currentPage) / Float(book.totalPages)
         
+        
         cell.titleLabel.text = book.title
         cell.authorLabel.text = book.author
         cell.progressLabel.text = "Page \(book.currentPage) of \(book.totalPages)"
@@ -50,6 +58,17 @@ class BookTableViewController: UITableViewController {
         cell.completedProgressView.setProgress(progress, animated: true)
         
         return cell
+    }
+    
+    // delete cell
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            BookDataViewModel.books.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            tableView.endUpdates()
+        }
     }
 
     /*
