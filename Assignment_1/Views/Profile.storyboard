@@ -107,6 +107,9 @@
                                                 <constraint firstItem="kl5-hx-xPk" firstAttribute="leading" secondItem="4Do-RR-1gT" secondAttribute="leadingMargin" id="vfY-Lv-mCz"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="l44-1b-bZ5" kind="show" id="DBd-42-cs7"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -185,6 +188,16 @@
             </objects>
             <point key="canvasLocation" x="-399.375" y="89.788732394366193"/>
         </scene>
+        <!--BookDetail-->
+        <scene sceneID="Y0Z-30-PMH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="BookDetail" id="l44-1b-bZ5" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="1we-hg-slr"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0o9-O3-eiq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="312" y="570"/>
+        </scene>
         <!--Profile Pop Over View Controller-->
         <scene sceneID="TNU-Gp-yqp">
             <objects>
@@ -238,6 +251,7 @@
                                                     <state key="normal" backgroundImage="plus"/>
                                                     <connections>
                                                         <action selector="addBookButton:" destination="UYa-am-X9D" eventType="touchUpInside" id="Ink-r4-Tg4"/>
+                                                        <segue destination="SmR-7d-0Ru" kind="show" id="V0k-vo-3zu"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -291,7 +305,6 @@
                         <outlet property="bookSearchBar" destination="WxO-Ps-hLi" id="IVg-Sk-AT1"/>
                         <outlet property="bookSearchTable" destination="Bum-wQ-RD5" id="OAM-7s-Hok"/>
                         <outlet property="profilePopOverView" destination="kvd-wV-f6h" id="CES-PR-48o"/>
-                        <segue destination="SmR-7d-0Ru" kind="showDetail" identifier="bookDetail" id="eUY-Fr-Tz1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LeI-vL-KOQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

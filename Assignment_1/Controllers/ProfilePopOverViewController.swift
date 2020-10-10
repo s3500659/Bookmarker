@@ -71,7 +71,6 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
     @IBAction func doneButton(_ sender: Any) {
         //add the selected books to favourites
         BookDataViewModel.favouriteBooksLibrary.append(contentsOf: tempBookData)
-        bookSearchTable.reloadData()
         //todo remove this and refresh favouriteBooksTable
         for book in BookDataViewModel.favouriteBooksLibrary{
             print(book.title)
