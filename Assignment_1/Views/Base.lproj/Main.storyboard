@@ -254,6 +254,7 @@
                         <segue destination="8AR-cJ-Lji" kind="relationship" relationship="viewControllers" id="ojs-a6-qgR"/>
                         <segue destination="D2n-Mh-xtw" kind="relationship" relationship="viewControllers" id="jZQ-Xx-l0F"/>
                         <segue destination="1aO-6x-0LG" kind="relationship" relationship="viewControllers" id="mRW-nJ-qQ8"/>
+                        <segue destination="sJa-0g-JTc" kind="relationship" relationship="viewControllers" id="6UX-MG-JIX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tQK-sP-0kS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -331,6 +332,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8T-fZ-ojl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-583" y="1639"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="TzH-aa-DaH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="sJa-0g-JTc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" id="GDL-NS-SV4"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cuh-c2-fGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-187" y="1638"/>
         </scene>
         <!--Search Books-->
         <scene sceneID="dXs-Fd-5KR">

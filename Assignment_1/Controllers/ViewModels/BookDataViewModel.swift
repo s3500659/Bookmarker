@@ -12,13 +12,25 @@ import UIKit
 struct BookDataViewModel {
     
     private (set) static var books:[Book] = []
+    static var favouriteBooksLibrary:[Book] = []
     
     init() {
         loadBooks()
+        loadFavouriteBooks()
     }
     
     mutating func add(book:Book) {
         BookDataViewModel.books.append(book)
+    }
+    
+    mutating func favouriteBooksCount() ->Int{
+        return BookDataViewModel.favouriteBooksLibrary.count
+    }
+
+    mutating func loadFavouriteBooks(){
+        BookDataViewModel.favouriteBooksLibrary.append(BookDataViewModel.books[0])
+        BookDataViewModel.favouriteBooksLibrary.append(BookDataViewModel.books[3])
+        BookDataViewModel.favouriteBooksLibrary.append(BookDataViewModel.books[5])
     }
     
     
@@ -54,3 +66,4 @@ struct BookDataViewModel {
     
     
 }
+
