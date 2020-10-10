@@ -13,7 +13,12 @@ class BookTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         
+    }
+    
+    @objc func addTapped() {
+        print("add tapped")
     }
     
 
