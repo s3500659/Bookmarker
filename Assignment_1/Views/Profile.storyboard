@@ -27,7 +27,7 @@
         <!--Profile-->
         <scene sceneID="Bqo-0F-j7T">
             <objects>
-                <viewController title="Profile" id="KBz-ow-Eh4" customClass="ProfileViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Profile" title="Profile" id="KBz-ow-Eh4" customClass="ProfileViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QK9-y9-ViN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -145,7 +145,7 @@
                                         <state key="normal" image="math-plus"/>
                                         <connections>
                                             <action selector="addBook:" destination="KBz-ow-Eh4" eventType="touchUpInside" id="GM9-7o-mI3"/>
-                                            <segue destination="UYa-am-X9D" kind="popoverPresentation" popoverAnchorView="Xwu-IP-fAR" id="f1l-a6-vvd">
+                                            <segue destination="UYa-am-X9D" kind="popoverPresentation" identifier="bookDetail" popoverAnchorView="Xwu-IP-fAR" id="f1l-a6-vvd">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -228,7 +228,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psb-Vr-O5R">
                                                     <rect key="frame" x="114" y="50" width="124" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -270,7 +270,7 @@
                                 </items>
                             </toolbar>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WxO-Ps-hLi">
-                                <rect key="frame" x="16" y="60" width="288" height="44"/>
+                                <rect key="frame" x="16" y="80" width="288" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -291,11 +291,20 @@
                         <outlet property="bookSearchBar" destination="WxO-Ps-hLi" id="IVg-Sk-AT1"/>
                         <outlet property="bookSearchTable" destination="Bum-wQ-RD5" id="OAM-7s-Hok"/>
                         <outlet property="profilePopOverView" destination="kvd-wV-f6h" id="CES-PR-48o"/>
+                        <segue destination="SmR-7d-0Ru" kind="showDetail" identifier="bookDetail" id="eUY-Fr-Tz1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LeI-vL-KOQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="813.75" y="89.788732394366193"/>
+        </scene>
+        <!--BookDetail-->
+        <scene sceneID="KqG-AB-S4w">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="BookDetail" id="SmR-7d-0Ru" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OSp-4P-tgx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1496" y="90"/>
         </scene>
     </scenes>
     <resources>

@@ -9,6 +9,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return BookDataViewModel.favouriteBooksLibrary.count
     }
@@ -33,7 +34,6 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return cell
     }
     
-
     @IBOutlet weak var yourProfile: UILabel!
     
     @IBOutlet weak var booksFinished: UILabel!
@@ -52,18 +52,25 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         favouriteBooksTable.delegate=self
         favouriteBooksTable.dataSource=self
         booksFinishedCount.text=String(BookDataViewModel.favouriteBooksLibrary.count)
+        //set the profile popover delegate listener
+        let popOverVC = ProfilePopOverViewController()
+        popOverVC.updateDelegate = self
     }
-    
-    
-    
-
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        guard let selectedRow = self.favouriteBooksTable.indexPathForSelectedRow else {return}
+        let destination = segue.destination as? BookViewController
+        let selectedBook = BookDataViewModel.favouriteBooksLibrary[selectedRow.row]
+        destination!.book = selectedBook
     }
+}
 
+extension ProfileViewController: BookUpdateDelegate {
+    func addedBooks(finished: Bool) {
+        print("Updated!")
+        guard finished else {return}
+        favouriteBooksTable.reloadData()
+    }
 }
