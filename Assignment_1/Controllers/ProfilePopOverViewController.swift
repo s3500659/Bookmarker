@@ -8,6 +8,12 @@
 
 import UIKit
 
+
+protocol BookUpdateDelegate{
+    func addedBooks(finished: Bool)
+}
+
+
 class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
@@ -25,7 +31,6 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         isbn.text=filteredData[indexPath.row].isbn
         image.image=filteredData[indexPath.row].photo
 
-       // bookImage=BookDataViewModel.favouriteBooksLibrary[indexPath.row].photo!
         //explicitly enable interaction in cells
         cell.contentView.isUserInteractionEnabled = true
         return cell
@@ -71,6 +76,9 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         for book in BookDataViewModel.favouriteBooksLibrary{
             print(book.title)
         }
+        //update ProfileViewController table
+        //note update didAddBooks never gets called
+        updateDelegate?.addedBooks(finished: true)
         dismiss(animated: true, completion: nil)
     }
 
@@ -84,6 +92,8 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
     var bookData:[Book] = []
     var filteredData: [Book]!
     var tempBookData:[Book] = [] //holds bookData to be added to favourites
+    var updateDelegate: BookUpdateDelegate?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,3 +139,4 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         // Pass the selected object to the new view controller.
     }
 }
+
