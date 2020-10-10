@@ -80,6 +80,12 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         updateDelegate?.addedBooks(finished: true)
         dismiss(animated: true, completion: nil)
     }
+    
+    func loadBooks(){
+        for book in BookDataViewModel.books{
+            bookData.append(book)
+        }
+    }
 
     @IBOutlet weak var bookSearchTable: UITableView!
     
@@ -99,6 +105,11 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         bookSearchTable.delegate=self
         bookSearchTable.dataSource=self
         bookSearchBar.delegate = self
+        loadBooks()
+        filteredData = bookData
+        
+        self.view.bounds = CGRect(x:0,y:0,width:self.view.bounds.width * 0.9,height:self.view.bounds.height * 0.4)
+
         
         /* todo
         //set size
@@ -113,11 +124,7 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         self.popoverPresentationController?.sourceView = view
         self.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
         */
-      
-        for book in BookDataViewModel.books{
-            bookData.append(book)
-        }
-        filteredData = bookData
+
     }
  
     override func viewWillAppear(_ animated: Bool) {
