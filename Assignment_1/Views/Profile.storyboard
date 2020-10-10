@@ -251,7 +251,6 @@
                                                     <state key="normal" backgroundImage="plus"/>
                                                     <connections>
                                                         <action selector="addBookButton:" destination="UYa-am-X9D" eventType="touchUpInside" id="Ink-r4-Tg4"/>
-                                                        <segue destination="SmR-7d-0Ru" kind="show" id="V0k-vo-3zu"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -310,14 +309,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LeI-vL-KOQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="813.75" y="89.788732394366193"/>
-        </scene>
-        <!--BookDetail-->
-        <scene sceneID="KqG-AB-S4w">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="BookDetail" id="SmR-7d-0Ru" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OSp-4P-tgx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1496" y="90"/>
         </scene>
     </scenes>
     <resources>
