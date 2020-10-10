@@ -25,7 +25,6 @@
 		D83B8D6F2505B654004F81B6 /* Assignment_1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83B8D6E2505B654004F81B6 /* Assignment_1UITests.swift */; };
 		D8A7FC8625230202000B4B1D /* StudentInfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7FC8525230202000B4B1D /* StudentInfoDetailViewController.swift */; };
 		D8A7FC8A2526F24D000B4B1D /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7FC892526F24D000B4B1D /* StudentViewModel.swift */; };
-		D8E27D1525317B2100284D56 /* AddBook.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8E27D1325317B2100284D56 /* AddBook.storyboard */; };
 		D8E83EA6251D8A7800E20352 /* StudentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8E83EA4251D8A7800E20352 /* StudentInfo.storyboard */; };
 		D8E83EA8251D8C5B00E20352 /* StudentInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EA7251D8C5B00E20352 /* StudentInfoTableViewController.swift */; };
 		D8E83EAA251D8CCA00E20352 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EA9251D8CCA00E20352 /* Student.swift */; };
@@ -76,7 +75,6 @@
 		D83B8D702505B654004F81B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8A7FC8525230202000B4B1D /* StudentInfoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoDetailViewController.swift; sourceTree = "<group>"; };
 		D8A7FC892526F24D000B4B1D /* StudentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewModel.swift; sourceTree = "<group>"; };
-		D8E27D1425317B2100284D56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Assignment_1/Views/Base.lproj/AddBook.storyboard; sourceTree = "<group>"; };
 		D8E83EA5251D8A7800E20352 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Assignment_1/Views/Base.lproj/StudentInfo.storyboard; sourceTree = "<group>"; };
 		D8E83EA7251D8C5B00E20352 /* StudentInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoTableViewController.swift; sourceTree = "<group>"; };
 		D8E83EA9251D8CCA00E20352 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Student.swift; path = Assignment_1/Controllers/Student.swift; sourceTree = SOURCE_ROOT; };
@@ -175,7 +173,6 @@
 				D8E83EA4251D8A7800E20352 /* StudentInfo.storyboard */,
 				D83B8D4F2505B650004F81B6 /* Main.storyboard */,
 				84F5ADE9252C5BF700CE7997 /* Profile.storyboard */,
-				D8E27D1325317B2100284D56 /* AddBook.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -328,7 +325,6 @@
 				84F5ADEA252C5BF700CE7997 /* Profile.storyboard in Resources */,
 				D8E83EA6251D8A7800E20352 /* StudentInfo.storyboard in Resources */,
 				D83B8D512505B650004F81B6 /* Main.storyboard in Resources */,
-				D8E27D1525317B2100284D56 /* AddBook.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,14 +415,6 @@
 				D83B8D582505B654004F81B6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		D8E27D1325317B2100284D56 /* AddBook.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D8E27D1425317B2100284D56 /* Base */,
-			);
-			name = AddBook.storyboard;
 			sourceTree = "<group>";
 		};
 		D8E83EA4251D8A7800E20352 /* StudentInfo.storyboard */ = {
