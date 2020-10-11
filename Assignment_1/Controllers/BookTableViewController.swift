@@ -12,14 +12,9 @@ class BookTableViewController: UITableViewController {
     
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
-        
+        super.viewDidLoad()        
     }
     
-//    @objc func addTapped() {
-//        print("add tapped")
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()

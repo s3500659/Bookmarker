@@ -100,24 +100,6 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         loadBooks()
         filteredData = bookData
   
-        
-        /* todo
-         
-         self.view.bounds = CGRect(x:0,y:0,width:self.view.bounds.width * 0.9,height:self.view.bounds.height * 0.4)
-
-         
-        //set size
-        self.view.widthAnchor.constraint(
-            equalToConstant: 500
-            ).isActive = true
-        self.view.heightAnchor.constraint(
-            equalToConstant: 300
-            ).isActive = true
-
-        self.popoverPresentationController?.sourceRect = CGRect(x: view.center.x, y: view.center.y, width: 0, height: 0)
-        self.popoverPresentationController?.sourceView = view
-        self.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-        */
 
     }
  
