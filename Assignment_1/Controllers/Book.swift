@@ -32,7 +32,6 @@ class Book {
             return nil
         }
         
-        
         // Current page the user is up to must be greater than or equal to zero
         // It must also be less than the total number of pages in the book
         guard (currentPage >= 0 && currentPage <= totalPages) else {
