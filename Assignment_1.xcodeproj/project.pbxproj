@@ -33,6 +33,8 @@
 		F077502225259D670004929C /* DetailSearchBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F077502125259D670004929C /* DetailSearchBooksViewController.swift */; };
 		F093EA5B25240013009F38C0 /* SearchBookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093EA5A25240013009F38C0 /* SearchBookTableViewController.swift */; };
 		F0AE51822532A30200FE8150 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0AE51802532A30200FE8150 /* Search.storyboard */; };
+		F0EE2C5E2532DCA100A0C816 /* MasterViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EE2C5D2532DCA100A0C816 /* MasterViewControllerTableViewController.swift */; };
+		F0EE2C602532DFC200A0C816 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EE2C5F2532DFC200A0C816 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		F077502125259D670004929C /* DetailSearchBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchBooksViewController.swift; sourceTree = "<group>"; };
 		F093EA5A25240013009F38C0 /* SearchBookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookTableViewController.swift; sourceTree = "<group>"; };
 		F0AE51812532A30200FE8150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Assignment_1/Views/Base.lproj/Search.storyboard; sourceTree = "<group>"; };
+		F0EE2C5D2532DCA100A0C816 /* MasterViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MasterViewControllerTableViewController.swift; path = Assignment_1/Views/MasterViewControllerTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		F0EE2C5F2532DFC200A0C816 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = Assignment_1/Views/DetailViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +207,8 @@
 		D83B8E0025104D7E004F81B6 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				F0EE2C5F2532DFC200A0C816 /* DetailViewController.swift */,
+				F0EE2C5D2532DCA100A0C816 /* MasterViewControllerTableViewController.swift */,
 				17E5BE5E251A012F00EF88FD /* BookTableViewCell.swift */,
 				D8E83EAB251D94D000E20352 /* StudentInfoTableViewCell.swift */,
 				D8A7FC892526F24D000B4B1D /* StudentViewModel.swift */,
@@ -360,12 +366,14 @@
 				D8E83EA8251D8C5B00E20352 /* StudentInfoTableViewController.swift in Sources */,
 				D8A7FC8625230202000B4B1D /* StudentInfoDetailViewController.swift in Sources */,
 				D83B8D542505B650004F81B6 /* Assignment_1.xcdatamodeld in Sources */,
+				F0EE2C5E2532DCA100A0C816 /* MasterViewControllerTableViewController.swift in Sources */,
 				84C81C89252D46B100509DF4 /* ProfilePopOverViewController.swift in Sources */,
 				D8A7FC8A2526F24D000B4B1D /* StudentViewModel.swift in Sources */,
 				D83B8D4E2505B650004F81B6 /* BookViewController.swift in Sources */,
 				D8FE437D2532B00800C40BAF /* AddBookViewController.swift in Sources */,
 				84F5ADF0252D1F2000CE7997 /* ProfileViewController.swift in Sources */,
 				D8E83EAA251D8CCA00E20352 /* Student.swift in Sources */,
+				F0EE2C602532DFC200A0C816 /* DetailViewController.swift in Sources */,
 				17E5BE5D2519FE8500EF88FD /* Book.swift in Sources */,
 				84444D8725304402002C625E /* BookDataViewModel.swift in Sources */,
 				F093EA5B25240013009F38C0 /* SearchBookTableViewController.swift in Sources */,
@@ -564,8 +572,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UPFKQYY264;
 				INFOPLIST_FILE = Assignment_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -583,8 +592,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UPFKQYY264;
 				INFOPLIST_FILE = Assignment_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

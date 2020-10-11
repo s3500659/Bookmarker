@@ -20,6 +20,7 @@ struct StudentViewModel {
     mutating func populateStudents() {
         let vinh = Student(
             name: "Vinh",
+            fullName: "Vihn Tran",
             studentNumber: "s3500659",
             description: "Currently a student studying a Bachelor of Information Technology at RMIT university. I enjoy learning the various concepts and technology taught in this course especially the programming side of thing even when it's difficult",
             image: UIImage(named: "h_g_wells")!,
@@ -28,6 +29,7 @@ struct StudentViewModel {
         
         let josh = Student(
             name: "Josh",
+            fullName: "Josh Watson",
             studentNumber: "s3612419",
             description: "I began my journey into IOS app development in late August and have been hooked ever since. Helping to create BookMarker was an especially exciting task since it combined my love of reading and enthusiasm for app development.",
             image: UIImage(named: "dan_abnet")!,
@@ -36,6 +38,7 @@ struct StudentViewModel {
         
         let philip = Student(
             name: "Philip",
+             fullName: "Philip Beeby",
             studentNumber: "s3666628",
             description: "I wanted to learn to write code after working in IT for many years but not able to understand how computer programs actually work. After studying part-time with RMIT since 2017, some of the mysteries have been uncovered but I realised that there is so much more I still don't understand.",
             image: UIImage(named: "george_orwell")!,
@@ -44,6 +47,7 @@ struct StudentViewModel {
         
         let jordan = Student(
             name: "Jordan",
+            fullName: "Jordan Braunshirn",
             studentNumber: "s3611566",
             description: "I currently work full time as a web developer using Ruby on Rails while completing my final unit for my Bachelor of IT. I enjoy solving complex programming problems.",
             image: UIImage(named: "f_scott_fitzgerald")!,
