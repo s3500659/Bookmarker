@@ -13,10 +13,17 @@ struct BookDataViewModel {
     
     static var books:[Book] = []
     static var favouriteBooksLibrary:[Book] = []
+    static var apiBooks:[Book] = []
     
     init() {
         loadBooks()
         loadFavouriteBooks()
+        loadApiBooks()
+    }
+    
+    mutating func loadApiBooks() {
+        let book1 = Book(title: "Love Real Food", author: "Kathryn Taylor", totalPages: 435, currentPage: 0, photo: UIImage(named: "lrf"), isbn: "896373264373343", publisher: "Goodreads", description: "Learn to eat well with more than 100 approachable and delicious meatless recipes designed for everyone—vegetarians, vegans, and meat-eaters alike—with substitutions to make meals special diet–friendly (gluten-free, dairy-free, and egg-free) whenever possible. ")!
+        BookDataViewModel.apiBooks.append(book1)
     }
     
     mutating func add(book:Book) {
