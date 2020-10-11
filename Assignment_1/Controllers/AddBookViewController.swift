@@ -8,29 +8,30 @@
 
 import UIKit
 
-class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
+class AddBookViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bookSearchCell", for: indexPath)
         let title = cell.viewWithTag(1000) as! UILabel
         let author = cell.viewWithTag(1001) as! UILabel
         let isbn = cell.viewWithTag(1002) as! UILabel
         let image = cell.viewWithTag(1003) as! UIImageView
-
+        
         title.text=filteredData[indexPath.row].title
         author.text=filteredData[indexPath.row].author
         isbn.text=filteredData[indexPath.row].isbn
         image.image=filteredData[indexPath.row].photo
-
-       // bookImage=BookDataViewModel.favouriteBooksLibrary[indexPath.row].photo!
+        
+        // bookImage=BookDataViewModel.favouriteBooksLibrary[indexPath.row].photo!
         //explicitly enable interaction in cells
         cell.contentView.isUserInteractionEnabled = true
         return cell
     }
-
+    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredData=[]
@@ -50,7 +51,7 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
             guard let currentText = currentLabel.text else{ return }
             print(currentText)
             //if the element exists add it
-            tempBookData.append(BookDataViewModel.books[indexPath.row])
+            tempBookData.append(BookDataViewModel.apiBooks[indexPath.row])
             //hide the button
             let currentButton = currentCell!.viewWithTag(1005) as! UIButton
             currentButton.isHidden=true
@@ -58,16 +59,14 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         }
     }
     
-    // push
     
-   
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func doneButton(_ sender: Any) {
         //add the selected books to favourites
-        BookDataViewModel.favouriteBooksLibrary.append(contentsOf: tempBookData)
+        BookDataViewModel.books.append(contentsOf: tempBookData)
         bookSearchTable.reloadData()
         //todo remove this and refresh favouriteBooksTable
         for book in BookDataViewModel.favouriteBooksLibrary{
@@ -75,12 +74,12 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         }
         dismiss(animated: true, completion: nil)
     }
-
+    
     @IBOutlet weak var bookSearchTable: UITableView!
     
     
     @IBOutlet var profilePopOverView: UIView!
-
+    
     @IBOutlet weak var bookSearchBar: UISearchBar!
     
     var bookData:[Book] = []
@@ -94,25 +93,25 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         bookSearchBar.delegate = self
         
         /* todo
-        //set size
-        self.view.widthAnchor.constraint(
-            equalToConstant: 500
-            ).isActive = true
-        self.view.heightAnchor.constraint(
-            equalToConstant: 300
-            ).isActive = true
-
-        self.popoverPresentationController?.sourceRect = CGRect(x: view.center.x, y: view.center.y, width: 0, height: 0)
-        self.popoverPresentationController?.sourceView = view
-        self.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-        */
-      
-        for book in BookDataViewModel.books{
+         //set size
+         self.view.widthAnchor.constraint(
+         equalToConstant: 500
+         ).isActive = true
+         self.view.heightAnchor.constraint(
+         equalToConstant: 300
+         ).isActive = true
+         
+         self.popoverPresentationController?.sourceRect = CGRect(x: view.center.x, y: view.center.y, width: 0, height: 0)
+         self.popoverPresentationController?.sourceView = view
+         self.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+         */
+        
+        for book in BookDataViewModel.apiBooks {
             bookData.append(book)
         }
         filteredData = bookData
     }
- 
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -122,9 +121,9 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     
-
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.

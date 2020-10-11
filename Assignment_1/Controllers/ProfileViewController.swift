@@ -9,6 +9,10 @@
 import UIKit
 
 class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
+    @IBOutlet weak var tablewView: UITableView!
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return BookDataViewModel.favouriteBooksLibrary.count
     }
@@ -52,6 +56,10 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         favouriteBooksTable.delegate=self
         favouriteBooksTable.dataSource=self
         booksFinishedCount.text=String(BookDataViewModel.favouriteBooksLibrary.count)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tablewView.reloadData()
     }
     
     
