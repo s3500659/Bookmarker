@@ -87,8 +87,8 @@
 		F077502125259D670004929C /* DetailSearchBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchBooksViewController.swift; sourceTree = "<group>"; };
 		F093EA5A25240013009F38C0 /* SearchBookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookTableViewController.swift; sourceTree = "<group>"; };
 		F0AE51812532A30200FE8150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Assignment_1/Views/Base.lproj/Search.storyboard; sourceTree = "<group>"; };
-		F0EE2C5D2532DCA100A0C816 /* MasterViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MasterViewControllerTableViewController.swift; path = Assignment_1/Views/MasterViewControllerTableViewController.swift; sourceTree = SOURCE_ROOT; };
-		F0EE2C5F2532DFC200A0C816 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = Assignment_1/Views/DetailViewController.swift; sourceTree = SOURCE_ROOT; };
+		F0EE2C5D2532DCA100A0C816 /* MasterViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MasterViewControllerTableViewController.swift; path = Assignment_1/ViewModels/MasterViewControllerTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		F0EE2C5F2532DFC200A0C816 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = Assignment_1/ViewModels/DetailViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +116,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84E3B251253332470057BC1A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D83B8D4D2505B650004F81B6 /* BookViewController.swift */,
+				17E5BE60251A06A400EF88FD /* BookTableViewController.swift */,
+				D8FE437C2532B00800C40BAF /* AddBookViewController.swift */,
+				D8E83EA7251D8C5B00E20352 /* StudentInfoTableViewController.swift */,
+				D8A7FC8525230202000B4B1D /* StudentInfoDetailViewController.swift */,
+				17E5BE5A2519FCEF00EF88FD /* HomeController.swift */,
+				F093EA5A25240013009F38C0 /* SearchBookTableViewController.swift */,
+				F077502125259D670004929C /* DetailSearchBooksViewController.swift */,
+				84F5ADEF252D1F2000CE7997 /* ProfileViewController.swift */,
+				84C81C88252D46B100509DF4 /* ProfilePopOverViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84E3B2522533326F0057BC1A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F0EE2C5F2532DFC200A0C816 /* DetailViewController.swift */,
+				F0EE2C5D2532DCA100A0C816 /* MasterViewControllerTableViewController.swift */,
+				17E5BE5E251A012F00EF88FD /* BookTableViewCell.swift */,
+				D8E83EAB251D94D000E20352 /* StudentInfoTableViewCell.swift */,
+				D8A7FC892526F24D000B4B1D /* StudentViewModel.swift */,
+				84444D8625304402002C625E /* BookDataViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		D83B8D3F2505B650004F81B6 = {
 			isa = PBXGroup;
 			children = (
@@ -139,9 +169,9 @@
 		D83B8D4A2505B650004F81B6 /* Assignment_1 */ = {
 			isa = PBXGroup;
 			children = (
+				84E3B2522533326F0057BC1A /* ViewModels */,
 				D83B8D5A2505B654004F81B6 /* Info.plist */,
 				D83B8E0125104DAF004F81B6 /* Other */,
-				D83B8DFF25104D75004F81B6 /* Controllers */,
 				D83B8DFE25104D6C004F81B6 /* Views */,
 				D83B8DFD25104D64004F81B6 /* Models */,
 			);
@@ -178,43 +208,13 @@
 		D83B8DFE25104D6C004F81B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84E3B251253332470057BC1A /* ViewController */,
 				D8E83EA4251D8A7800E20352 /* StudentInfo.storyboard */,
 				D83B8D4F2505B650004F81B6 /* Main.storyboard */,
 				84F5ADE9252C5BF700CE7997 /* Profile.storyboard */,
 				F0AE51802532A30200FE8150 /* Search.storyboard */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		D83B8DFF25104D75004F81B6 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				D83B8E0025104D7E004F81B6 /* ViewModels */,
-				D83B8D4D2505B650004F81B6 /* BookViewController.swift */,
-				17E5BE60251A06A400EF88FD /* BookTableViewController.swift */,
-				D8FE437C2532B00800C40BAF /* AddBookViewController.swift */,
-				D8E83EA7251D8C5B00E20352 /* StudentInfoTableViewController.swift */,
-				D8A7FC8525230202000B4B1D /* StudentInfoDetailViewController.swift */,
-				17E5BE5A2519FCEF00EF88FD /* HomeController.swift */,
-				F093EA5A25240013009F38C0 /* SearchBookTableViewController.swift */,
-				F077502125259D670004929C /* DetailSearchBooksViewController.swift */,
-				84F5ADEF252D1F2000CE7997 /* ProfileViewController.swift */,
-				84C81C88252D46B100509DF4 /* ProfilePopOverViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		D83B8E0025104D7E004F81B6 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				F0EE2C5F2532DFC200A0C816 /* DetailViewController.swift */,
-				F0EE2C5D2532DCA100A0C816 /* MasterViewControllerTableViewController.swift */,
-				17E5BE5E251A012F00EF88FD /* BookTableViewCell.swift */,
-				D8E83EAB251D94D000E20352 /* StudentInfoTableViewCell.swift */,
-				D8A7FC892526F24D000B4B1D /* StudentViewModel.swift */,
-				84444D8625304402002C625E /* BookDataViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		D83B8E0125104DAF004F81B6 /* Other */ = {
