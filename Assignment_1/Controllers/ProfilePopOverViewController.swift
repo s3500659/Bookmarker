@@ -22,7 +22,7 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
 
         title.text=filteredData[indexPath.row].title
         author.text=filteredData[indexPath.row].author
-        isbn.text=filteredData[indexPath.row].isbn
+        isbn.text="ISBN: \(filteredData[indexPath.row].isbn)"
         image.image=filteredData[indexPath.row].photo
 
         //explicitly enable interaction in cells
@@ -90,11 +90,13 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         bookSearchBar.delegate = self
         loadBooks()
         filteredData = bookData
-        
-        self.view.bounds = CGRect(x:0,y:0,width:self.view.bounds.width * 0.9,height:self.view.bounds.height * 0.4)
-
+  
         
         /* todo
+         
+         self.view.bounds = CGRect(x:0,y:0,width:self.view.bounds.width * 0.9,height:self.view.bounds.height * 0.4)
+
+         
         //set size
         self.view.widthAnchor.constraint(
             equalToConstant: 500
