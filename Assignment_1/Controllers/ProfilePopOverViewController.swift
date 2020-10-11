@@ -50,7 +50,7 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
             guard let currentText = currentLabel.text else{ return }
             print(currentText)
             //if the element exists add it
-            tempBookData.append(Book(title: currentText, author: "", totalPages: 0, currentPage: 0, photo:nil, isbn: "1", publisher: "", description: "")!)
+            tempBookData.append(BookDataViewModel.books[indexPath.row])
             //hide the button
             let currentButton = currentCell!.viewWithTag(1005) as! UIButton
             currentButton.isHidden=true
