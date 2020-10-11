@@ -29,7 +29,7 @@ struct StudentViewModel {
         
         let josh = Student(
             name: "Josh",
-            fullName: "Josh Watson",
+            fullName: "Josh Schmidt Braunshirn",
             studentNumber: "s3612419",
             description: "I began my journey into IOS app development in late August and have been hooked ever since. Helping to create BookMarker was an especially exciting task since it combined my love of reading and enthusiasm for app development.",
             image: UIImage(named: "dan_abnet")!,
@@ -47,7 +47,7 @@ struct StudentViewModel {
         
         let jordan = Student(
             name: "Jordan",
-            fullName: "Jordan Braunshirn",
+            fullName: "Jordan Watson",
             studentNumber: "s3611566",
             description: "I currently work full time as a web developer using Ruby on Rails while completing my final unit for my Bachelor of IT. I enjoy solving complex programming problems.",
             image: UIImage(named: "f_scott_fitzgerald")!,
