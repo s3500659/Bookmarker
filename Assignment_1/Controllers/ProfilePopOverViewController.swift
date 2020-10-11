@@ -19,18 +19,28 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         let author = cell.viewWithTag(1001) as! UILabel
         let isbn = cell.viewWithTag(1002) as! UILabel
         let image = cell.viewWithTag(1003) as! UIImageView
+        let addButton = cell.viewWithTag(1005) as! UIButton
+
 
         title.text=filteredData[indexPath.row].title
         author.text=filteredData[indexPath.row].author
-        isbn.text=filteredData[indexPath.row].isbn
+        isbn.text="ISBN: \(filteredData[indexPath.row].isbn)"
         image.image=filteredData[indexPath.row].photo
+        
+        //disable add for existing books
+        for book in BookDataViewModel.favouriteBooksLibrary{
+            if filteredData[indexPath.row].isbn == book.isbn{
+                addButton.isEnabled=false
+                addButton.isHidden=true
+            }
+        }
 
-       // bookImage=BookDataViewModel.favouriteBooksLibrary[indexPath.row].photo!
         //explicitly enable interaction in cells
         cell.contentView.isUserInteractionEnabled = true
         return cell
     }
 
+ 
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredData=[]
@@ -46,9 +56,6 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         let buttonPos = sender.convert(sender.bounds.origin, to: bookSearchTable)
         if let indexPath = bookSearchTable.indexPathForRow(at: buttonPos) {
             let currentCell = bookSearchTable.cellForRow(at: indexPath)
-            let currentLabel = currentCell!.viewWithTag(1000) as! UILabel
-            guard let currentText = currentLabel.text else{ return }
-            print(currentText)
             //if the element exists add it
             tempBookData.append(BookDataViewModel.books[indexPath.row])
             //hide the button
@@ -58,8 +65,6 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         }
     }
     
-    // push
-    
    
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -68,17 +73,17 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
     @IBAction func doneButton(_ sender: Any) {
         //add the selected books to favourites
         BookDataViewModel.favouriteBooksLibrary.append(contentsOf: tempBookData)
-        bookSearchTable.reloadData()
-        //todo remove this and refresh favouriteBooksTable
-        for book in BookDataViewModel.favouriteBooksLibrary{
-            print(book.title)
-        }
         dismiss(animated: true, completion: nil)
+    }
+    
+    func loadBooks(){
+        for book in BookDataViewModel.books{
+            bookData.append(book)
+        }
     }
 
     @IBOutlet weak var bookSearchTable: UITableView!
-    
-    
+        
     @IBOutlet var profilePopOverView: UIView!
 
     @IBOutlet weak var bookSearchBar: UISearchBar!
@@ -92,25 +97,10 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         bookSearchTable.delegate=self
         bookSearchTable.dataSource=self
         bookSearchBar.delegate = self
-        
-        /* todo
-        //set size
-        self.view.widthAnchor.constraint(
-            equalToConstant: 500
-            ).isActive = true
-        self.view.heightAnchor.constraint(
-            equalToConstant: 300
-            ).isActive = true
-
-        self.popoverPresentationController?.sourceRect = CGRect(x: view.center.x, y: view.center.y, width: 0, height: 0)
-        self.popoverPresentationController?.sourceView = view
-        self.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-        */
-      
-        for book in BookDataViewModel.books{
-            bookData.append(book)
-        }
+        loadBooks()
         filteredData = bookData
+  
+
     }
  
     override func viewWillAppear(_ animated: Bool) {
@@ -119,15 +109,8 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         
         self.preferredContentSize = self.view.systemLayoutSizeFitting(
             UIView.layoutFittingCompressedSize)
-    }
-    
-    
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
     }
 }
+
+
