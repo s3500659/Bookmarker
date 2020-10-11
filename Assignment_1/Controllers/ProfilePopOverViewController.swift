@@ -22,15 +22,15 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
 
         title.text=filteredData[indexPath.row].title
         author.text=filteredData[indexPath.row].author
-        isbn.text=filteredData[indexPath.row].isbn
+        isbn.text="ISBN: \(filteredData[indexPath.row].isbn)"
         image.image=filteredData[indexPath.row].photo
 
-       // bookImage=BookDataViewModel.favouriteBooksLibrary[indexPath.row].photo!
         //explicitly enable interaction in cells
         cell.contentView.isUserInteractionEnabled = true
         return cell
     }
 
+ 
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredData=[]
@@ -46,9 +46,6 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         let buttonPos = sender.convert(sender.bounds.origin, to: bookSearchTable)
         if let indexPath = bookSearchTable.indexPathForRow(at: buttonPos) {
             let currentCell = bookSearchTable.cellForRow(at: indexPath)
-            let currentLabel = currentCell!.viewWithTag(1000) as! UILabel
-            guard let currentText = currentLabel.text else{ return }
-            print(currentText)
             //if the element exists add it
             tempBookData.append(BookDataViewModel.books[indexPath.row])
             //hide the button
@@ -58,8 +55,6 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         }
     }
     
-    // push
-    
    
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -68,12 +63,13 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
     @IBAction func doneButton(_ sender: Any) {
         //add the selected books to favourites
         BookDataViewModel.favouriteBooksLibrary.append(contentsOf: tempBookData)
-        bookSearchTable.reloadData()
-        //todo remove this and refresh favouriteBooksTable
-        for book in BookDataViewModel.favouriteBooksLibrary{
-            print(book.title)
-        }
         dismiss(animated: true, completion: nil)
+    }
+    
+    func loadBooks(){
+        for book in BookDataViewModel.books{
+            bookData.append(book)
+        }
     }
 
     @IBOutlet weak var bookSearchTable: UITableView!
@@ -92,8 +88,15 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         bookSearchTable.delegate=self
         bookSearchTable.dataSource=self
         bookSearchBar.delegate = self
+        loadBooks()
+        filteredData = bookData
+  
         
         /* todo
+         
+         self.view.bounds = CGRect(x:0,y:0,width:self.view.bounds.width * 0.9,height:self.view.bounds.height * 0.4)
+
+         
         //set size
         self.view.widthAnchor.constraint(
             equalToConstant: 500
@@ -106,11 +109,7 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         self.popoverPresentationController?.sourceView = view
         self.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
         */
-      
-        for book in BookDataViewModel.books{
-            bookData.append(book)
-        }
-        filteredData = bookData
+
     }
  
     override func viewWillAppear(_ animated: Bool) {
@@ -119,6 +118,7 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         
         self.preferredContentSize = self.view.systemLayoutSizeFitting(
             UIView.layoutFittingCompressedSize)
+        
     }
     
     
@@ -131,3 +131,5 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         // Pass the selected object to the new view controller.
     }
 }
+
+

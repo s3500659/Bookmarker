@@ -10,9 +10,6 @@ import UIKit
 
 class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
-    @IBOutlet weak var tablewView: UITableView!
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return BookDataViewModel.favouriteBooksLibrary.count
     }
@@ -37,7 +34,21 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return cell
     }
     
+    // delete cell
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            BookDataViewModel.favouriteBooksLibrary.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        favouriteBooksTable.reloadData()
+        booksFinishedCount.text=String(BookDataViewModel.favouriteBooksLibrary.count)
 
+    }
+    
     @IBOutlet weak var yourProfile: UILabel!
     
     @IBOutlet weak var booksFinished: UILabel!
@@ -57,21 +68,15 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         favouriteBooksTable.dataSource=self
         booksFinishedCount.text=String(BookDataViewModel.favouriteBooksLibrary.count)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tablewView.reloadData()
-    }
-    
-    
-    
-
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        guard let _ = sender as? UITableViewCell else{return}
+        guard let selectedRow = self.favouriteBooksTable.indexPathForSelectedRow else {return}
+        let destination = segue.destination as? BookViewController
+        let selectedBook = BookDataViewModel.favouriteBooksLibrary[selectedRow.row]
+        destination!.book = selectedBook
     }
-
 }
+
