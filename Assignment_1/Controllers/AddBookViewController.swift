@@ -23,7 +23,7 @@ class AddBookViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         title.text=filteredData[indexPath.row].title
         author.text=filteredData[indexPath.row].author
-        isbn.text=filteredData[indexPath.row].isbn
+        isbn.text="ISBN: \(filteredData[indexPath.row].isbn)"
         image.image=filteredData[indexPath.row].photo
         
         // bookImage=BookDataViewModel.favouriteBooksLibrary[indexPath.row].photo!
