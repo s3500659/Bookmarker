@@ -21,6 +21,11 @@ class BookTableViewController: UITableViewController {
 //        print("add tapped")
 //    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        viewDidLoad()
+    }
+    
 
     // MARK: - Table view data source
 
