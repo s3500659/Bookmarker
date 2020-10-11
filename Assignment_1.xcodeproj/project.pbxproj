@@ -31,6 +31,7 @@
 		D8E83EAC251D94D000E20352 /* StudentInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EAB251D94D000E20352 /* StudentInfoTableViewCell.swift */; };
 		F077502225259D670004929C /* DetailSearchBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F077502125259D670004929C /* DetailSearchBooksViewController.swift */; };
 		F093EA5B25240013009F38C0 /* SearchBookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093EA5A25240013009F38C0 /* SearchBookTableViewController.swift */; };
+		F0AE51822532A30200FE8150 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0AE51802532A30200FE8150 /* Search.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		D8E83EAB251D94D000E20352 /* StudentInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F077502125259D670004929C /* DetailSearchBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchBooksViewController.swift; sourceTree = "<group>"; };
 		F093EA5A25240013009F38C0 /* SearchBookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookTableViewController.swift; sourceTree = "<group>"; };
+		F0AE51812532A30200FE8150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Assignment_1/Views/Base.lproj/Search.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 		D83B8D3F2505B650004F81B6 = {
 			isa = PBXGroup;
 			children = (
+				F0AE51802532A30200FE8150 /* Search.storyboard */,
 				D83B8D4A2505B650004F81B6 /* Assignment_1 */,
 				D83B8D622505B654004F81B6 /* Assignment_1Tests */,
 				D83B8D6D2505B654004F81B6 /* Assignment_1UITests */,
@@ -324,6 +327,7 @@
 				D83B8D562505B654004F81B6 /* Assets.xcassets in Resources */,
 				84F5ADEA252C5BF700CE7997 /* Profile.storyboard in Resources */,
 				D8E83EA6251D8A7800E20352 /* StudentInfo.storyboard in Resources */,
+				F0AE51822532A30200FE8150 /* Search.storyboard in Resources */,
 				D83B8D512505B650004F81B6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,6 +427,14 @@
 				D8E83EA5251D8A7800E20352 /* Base */,
 			);
 			name = StudentInfo.storyboard;
+			sourceTree = "<group>";
+		};
+		F0AE51802532A30200FE8150 /* Search.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F0AE51812532A30200FE8150 /* Base */,
+			);
+			name = Search.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
