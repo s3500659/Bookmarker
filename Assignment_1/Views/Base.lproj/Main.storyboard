@@ -308,10 +308,10 @@
             </objects>
             <point key="canvasLocation" x="-187" y="1638"/>
         </scene>
-        <!--Profile Pop Over View Controller-->
+        <!--Add Book View Controller-->
         <scene sceneID="IGx-9K-jeR">
             <objects>
-                <viewController storyboardIdentifier="popOverSearch" id="sSw-Rr-E4c" customClass="ProfilePopOverViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="popOverSearch" id="sSw-Rr-E4c" customClass="AddBookViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nKo-m2-L2A">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -13,10 +13,29 @@ struct BookDataViewModel {
     
     static var books:[Book] = []
     static var favouriteBooksLibrary:[Book] = []
+    static var apiBooks:[Book] = []
     
     init() {
         loadBooks()
         loadFavouriteBooks()
+        loadApiBooks()
+    }
+    
+    mutating func loadApiBooks() {
+        let book1 = Book(title: "Love Real Food", author: "Kathryn Taylor", totalPages: 435, currentPage: 0, photo: UIImage(named: "lrf"), isbn: "896373264373343", publisher: "Goodreads", description: "Learn to eat well with more than 100 approachable and delicious meatless recipes designed for everyone—vegetarians, vegans, and meat-eaters alike—with substitutions to make meals special diet–friendly (gluten-free, dairy-free, and egg-free) whenever possible. ")!
+        BookDataViewModel.apiBooks.append(book1)
+        
+        let book2 = Book(title: "Curse of Strahd (Dungeons & Dragons) ", author: "Wizards RPG Team", totalPages: 567, currentPage: 0, photo: UIImage(named: "cos"), isbn: "67392358325352", publisher: "Goodreads", description: "Under raging storm clouds, the vampire Count Strahd von Zarovich stands silhouetted against the ancient walls of Castle Ravenloft. Rumbling thunder pounds the castle spires. The wind’s howling increases as he turns his gaze down toward the village of Barovia. Far below, yet not beyond his keen eyesight, a party of adventurers has just entered his domain. Strahd’s face forms the barest hint of a smile as his dark plan unfolds. He knew they were coming, and he knows why they came — all according to his plan. A lightning flash rips through the darkness, but Strahd is gone. Only the howling of the wind fills the midnight air. The master of Castle Ravenloft is having guests for dinner. And you are invited.")!
+        BookDataViewModel.apiBooks.append(book2)
+        
+        let book3 = Book(title: "If Animals Kissed Good Night", author: "Ann Whitford Paul", totalPages: 245, currentPage: 0, photo: UIImage(named: "iakgn"), isbn: "6574839348577", publisher: "Goodreads", description: "What if animals did what YOU do? This bestselling story imagines how animals would kiss their loved ones good night! If animals kissed good night like we do...how would they do it? Giraffe and his calf would stretch their necks high, Wolf and his pup would kiss and then HOWL, and Sloth and her baby would move sooooo sloooowwwww. And across the animal kingdom, every creature would share love in a unique way.")!
+        BookDataViewModel.apiBooks.append(book3)
+        
+//        let book4 = Book(title: "Love Real Food", author: "Kathryn Taylor", totalPages: 435, currentPage: 0, photo: UIImage(named: "lrf"), isbn: "896373264373343", publisher: "Goodreads", description: "Learn to eat well with more than 100 approachable and delicious meatless recipes designed for everyone—vegetarians, vegans, and meat-eaters alike—with substitutions to make meals special diet–friendly (gluten-free, dairy-free, and egg-free) whenever possible. ")!
+//        BookDataViewModel.apiBooks.append(book4)
+//
+//        let book5 = Book(title: "Love Real Food", author: "Kathryn Taylor", totalPages: 435, currentPage: 0, photo: UIImage(named: "lrf"), isbn: "896373264373343", publisher: "Goodreads", description: "Learn to eat well with more than 100 approachable and delicious meatless recipes designed for everyone—vegetarians, vegans, and meat-eaters alike—with substitutions to make meals special diet–friendly (gluten-free, dairy-free, and egg-free) whenever possible. ")!
+//        BookDataViewModel.apiBooks.append(book5)
     }
     
     mutating func add(book:Book) {
