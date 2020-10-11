@@ -19,11 +19,21 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
         let author = cell.viewWithTag(1001) as! UILabel
         let isbn = cell.viewWithTag(1002) as! UILabel
         let image = cell.viewWithTag(1003) as! UIImageView
+        let addButton = cell.viewWithTag(1005) as! UIButton
+
 
         title.text=filteredData[indexPath.row].title
         author.text=filteredData[indexPath.row].author
         isbn.text="ISBN: \(filteredData[indexPath.row].isbn)"
         image.image=filteredData[indexPath.row].photo
+        
+        //disable add for existing books
+        for book in BookDataViewModel.favouriteBooksLibrary{
+            if filteredData[indexPath.row].isbn == book.isbn{
+                addButton.isEnabled=false
+                addButton.isHidden=true
+            }
+        }
 
         //explicitly enable interaction in cells
         cell.contentView.isUserInteractionEnabled = true
@@ -73,8 +83,7 @@ class ProfilePopOverViewController: UIViewController,UITableViewDelegate,UITable
     }
 
     @IBOutlet weak var bookSearchTable: UITableView!
-    
-    
+        
     @IBOutlet var profilePopOverView: UIView!
 
     @IBOutlet weak var bookSearchBar: UISearchBar!
