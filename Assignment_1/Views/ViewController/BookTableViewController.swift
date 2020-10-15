@@ -12,7 +12,10 @@ class BookTableViewController: UITableViewController {
     
 
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        //testing todo remove
+        let br = bookViewModel()
+        br.getBook(withQuery: "computing")
     }
     
     
