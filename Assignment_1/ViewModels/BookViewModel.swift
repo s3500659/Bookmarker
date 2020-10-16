@@ -40,20 +40,4 @@ struct bookViewModel{
         model.getBook(withQuery: withQuery)
     }
     
- 
-/*
-    func getImageFor(index:Int)->UIImage?{
-        let url = books[index].photo
-        guard let imageURL = URL(string:url) else{
-            return nil
-        }
-        let data = try? Data(contentsOf:imageURL)
-        let image: UIImage? = nil
-        if let imageData = data{
-            return UIImage(data:imageData)
-        }
-        return image
-    }
- */
-
 }
