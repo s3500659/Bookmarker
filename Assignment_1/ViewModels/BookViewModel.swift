@@ -13,7 +13,6 @@ struct bookViewModel{
     private var model = requestBook.shared
     
     //recieve feedback from api
-    /*
     var delegate:Refresh?{
         get{
             return model.delegate
@@ -22,7 +21,6 @@ struct bookViewModel{
             model.delegate=value
         }
     }
- */
     
     var books:[Book]{
         return model.getBooks

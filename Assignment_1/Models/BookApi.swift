@@ -9,11 +9,9 @@
 import Foundation
 import UIKit
 
-/*
- protocol Refresh{
- func updateUI()
- }
- */
+protocol Refresh{
+    func updateUI()
+}
 
 //todo include the different urls here
 enum requestType{
@@ -22,7 +20,6 @@ enum requestType{
 
 private struct dataItems:Decodable{
     let items: [bookApiData]?
-    
 }
 
 private struct bookApiData: Decodable{
@@ -48,10 +45,9 @@ private struct bookApiData: Decodable{
     }
 }
 
-
 class requestBook{
     private var books:[Book]=[]
-    // var delegate:Refresh?
+    var delegate:Refresh?
     private let session = URLSession.shared
     private let baseUrl:String = "https://www.googleapis.com/books/v1/volumes"
     private let titleQuery = "?q="
@@ -95,6 +91,12 @@ class requestBook{
         return authorText
     }
     
+    //MARK: helper performs data sanitisation
+    private func createBook(){
+        
+        
+    }
+    
     //MARK: retrieve and parse data from the Google books API
     func fetchData(_ request:URLRequest){
         let jsonDecoder = JSONDecoder()
@@ -109,7 +111,7 @@ class requestBook{
                         self.books.append(Book(title: book.volumeInfo.title!, author:"author", totalPages: book.volumeInfo.pageCount!, currentPage: 0, photo:self.createPhoto(imageUrl: book.volumeInfo.imageLinks?.smallThumbnail), isbn: "isbn", publisher: book.volumeInfo.publisher!, description:book.volumeInfo.description!)!)
                     }
                     DispatchQueue.main.async {
-                    //self.delegate?.updateUI()
+                        self.delegate?.updateUI()
                     }
                     print(self.books)
                 }catch{
@@ -121,7 +123,7 @@ class requestBook{
     }
     private init(){}
     static let shared = requestBook()
-
-
+    
+    
 }
 
