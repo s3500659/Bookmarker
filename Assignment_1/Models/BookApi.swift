@@ -69,37 +69,10 @@ class requestBook{
         
         if let url = URL(string: escapedAddres){
             let request = URLRequest(url: url)
-            //getData(request,element: "results")
             fetchData(request)
         }
     }
     
-    func fetchData(_ request:URLRequest){
-        let jsonDecoder = JSONDecoder()
-        let task = session.dataTask(with: request,completionHandler:{ data,response,downloadError in
-            if let error = downloadError{
-                print(error)
-            } else{
-                do{
-                    let parsedResponse = try jsonDecoder.decode(dataItems.self,from:data!)
-                    let responseItems = parsedResponse.items!
-                    for book in responseItems{
-                        let title=book.volumeInfo.title
-                        let authors=book.volumeInfo.authors //todo convert
-                        let totalPages=book.volumeInfo.pageCount
-                        let photo=self.createPhoto(imageUrl: book.volumeInfo.imageLinks?.smallThumbnail)
-                        let description=book.volumeInfo.description
-                        let publisher=book.volumeInfo.publisher
-                        let isbn = 0
-                        let currentPage=0
-                    }
-                }catch{
-                    print(error)
-                }
-            }
-        })
-        task.resume()
-    }
     
     //helper function to make UIImages
     private func createPhoto(imageUrl:URL?)->UIImage?{
@@ -112,59 +85,43 @@ class requestBook{
         }
     }
     
+    private func authorsToString(authors:[String?])->String{
+        var authorText:String=""
+        for author in authors{
+            if author != nil{
+                authorText.append(author!)
+            }
+        }
+        return authorText
+    }
     
-    func getData(_ request:URLRequest,element:String){
+    //MARK: retrieve and parse data from the Google books API
+    func fetchData(_ request:URLRequest){
+        let jsonDecoder = JSONDecoder()
         let task = session.dataTask(with: request,completionHandler:{ data,response,downloadError in
             if let error = downloadError{
                 print(error)
             } else{
-                var parsedResponse: Any! = nil
                 do{
-                    parsedResponse = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
+                    let parsedResponse = try jsonDecoder.decode(dataItems.self,from:data!)
+                    let responseItems = parsedResponse.items!
+                    for book in responseItems{
+                        self.books.append(Book(title: book.volumeInfo.title!, author:"author", totalPages: book.volumeInfo.pageCount!, currentPage: 0, photo:self.createPhoto(imageUrl: book.volumeInfo.imageLinks?.smallThumbnail), isbn: "isbn", publisher: book.volumeInfo.publisher!, description:book.volumeInfo.description!)!)
+                    }
+                    DispatchQueue.main.async {
+                    //self.delegate?.updateUI()
+                    }
+                    print(self.books)
                 }catch{
-                    print()
+                    print(error)
                 }
-                let result = parsedResponse as! [String:Any]
-                let AllResults = result["items"] as! [[String:Any]]
-                var Allbooks = [Any]()
-                
-                for result in AllResults{
-                    let y = (result["volumeInfo"])
-                    Allbooks.append(y!)
-                }
-                
-                let end = Allbooks as! [[String:Any]]
-                
-                print(end[0])
-                
-                
-                /*
-                 if(Allbooks.count>0){
-                 for book in Allbooks{
-                 let title = book["title"]
-                 let authors = book["authors"]
-                 let description = book["description"]
-                 // let image = book["imageLinks"]["smallThumbnail"]
-                 //let isbn13 = book["industryIdentifiers"][0]["identifier"]
-                 
-                 
-                 
-                 //  let recipe = Recipe(title:title,url:url,ingredients: ingredients,imageURL:image)
-                 //self.books.append(book)
-                 }
-                 }
-                 */
-                //send update to main thread, as background threads can't update the ui
-                DispatchQueue.main.async {
-                    // self.delegate?.updateUI()
-                }
-                
-                //print(Allbooks)
             }
         })
         task.resume()
     }
     private init(){}
     static let shared = requestBook()
+
+
 }
 
