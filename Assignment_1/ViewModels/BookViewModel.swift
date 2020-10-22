@@ -9,33 +9,34 @@
 import Foundation
 import UIKit
 
-struct bookViewModel{
+struct bookViewModel {
     private var model = requestBook.shared
-    
-    //recieve feedback from api
-    var delegate:Refresh?{
-        get{
+
+    //receive feedback from the api
+    var delegate: Refresh? {
+        get {
             return model.delegate
         }
-        set (value){
-            model.delegate=value
+        set(value) {
+            model.delegate = value
         }
     }
-    
-    var books:[Book]{
+
+    var books: [Book] {
         return model.getBooks
     }
-    
-    var count:Int{
+
+    var count: Int {
         return books.count
     }
-    
-    func getTitleFor(index:Int)->String{
-        return books[index].title
+
+
+    func getBook(index: Int) -> Book {
+        return books[index]
     }
 
-    func getBook(withQuery:String){
-        model.getBook(withQuery: withQuery)
+    func getBook(searchTerm: String, queryType: Int) {
+        model.getBook(searchTerm: searchTerm, queryType: queryType)
     }
-    
+
 }

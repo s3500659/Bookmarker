@@ -9,35 +9,33 @@
 import Foundation
 import UIKit
 
-protocol Refresh{
+
+protocol Refresh {
     func updateUI()
 }
 
-//todo include the different urls here
-enum requestType{
-    
-}
 
-private struct dataItems:Decodable{
+private struct dataItems: Decodable {
     let items: [bookApiData]?
 }
 
-private struct bookApiData: Decodable{
+private struct bookApiData: Decodable {
     let volumeInfo: VolumeInfo
-    
-    struct VolumeInfo:Decodable{
-        let title: String?
+
+    struct VolumeInfo: Decodable {
+        let title: String
         let authors: [String]?
         let description: String?
         let pageCount: Int?
-        let publisher:String?
+        let publisher: String?
         let imageLinks: ImageLinks?
-        let industryIdentifier:[IndustryIdentifier]?
-        
-        struct IndustryIdentifier:Decodable{
-            let type:String
+        let industryIdentifiers: [IndustryIdentifiers]?
+
+        struct IndustryIdentifiers: Decodable {
+            let type: String
             let identifier: String
         }
+
         struct ImageLinks: Decodable {
             let smallThumbnail: URL?
             let thumbnail: URL?
@@ -45,85 +43,108 @@ private struct bookApiData: Decodable{
     }
 }
 
-class requestBook{
-    private var books:[Book]=[]
-    var delegate:Refresh?
+
+class requestBook {
+    private var books: [Book] = []
+    var delegate: Refresh?
     private let session = URLSession.shared
-    private let baseUrl:String = "https://www.googleapis.com/books/v1/volumes"
-    private let titleQuery = "?q="
-    
-    var getBooks:[Book]{
+    private let apiKey = ""
+    private let baseUrl: String = "https://www.googleapis.com/books/v1/volumes"
+
+    var getBooks: [Book] {
         return books
     }
-    
-    func getBook(withQuery:String){
-        books=[]
-        let url = baseUrl+titleQuery+withQuery
-        guard let escapedAddres=url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else{
+
+    func getBook(searchTerm: String, queryType: Int) {
+        books = []
+        var queryURI = ""
+        switch queryType {
+        case 1:
+            queryURI = "?q=inauthor:"
+        case 2:
+            queryURI = "?q=isbn:"
+        default:
+            queryURI = "?q=intitle:"
+        }
+
+        let url = baseUrl + queryURI + searchTerm
+        guard let escapedAddres = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             return
         }
-        
-        if let url = URL(string: escapedAddres){
+        if let url = URL(string: escapedAddres) {
             let request = URLRequest(url: url)
             fetchData(request)
         }
     }
-    
-    
+
+
     //helper function to make UIImages
-    private func createPhoto(imageUrl:URL?)->UIImage?{
-        let data = try? Data(contentsOf:imageUrl!)
+    private func createPhoto(imageUrl: URL?) -> UIImage? {
+        //change http urls to be https
+        if imageUrl == nil {
+            return nil
+        }
+        var components = URLComponents(url: imageUrl!, resolvingAgainstBaseURL: false)!
+        components.scheme = "https"
+        let httpsImageUrl = components.url!
+        let data = try? Data(contentsOf: httpsImageUrl)
         let image: UIImage? = nil
-        if let imageData = data{
-            return UIImage(data:imageData)
-        }else{
+        if let imageData = data {
+            return UIImage(data: imageData)
+        } else {
             return image
         }
     }
-    
-    private func authorsToString(authors:[String?])->String{
-        var authorText:String=""
-        for author in authors{
-            if author != nil{
-                authorText.append(author!)
+
+    private func authorsToString(authors: [String?]) -> String? {
+        var authorText: String = ""
+        for author in authors {
+            if author != nil {
+                authorText.append(author! + "\t")
             }
         }
         return authorText
     }
-    
-    //MARK: helper performs data sanitisation
-    private func createBook(){
-        
-        
+
+    //MARK: -helper performs data sanitisation
+    private func createBook(parsedResponse: dataItems) {
+        guard let responseItems = parsedResponse.items else{return}
+        //create book objects and handle optionals
+        for book in responseItems {
+            let description = book.volumeInfo.description ?? "no description"
+            let pageCount = book.volumeInfo.pageCount ?? 0
+            let publisher = book.volumeInfo.publisher ?? "no publisher"
+            let authors = authorsToString(authors: book.volumeInfo.authors!) ?? "no authors"
+            let isbn = book.volumeInfo.industryIdentifiers?[0].identifier ?? "no isbn"
+            self.books.append(Book(title: book.volumeInfo.title, author: authors, totalPages: pageCount, currentPage: 0, photo: self.createPhoto(imageUrl: book.volumeInfo.imageLinks?.smallThumbnail), isbn: isbn, publisher: publisher, description: description)!)
+        }
     }
-    
-    //MARK: retrieve and parse data from the Google books API
-    func fetchData(_ request:URLRequest){
+
+    //MARK: -retrieve and parse data from the Google books API
+    func fetchData(_ request: URLRequest) {
         let jsonDecoder = JSONDecoder()
-        let task = session.dataTask(with: request,completionHandler:{ data,response,downloadError in
-            if let error = downloadError{
+        let task = session.dataTask(with: request, completionHandler: { data, response, downloadError in
+            if let error = downloadError {
                 print(error)
-            } else{
-                do{
-                    let parsedResponse = try jsonDecoder.decode(dataItems.self,from:data!)
-                    let responseItems = parsedResponse.items!
-                    for book in responseItems{
-                        self.books.append(Book(title: book.volumeInfo.title!, author:"author", totalPages: book.volumeInfo.pageCount!, currentPage: 0, photo:self.createPhoto(imageUrl: book.volumeInfo.imageLinks?.smallThumbnail), isbn: "isbn", publisher: book.volumeInfo.publisher!, description:book.volumeInfo.description!)!)
-                    }
+            } else {
+                do {
+                    let parsedResponse = try jsonDecoder.decode(dataItems.self, from: data!)
+                    //parse the data into book objects
+                    self.createBook(parsedResponse: parsedResponse)
                     DispatchQueue.main.async {
                         self.delegate?.updateUI()
                     }
-                    print(self.books)
-                }catch{
+                } catch {
                     print(error)
                 }
             }
         })
         task.resume()
     }
-    private init(){}
+
+    private init() {
+    }
+
     static let shared = requestBook()
-    
-    
 }
 
