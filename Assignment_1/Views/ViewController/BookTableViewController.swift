@@ -9,20 +9,17 @@
 import UIKit
 
 class BookTableViewController: UITableViewController {
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //testing todo remove
-        let br = bookViewModel()
-        br.getBook(withQuery: "computing")
     }
-    
-    
+
+
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
-    
+
 
     // MARK: - Table view data source
 
@@ -42,16 +39,16 @@ class BookTableViewController: UITableViewController {
 
         let book = BookDataViewModel.books[indexPath.row]
         let progress: Float = Float(book.currentPage) / Float(book.totalPages)
-        
+
         cell.titleLabel.text = book.title
         cell.authorLabel.text = book.author
         cell.progressLabel.text = "Page \(book.currentPage) of \(book.totalPages)"
         cell.photoImageView.image = book.photo
         cell.completedProgressView.setProgress(progress, animated: true)
-        
+
         return cell
     }
-    
+
     // delete cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -62,18 +59,20 @@ class BookTableViewController: UITableViewController {
         }
     }
 
-    
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        
-        guard let selectedRow = self.tableView.indexPathForSelectedRow else {return}
-        
+
+        guard let selectedRow = self.tableView.indexPathForSelectedRow else {
+            return
+        }
+
         let destination = segue.destination as? BookViewController
         let selectedBook = BookDataViewModel.books[selectedRow.row]
         destination?.book = selectedBook
     }
-    
+
 }

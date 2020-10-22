@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return BookDataViewModel.favouriteBooksLibrary.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favouriteBookCell", for: indexPath)
         let title = cell.viewWithTag(1000) as! UILabel
@@ -26,14 +26,14 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
 
         let currentProgress: Float = Float(BookDataViewModel.favouriteBooksLibrary[indexPath.row].currentPage) / Float(BookDataViewModel.favouriteBooksLibrary[indexPath.row].totalPages)
 
-        title.text=BookDataViewModel.favouriteBooksLibrary[indexPath.row].title
-        author.text=BookDataViewModel.favouriteBooksLibrary[indexPath.row].author
-        progress.text="Page \(BookDataViewModel.favouriteBooksLibrary[indexPath.row].currentPage) of \(BookDataViewModel.favouriteBooksLibrary[indexPath.row].totalPages)"
+        title.text = BookDataViewModel.favouriteBooksLibrary[indexPath.row].title
+        author.text = BookDataViewModel.favouriteBooksLibrary[indexPath.row].author
+        progress.text = "Page \(BookDataViewModel.favouriteBooksLibrary[indexPath.row].currentPage) of \(BookDataViewModel.favouriteBooksLibrary[indexPath.row].totalPages)"
         progressView.setProgress(currentProgress, animated: true)
         image.image = BookDataViewModel.favouriteBooksLibrary[indexPath.row].photo
         return cell
     }
-    
+
     // delete cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -43,37 +43,43 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
             tableView.endUpdates()
         }
     }
+
     override func viewWillAppear(_ animated: Bool) {
         favouriteBooksTable.reloadData()
-        booksFinishedCount.text=String(BookDataViewModel.favouriteBooksLibrary.count)
+        booksFinishedCount.text = String(BookDataViewModel.favouriteBooksLibrary.count)
 
     }
-    
+
     @IBOutlet weak var yourProfile: UILabel!
-    
+
     @IBOutlet weak var booksFinished: UILabel!
-    
+
     @IBOutlet weak var booksFinishedCount: UILabel!
-    
+
     @IBOutlet weak var favouriteBooks: UILabel!
-    
+
     @IBOutlet weak var favouriteBooksTable: UITableView!
-    
+
     @IBAction func addBook(_ sender: Any) {
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        favouriteBooksTable.delegate=self
-        favouriteBooksTable.dataSource=self
-        booksFinishedCount.text=String(BookDataViewModel.favouriteBooksLibrary.count)
+        favouriteBooksTable.delegate = self
+        favouriteBooksTable.dataSource = self
+        booksFinishedCount.text = String(BookDataViewModel.favouriteBooksLibrary.count)
     }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let _ = sender as? UITableViewCell else{return}
-        guard let selectedRow = self.favouriteBooksTable.indexPathForSelectedRow else {return}
+        guard let _ = sender as? UITableViewCell else {
+            return
+        }
+        guard let selectedRow = self.favouriteBooksTable.indexPathForSelectedRow else {
+            return
+        }
         let destination = segue.destination as? BookViewController
         let selectedBook = BookDataViewModel.favouriteBooksLibrary[selectedRow.row]
         destination!.book = selectedBook
