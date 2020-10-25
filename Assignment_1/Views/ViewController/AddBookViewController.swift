@@ -30,12 +30,13 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         isbn.text = "ISBN: \(book.isbn)"
         image.image = UIImage(data: book.photo!)
         //disable add for existing books
-        for book in bookManager.getBooks {
-            if bookApi.getBook(index: indexPath.row).isbn == book.isbn {
+        /*
+        for b in bookManager.getBooks{
+            if b.isbn == book.isbn{
                 addButton.isEnabled = false
                 addButton.isHidden = true
             }
-        }
+        }*/
         //explicitly enable interaction in cells
         cell.contentView.isUserInteractionEnabled = true
         return cell
@@ -61,11 +62,20 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBAction func doneButton(_ sender: Any) {
         //add the selected books to books
-        for book in tempBookData{
-            bookManager.addBook(book:book)
+        for book in self.tempBookData {
+            self.bookManager.addBook(book: book)
         }
-        bookSearchTable.reloadData()
+        self.bookSearchTable.reloadData()
         dismiss(animated: true, completion: nil)
+    }
+
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchTerm = searchBar.text else {
+            return
+        }
+        let searchType = searchSelection.selectedSegmentIndex         //get the index
+        bookApi.searchBooks(searchTerm: searchTerm, queryType: searchType)
     }
 
     @IBOutlet weak var bookSearchTable: UITableView!
@@ -73,16 +83,6 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var bookSearchBar: UISearchBar!
     @IBOutlet weak var searchSelection: UISegmentedControl!
 
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchTerm = searchBar.text else {
-            return
-        }
-        let searchType = searchSelection.selectedSegmentIndex         //get the index
-        bookApi.getBook(searchTerm: searchTerm, queryType: searchType)
-        tempBookData = bookApi.books
-    }
-
-    var bookApiData: [Book] = [] //holds api results
     var tempBookData: [Book] = [] //holds data that may be added to books
     var bookApi = bookViewModel() //api
     let bookManager = BookManager()
@@ -93,7 +93,6 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         bookSearchTable.dataSource = self
         bookSearchBar.delegate = self
         bookApi.delegate = self
-        bookManager.fetchBooks()
     }
 
     override func viewWillAppear(_ animated: Bool) {

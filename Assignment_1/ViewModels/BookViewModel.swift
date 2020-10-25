@@ -35,8 +35,8 @@ struct bookViewModel {
         return books[index]
     }
 
-    func getBook(searchTerm: String, queryType: Int) {
-        model.getBook(searchTerm: searchTerm, queryType: queryType)
+    func searchBooks(searchTerm: String, queryType: Int) {
+        model.searchBooks(searchTerm: searchTerm, queryType: queryType)
     }
 
 }

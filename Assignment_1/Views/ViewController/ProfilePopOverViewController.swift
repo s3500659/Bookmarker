@@ -27,8 +27,8 @@ class ProfilePopOverViewController: UIViewController, UITableViewDelegate, UITab
         isbn.text = "ISBN: \(book.isbn)"
         image.image = UIImage(data:book.photo!)
         //disable add for existing books
-        for book in bookManager.getFavourites() {
-            if filteredData[indexPath.row].isbn == book.isbn {
+        for b in bookManager.getFavourites() {
+            if filteredData[indexPath.row].isbn == b.isbn {
                 addButton.isEnabled = false
                 addButton.isHidden = true
             }
@@ -88,6 +88,7 @@ class ProfilePopOverViewController: UIViewController, UITableViewDelegate, UITab
         bookSearchTable.dataSource = self
         bookSearchBar.delegate = self
         bookManager.fetchBooks()
+        bookManager.loadFavourites()
         filteredData=bookManager.getBooks
     }
 

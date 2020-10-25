@@ -56,7 +56,7 @@ class requestBook {
         return books
     }
 
-    func getBook(searchTerm: String, queryType: Int) {
+    func searchBooks(searchTerm: String, queryType: Int) {
         books = []
         var queryURI = ""
         switch queryType {

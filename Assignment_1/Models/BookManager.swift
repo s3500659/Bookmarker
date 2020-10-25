@@ -19,7 +19,6 @@ class BookManager {
     private var favouriteBooks: [Book] = []
 
     func loadBooks() {
-        //addBook(title: "test", author: "test", totalPages: 20, currentPage: 1, photo: UIImage(named: "gone"), isbn: "1238382123", publisher: "good reads", desc: "Learn to eat well with more than 100 approachable and delicious meatless recipes designed for everyone—vegetarians, vegans, and meat-eaters alike—with substitutions to make meals special diet–friendly (gluten-free, dairy-free, and egg-free) whenever possible")
         fetchBooks()
     }
 
@@ -29,6 +28,10 @@ class BookManager {
 
     func getFavourites() -> [Book] {
         return favouriteBooks
+    }
+
+    func getFavourite(index: Int) -> Book {
+        return favouriteBooks[index]
     }
 
     func loadFavourites() {
@@ -50,12 +53,8 @@ class BookManager {
         }
         fetchBooks()
         loadFavourites()
-        print(favouriteBooks[0].favourite)
     }
 
-    func getFavourite(index: Int) -> Book {
-        return favouriteBooks[index]
-    }
 
     func removeFavourite(rowIndex: Int) {
         context.delete(favouriteBooks[rowIndex])
@@ -70,11 +69,10 @@ class BookManager {
     }
 
 
-
     var getBooks: [Book] {
+        fetchBooks() //get the latest
         return bookLibrary
     }
-
 
     func getCount() -> Int {
         return bookLibrary.count
@@ -88,10 +86,6 @@ class BookManager {
     func fetchBooks() {
         do {
             bookLibrary = try context.fetch(Book.fetchRequest())
-            //refresh the table view in the main thread
-            DispatchQueue.main.async {
-                //self.tableView.reloadData()
-            }
         } catch let error {
             print("Error getting books: \(error)")
         }
@@ -107,17 +101,6 @@ class BookManager {
         fetchBooks() //update the book data
     }
 
-    func updateStart() {
-
-    }
-
-    func updateNotes() {
-
-    }
-
-    func updatePage() {
-
-    }
 
     func addBook(book: Book) {
         bookLibrary.append(book)
@@ -152,7 +135,19 @@ class BookManager {
         return newBook
     }
 
+    func updateStart() {
 
+    }
+
+    func updateNotes() {
+
+    }
+
+    func updatePage() {
+
+    }
+
+    /*
     func addBook(title: String, author: String, totalPages: intmax_t, currentPage: intmax_t, photo: UIImage?, isbn: String, publisher: String, desc: String) {
         //current page can't be less than zero, total pages can't be less than current pages, title must exist
         guard (currentPage >= 0 && currentPage <= totalPages && !title.isEmpty) else {
@@ -178,4 +173,5 @@ class BookManager {
         }
         fetchBooks() //update the book data
     }
+    */
 }
