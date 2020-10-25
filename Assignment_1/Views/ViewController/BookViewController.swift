@@ -103,6 +103,7 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             notes.text = book.notes
             isbn.text = book.isbn
             publisher.text = book.publisher
+            self.progress.accessibilityIdentifier = "progress-label"
         }
     }
 }
