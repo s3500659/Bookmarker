@@ -60,8 +60,9 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
             return
         }
         let destination = segue.destination as? BookViewController
-        let selectedBook = BookDataViewModel.books[selectedRow.row]
-        destination?.book = selectedBook
+        //todo fix
+       // let selectedBook = BookDataViewModel.books[selectedRow.row]
+       // destination?.book = selectedBook
     }
 
     // MARK: Private methods

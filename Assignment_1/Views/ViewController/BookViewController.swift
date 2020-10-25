@@ -10,7 +10,7 @@ import UIKit
 
 class BookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
-    var book: Book?
+    var book: Books?
 
     @IBOutlet weak var startDate: UILabel!
     @IBOutlet weak var progress: UILabel!
@@ -22,6 +22,7 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     private var toolBar = UIToolbar()
     private var datePicker = UIDatePicker()
 
+
     // issue: if you click done without using the date picker, then the dateChanged func won't execute and date label won't update.
     @IBAction func startDateBtn(_ sender: Any) {
         // ref for date picker: https://stackoverflow.com/questions/46074242/date-picker-on-a-button-click-in-ios/46074735
@@ -31,14 +32,11 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     @IBAction func showDatePicker(_ sender: UIButton) {
         datePicker = UIDatePicker.init()
         datePicker.backgroundColor = UIColor.white
-
         datePicker.autoresizingMask = .flexibleWidth
         datePicker.datePickerMode = .date
-
         datePicker.addTarget(self, action: #selector(self.dateChanged(_:)), for: .valueChanged)
         datePicker.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
         self.view.addSubview(datePicker)
-
         toolBar = UIToolbar(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
         toolBar.barStyle = .blackTranslucent
         toolBar.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.onDoneButtonClick))]
@@ -50,7 +48,6 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .none
-
         if let date = sender?.date {
             book?.startDate = date
             startDate.text = dateFormatter.string(from: date)
@@ -64,14 +61,15 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
 
     @IBAction func progressBtn(_ sender: Any) {
         let alert = UIAlertController(title: "Update current page", message: "Enter current page number", preferredStyle: .alert)
-
         alert.addTextField { (textField) in
             textField.text = ""
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             if let book = self.book {
-                book.currentPage = ((textField?.text! as! NSString) as NSString).integerValue
+                if let pageInput = textField?.text {
+                    book.currentPage=Int32(pageInput) ?? 0
+                }
                 self.progress.text = "\(book.currentPage) of \(book.totalPages)"
             }
         }))
@@ -81,25 +79,18 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     // notes text view
     func textViewDidChange(_ textView: UITextView) {
         book?.notes = textView.text
-
     }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         notes.delegate = self
-
         if let book = book {
-            // date text
-            let formatter = DateFormatter()
+            let formatter = DateFormatter()             // date text
             formatter.dateFormat = "dd mm yyyy"
             startDate.text = book.startDate == nil ? "not started" : String(formatter.string(from: book.startDate!))
-
-            // progress text
             progress.text = "\(book.currentPage) of \(book.totalPages)"
-
-            // book description
-            bookDescription.text = book.description
+            bookDescription.text = book.desc
             notes.text = book.notes
             isbn.text = book.isbn
             publisher.text = book.publisher

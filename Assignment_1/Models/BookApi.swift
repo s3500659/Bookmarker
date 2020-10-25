@@ -45,13 +45,14 @@ private struct bookApiData: Decodable {
 
 
 class requestBook {
-    private var books: [Book] = []
+    private var books: [Books] = []
+    private let bookManager = BookManager()
     var delegate: Refresh?
     private let session = URLSession.shared
     private let apiKey = ""
     private let baseUrl: String = "https://www.googleapis.com/books/v1/volumes"
 
-    var getBooks: [Book] {
+    var getBooks: [Books] {
         return books
     }
 
@@ -66,7 +67,6 @@ class requestBook {
         default:
             queryURI = "?q=intitle:"
         }
-
         let url = baseUrl + queryURI + searchTerm
         guard let escapedAddres = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             return
@@ -80,10 +80,10 @@ class requestBook {
 
     //helper function to make UIImages
     private func createPhoto(imageUrl: URL?) -> UIImage? {
-        //change http urls to be https
         if imageUrl == nil {
             return nil
         }
+        //change http urls to be https
         var components = URLComponents(url: imageUrl!, resolvingAgainstBaseURL: false)!
         components.scheme = "https"
         let httpsImageUrl = components.url!
@@ -106,7 +106,7 @@ class requestBook {
         return authorText
     }
 
-    //MARK: -helper performs data sanitisation
+    //MARK: -helper performs data sanitization
     private func createBook(parsedResponse: dataItems) {
         guard let responseItems = parsedResponse.items else{return}
         //create book objects and handle optionals
@@ -114,9 +114,14 @@ class requestBook {
             let description = book.volumeInfo.description ?? "no description"
             let pageCount = book.volumeInfo.pageCount ?? 0
             let publisher = book.volumeInfo.publisher ?? "no publisher"
-            let authors = authorsToString(authors: book.volumeInfo.authors!) ?? "no authors"
+            var authors="no authors"
+            if let authorsList = book.volumeInfo.authors{
+                authors = authorsToString(authors: authorsList) ?? "no authors"
+            }
             let isbn = book.volumeInfo.industryIdentifiers?[0].identifier ?? "no isbn"
-            self.books.append(Book(title: book.volumeInfo.title, author: authors, totalPages: pageCount, currentPage: 0, photo: self.createPhoto(imageUrl: book.volumeInfo.imageLinks?.smallThumbnail), isbn: isbn, publisher: publisher, description: description)!)
+            if let book = bookManager.createBook(title: book.volumeInfo.title, author: authors, totalPages: pageCount, currentPage: 0, photo: self.createPhoto(imageUrl: book.volumeInfo.imageLinks?.smallThumbnail), isbn: isbn, publisher: publisher, desc: description){
+                self.books.append(book)
+            }
         }
     }
 
@@ -142,8 +147,7 @@ class requestBook {
         task.resume()
     }
 
-    private init() {
-    }
+    private init() {}
 
     static let shared = requestBook()
 }

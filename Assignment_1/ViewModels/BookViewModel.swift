@@ -22,7 +22,7 @@ struct bookViewModel {
         }
     }
 
-    var books: [Book] {
+    var books: [Books] {
         return model.getBooks
     }
 
@@ -31,7 +31,7 @@ struct bookViewModel {
     }
 
 
-    func getBook(index: Int) -> Book {
+    func getBook(index: Int) -> Books {
         return books[index]
     }
 
