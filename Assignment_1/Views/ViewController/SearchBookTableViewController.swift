@@ -22,6 +22,7 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
         tableView.dataSource = self
         searchBar.delegate = self
         filteredData = data
+        self.searchBar.accessibilityIdentifier = "book-search-bar"
     }
     
     // MARK: - Table view data source
