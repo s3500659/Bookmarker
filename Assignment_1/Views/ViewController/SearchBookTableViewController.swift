@@ -18,7 +18,7 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadBookData()
+        //loadBookData()
         tableView.dataSource = self
         searchBar.delegate = self
         filteredData = data
@@ -67,10 +67,12 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
 
     // MARK: Private methods
 
+    /*
     private func loadBookData() {
         for i in BookDataViewModel.books {
             data.append(i.title)
             bookImageData.append(i.photo!)
         }
     }
+    */
 }

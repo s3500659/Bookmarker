@@ -2,7 +2,7 @@
 //  Book+CoreDataProperties.swift
 //  Assignment_1
 //
-//  Created by admin on 23/10/20.
+//  Created by Josh on 23/10/20.
 //  Copyright © 2020 Vinh Tran. All rights reserved.
 //
 //
@@ -12,10 +12,10 @@ import CoreData
 import UIKit
 
 //todo make book
-extension Books {
+extension Book {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Books> {
-        return NSFetchRequest<Books>(entityName: "Books")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Book> {
+        return NSFetchRequest<Book>(entityName: "Book")
     }
 
     @NSManaged public var author: String

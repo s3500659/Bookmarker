@@ -24,12 +24,13 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         let isbn = cell.viewWithTag(1002) as! UILabel
         let image = cell.viewWithTag(1003) as! UIImageView
         let addButton = cell.viewWithTag(1005) as! UIButton
-        title.text = bookApi.getBook(index: indexPath.row).title
-        author.text = bookApi.getBook(index: indexPath.row).author
-        isbn.text = "ISBN: \(bookApi.getBook(index: indexPath.row).isbn)"
-        image.image = UIImage(data: bookApi.getBook(index: indexPath.row).photo!)
+        let book = bookApi.getBook(index: indexPath.row)
+        title.text = book.title
+        author.text = book.author
+        isbn.text = "ISBN: \(book.isbn)"
+        image.image = UIImage(data: book.photo!)
         //disable add for existing books
-        for book in BookDataViewModel.books {
+        for book in bookManager.getBooks {
             if bookApi.getBook(index: indexPath.row).isbn == book.isbn {
                 addButton.isEnabled = false
                 addButton.isHidden = true
@@ -81,8 +82,8 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         tempBookData = bookApi.books
     }
 
-    var bookApiData: [Books] = [] //holds api results
-    var tempBookData: [Books] = [] //holds data that may be added to books
+    var bookApiData: [Book] = [] //holds api results
+    var tempBookData: [Book] = [] //holds data that may be added to books
     var bookApi = bookViewModel() //api
     let bookManager = BookManager()
 
@@ -92,6 +93,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         bookSearchTable.dataSource = self
         bookSearchBar.delegate = self
         bookApi.delegate = self
+        bookManager.fetchBooks()
     }
 
     override func viewWillAppear(_ animated: Bool) {

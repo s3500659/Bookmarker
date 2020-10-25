@@ -2,7 +2,7 @@
 //  BookManager.swift
 //  Assignment_1
 //
-//  Created by admin on 23/10/20.
+//  Created by Josh on 23/10/20.
 //  Copyright © 2020 Vinh Tran. All rights reserved.
 //
 
@@ -15,8 +15,8 @@ class BookManager {
 
 //ref to managed obj context
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    private var bookLibrary: [Books] = []
-    private var favouriteBooks: [Books] = []
+    private var bookLibrary: [Book] = []
+    private var favouriteBooks: [Book] = []
 
     func loadBooks() {
         //addBook(title: "test", author: "test", totalPages: 20, currentPage: 1, photo: UIImage(named: "gone"), isbn: "1238382123", publisher: "good reads", desc: "Learn to eat well with more than 100 approachable and delicious meatless recipes designed for everyone—vegetarians, vegans, and meat-eaters alike—with substitutions to make meals special diet–friendly (gluten-free, dairy-free, and egg-free) whenever possible")
@@ -27,11 +27,21 @@ class BookManager {
         return favouriteBooks.count
     }
 
-    func getFavourites() -> [Books] {
+    func getFavourites() -> [Book] {
         return favouriteBooks
     }
 
-    func addFavourite(book: Books) {
+    func loadFavourites() {
+        favouriteBooks=[]
+        for book in bookLibrary {
+            if book.favourite==true {
+                favouriteBooks.append(book)
+            }
+        }
+    }
+
+
+    func addFavourite(book: Book) {
         book.favourite = true
         do { //save the change
             try context.save()
@@ -40,9 +50,10 @@ class BookManager {
         }
         fetchBooks()
         loadFavourites()
+        print(favouriteBooks[0].favourite)
     }
 
-    func getFavourite(index: Int) -> Books {
+    func getFavourite(index: Int) -> Book {
         return favouriteBooks[index]
     }
 
@@ -58,17 +69,9 @@ class BookManager {
         loadFavourites()
     }
 
-    func loadFavourites() {
-        favouriteBooks=[]
-        for book in bookLibrary {
-            if book.favourite {
-                addFavourite(book: book)
-            }
-        }
-    }
 
 
-    var getBooks: [Books] {
+    var getBooks: [Book] {
         return bookLibrary
     }
 
@@ -77,14 +80,14 @@ class BookManager {
         return bookLibrary.count
     }
 
-    public func getBook(indexRow: Int) -> Books {
+    public func getBook(indexRow: Int) -> Book {
         return bookLibrary[indexRow]
     }
 
 //gets all the books from coredata
     func fetchBooks() {
         do {
-            bookLibrary = try context.fetch(Books.fetchRequest())
+            bookLibrary = try context.fetch(Book.fetchRequest())
             //refresh the table view in the main thread
             DispatchQueue.main.async {
                 //self.tableView.reloadData()
@@ -116,7 +119,7 @@ class BookManager {
 
     }
 
-    func addBook(book: Books) {
+    func addBook(book: Book) {
         bookLibrary.append(book)
         do { //save it into coredata
             try context.save()
@@ -126,9 +129,9 @@ class BookManager {
         fetchBooks() //update the book data
     }
 
-    func createBook(title: String, author: String, totalPages: intmax_t, currentPage: intmax_t, photo: UIImage?, isbn: String, publisher: String, desc: String) -> Books? {
+    func createBook(title: String, author: String, totalPages: intmax_t, currentPage: intmax_t, photo: UIImage?, isbn: String, publisher: String, desc: String) -> Book? {
         //create  a new book
-        let newBook = Books(context: context)
+        let newBook = Book(context: context)
         //current page can't be less than zero, total pages can't be less than current pages, title must exist
         guard (currentPage >= 0 && currentPage <= totalPages && !title.isEmpty) else {
             //todo handle
@@ -156,7 +159,7 @@ class BookManager {
             return
         }
         //create  a new book
-        let newBook = Books(context: context)
+        let newBook = Book(context: context)
         newBook.title = title
         newBook.author = author
         newBook.totalPages = Int32(totalPages)

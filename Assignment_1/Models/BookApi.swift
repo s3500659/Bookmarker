@@ -45,14 +45,14 @@ private struct bookApiData: Decodable {
 
 
 class requestBook {
-    private var books: [Books] = []
+    private var books: [Book] = []
     private let bookManager = BookManager()
     var delegate: Refresh?
     private let session = URLSession.shared
     private let apiKey = ""
     private let baseUrl: String = "https://www.googleapis.com/books/v1/volumes"
 
-    var getBooks: [Books] {
+    var getBooks: [Book] {
         return books
     }
 

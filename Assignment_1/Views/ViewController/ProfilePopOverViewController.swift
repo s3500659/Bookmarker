@@ -77,8 +77,8 @@ class ProfilePopOverViewController: UIViewController, UITableViewDelegate, UITab
 
     @IBOutlet weak var bookSearchBar: UISearchBar!
 
-    var filteredData: [Books] = []
-    var tempBookData: [Books] = [] //holds bookData to be added to favourites
+    var filteredData: [Book] = []
+    var tempBookData: [Book] = [] //holds bookData to be added to favourites
     let bookManager = BookManager()
 
 

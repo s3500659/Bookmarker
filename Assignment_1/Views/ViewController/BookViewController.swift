@@ -10,7 +10,7 @@ import UIKit
 
 class BookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
-    var book: Books?
+    var book: Book?
 
     @IBOutlet weak var startDate: UILabel!
     @IBOutlet weak var progress: UILabel!

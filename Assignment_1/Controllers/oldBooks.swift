@@ -1,5 +1,5 @@
 //
-//  Book.swift
+//  oldBook.swift
 //  Assignment_1
 //
 //  Created by Jordan Watson on 22/9/20.
@@ -11,7 +11,7 @@
 
 import UIKit
 
-//todo change back
+/*
 class Book {
     // MARK: Properties
     var title: String
@@ -51,3 +51,4 @@ class Book {
         self.description = description
     }
 }
+*/

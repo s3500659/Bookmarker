@@ -66,7 +66,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         favouriteBooksTable.delegate = self
         favouriteBooksTable.dataSource = self
-        booksFinishedCount.text = String(BookDataViewModel.favouriteBooksLibrary.count)
+        booksFinishedCount.text = String(bookManager.favouriteCount())
     }
 
     // MARK: - Navigation
