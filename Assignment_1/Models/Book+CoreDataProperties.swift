@@ -29,43 +29,4 @@ extension Books {
     @NSManaged public var totalPages: Int32
     @NSManaged public var favourite: Bool
     @NSManaged public var notes: String
-
-
-
-
-    /*
-
-    convenience init(title: String,
-                     author: String,
-                     totalPages: intmax_t,
-                     currentPage: intmax_t,
-                     photo: UIImage?,
-                     isbn: String,
-                     publisher: String,
-                     desc: String){
-        //current page can't be less than zero, total pages can't be less than current pages, title must exist
-        guard (currentPage >= 0 && currentPage <= totalPages && !title.isEmpty) else {
-            return
-        }
-        let title = title
-        let author = author
-        let totalPages = Int32(totalPages)
-        let currentPage = Int32(currentPage)
-        let isbn = isbn
-        let  publisher = publisher
-        let  desc = desc
-        if let photo = photo {
-            self.photo = photo.jpegData(compressionQuality: 1.0)
-        }
-        self.init(title: title,
-                author: author,
-                totalPages:
-                totalPages,
-                currentPage: currentPage,
-                photo: photo,
-                isbn: isbn,
-                publisher: publisher,
-                desc: desc)
-    }
-    */
 }

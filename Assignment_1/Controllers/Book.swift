@@ -6,8 +6,12 @@
 //  Copyright © 2020 Vinh Tran. All rights reserved.
 //
 
+
+
+
 import UIKit
 
+//todo change back
 class Book {
     // MARK: Properties
     var title: String
