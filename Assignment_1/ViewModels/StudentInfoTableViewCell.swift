@@ -9,12 +9,11 @@
 import UIKit
 
 class StudentInfoTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var studentImage: UIImageView!
     @IBOutlet weak var studentLabel: UILabel!
     @IBOutlet weak var studentDescription: UILabel!
-    
-    
+
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -10,17 +10,17 @@ import Foundation
 import UIKit
 
 class Student {
-    
-    private (set) var name:String
-    private (set) var fullName:String
-    private (set) var studentNumber:String
-    private (set) var description:String
+
+    private (set) var name: String
+    private (set) var fullName: String
+    private (set) var studentNumber: String
+    private (set) var description: String
     private (set) var image: UIImage
-    
-    private (set) var hobbies:String
-    private (set) var additionalInfo:String
-    
-    init(name:String, fullName:String, studentNumber:String, description:String, image:UIImage, hobbies:String, additionalInfo:String) {
+
+    private (set) var hobbies: String
+    private (set) var additionalInfo: String
+
+    init(name: String, fullName: String, studentNumber: String, description: String, image: UIImage, hobbies: String, additionalInfo: String) {
         self.name = name
         self.fullName = fullName
         self.studentNumber = studentNumber
@@ -29,5 +29,5 @@ class Student {
         self.hobbies = hobbies
         self.additionalInfo = additionalInfo
     }
-    
+
 }

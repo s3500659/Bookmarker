@@ -9,14 +9,14 @@
 import UIKit
 
 class StudentInfoTableViewController: UITableViewController {
-    
+
     private let viewModel = StudentViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
-    
+
 
     // MARK: - Table view data source
 
@@ -34,7 +34,7 @@ class StudentInfoTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? StudentInfoTableViewCell else {
             fatalError("The dequeued cell is not an instance of StudentInfoTableViewCell")
         }
-        
+
         let student = viewModel.students[indexPath.row]
         cell.studentLabel.text = student.name
         cell.studentDescription.text = student.description
@@ -42,15 +42,17 @@ class StudentInfoTableViewController: UITableViewController {
 
         return cell
     }
-    
-    
+
+
     // MARK: - Navigation
-    
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard let selectedRow = self.tableView.indexPathForSelectedRow else {return}
-        
+
+        guard let selectedRow = self.tableView.indexPathForSelectedRow else {
+            return
+        }
+
         let destination = segue.destination as? StudentInfoDetailViewController
         let selectedStudent = viewModel.students[selectedRow.row]
         destination?.selectedStudent = selectedStudent
