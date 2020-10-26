@@ -28,7 +28,9 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         title.text = book.title
         author.text = book.author
         isbn.text = "ISBN: \(book.isbn)"
-        image.image = UIImage(data: book.photo!)
+        if let photo = book.photo{
+            image.image = UIImage(data: photo)
+        }
         //disable add for existing books
         for b in bookManager.getBooks{
             if b.isbn == book.isbn{

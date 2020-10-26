@@ -39,10 +39,12 @@ class BookTableViewController: UITableViewController {
         }
         let book = bookManager.getBook(indexRow: indexPath.row)
         let progress: Float = Float(book.currentPage) / Float(book.totalPages)
+        if let photo = book.photo{
+            cell.photoImageView.image = UIImage(data: photo)
+        }
         cell.titleLabel.text = book.title
         cell.authorLabel.text = book.author
         cell.progressLabel.text = "Page \(book.currentPage) of \(book.totalPages)"
-        cell.photoImageView.image = UIImage(data:book.photo!)
         cell.completedProgressView.setProgress(progress, animated: true)
         return cell
     }

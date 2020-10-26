@@ -22,10 +22,13 @@ class ProfilePopOverViewController: UIViewController, UITableViewDelegate, UITab
         let image = cell.viewWithTag(1003) as! UIImageView
         let addButton = cell.viewWithTag(1005) as! UIButton
         let book = filteredData[indexPath.row]
+        if let photo = book.photo{
+            image.image = UIImage(data: photo)
+        }
         title.text = book.title
         author.text = book.author
         isbn.text = "ISBN: \(book.isbn)"
-        image.image = UIImage(data:book.photo!)
+     
         //disable add for existing books
         for b in bookManager.getFavourites() {
             if filteredData[indexPath.row].isbn == b.isbn {

@@ -23,11 +23,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let bookImage = cell.viewWithTag(1004) as! UIImageView
         let book = bookManager.getFavourite(index: indexPath.row)
         let currentProgress: Float = Float(book.currentPage) / Float(book.totalPages)
+        if let photo = book.photo{
+            bookImage.image = UIImage(data: photo)
+        }
         title.text = book.title
         author.text = book.author
         progress.text = "Page \(book.currentPage) of \(book.totalPages)"
         progressView.setProgress(currentProgress, animated: true)
-        bookImage.image = UIImage(data:book.photo!)!
         return cell
     }
 
