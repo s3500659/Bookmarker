@@ -85,7 +85,7 @@ class BookManager {
 //gets all the books from coredata
     func fetchBooks() {
         do {
-            bookLibrary = try context.fetch(Book.fetchRequest())
+            bookLibrary = try context.fetch(Book.fetchRequest()) 
         } catch let error {
             print("Error getting books: \(error)")
         }
@@ -103,7 +103,9 @@ class BookManager {
 
 
     func addBook(book: Book) {
-        bookLibrary.append(book)
+        let localBook = createBook(title: book.title, author: book.author, totalPages: intmax_t(book.totalPages), currentPage: intmax_t(book.currentPage), photo: UIImage(data: book.photo!), isbn: book.isbn, publisher: book.publisher, desc: book.description, needSave: true)
+        
+        bookLibrary.append(localBook!)
         do { //save it into coredata
             try context.save()
         } catch let error {
@@ -112,9 +114,10 @@ class BookManager {
         fetchBooks() //update the book data
     }
 
-    func createBook(title: String, author: String, totalPages: intmax_t, currentPage: intmax_t, photo: UIImage?, isbn: String, publisher: String, desc: String) -> Book? {
+    func createBook(title: String, author: String, totalPages: intmax_t, currentPage: intmax_t, photo: UIImage?, isbn: String, publisher: String, desc: String, needSave:Bool) -> Book? {
+        
         //create  a new book
-        let newBook = Book(context: context)
+        let newBook = Book(needSave: needSave, context: context)
         //current page can't be less than zero, total pages can't be less than current pages, title must exist
         guard (currentPage >= 0 && currentPage <= totalPages && !title.isEmpty) else {
             //todo handle

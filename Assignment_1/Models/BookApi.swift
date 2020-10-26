@@ -119,7 +119,7 @@ class requestBook {
                 authors = authorsToString(authors: authorsList) ?? "no authors"
             }
             let isbn = book.volumeInfo.industryIdentifiers?[0].identifier ?? "no isbn"
-            if let book = bookManager.createBook(title: book.volumeInfo.title, author: authors, totalPages: pageCount, currentPage: 0, photo: self.createPhoto(imageUrl: book.volumeInfo.imageLinks?.smallThumbnail), isbn: isbn, publisher: publisher, desc: description){
+            if let book = bookManager.createBook(title: book.volumeInfo.title, author: authors, totalPages: pageCount, currentPage: 0, photo: self.createPhoto(imageUrl: book.volumeInfo.imageLinks?.smallThumbnail), isbn: isbn, publisher: publisher, desc: description, needSave: false){
                 self.books.append(book)
             }
         }

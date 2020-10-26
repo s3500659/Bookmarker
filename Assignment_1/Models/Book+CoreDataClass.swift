@@ -12,5 +12,18 @@ import CoreData
 
 @objc(Book)
 public class Book: NSManagedObject {
+    
+    convenience init(needSave: Bool,  context: NSManagedObjectContext?) {
+        
+        // Create the NSEntityDescription
+        let entity = NSEntityDescription.entity(forEntityName: "Book", in: context!)
+        
+        
+        if(!needSave) {
+            self.init(entity: entity!, insertInto: nil)
+        } else {
+            self.init(entity: entity!, insertInto: context)
+        }
+    }
 
 }
