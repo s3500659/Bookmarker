@@ -149,32 +149,4 @@ class BookManager {
     func updatePage() {
 
     }
-
-    /*
-    func addBook(title: String, author: String, totalPages: intmax_t, currentPage: intmax_t, photo: UIImage?, isbn: String, publisher: String, desc: String) {
-        //current page can't be less than zero, total pages can't be less than current pages, title must exist
-        guard (currentPage >= 0 && currentPage <= totalPages && !title.isEmpty) else {
-            return
-        }
-        //create  a new book
-        let newBook = Book(context: context)
-        newBook.title = title
-        newBook.author = author
-        newBook.totalPages = Int32(totalPages)
-        newBook.currentPage = Int32(currentPage)
-        newBook.isbn = isbn
-        newBook.publisher = publisher
-        newBook.desc = desc
-        newBook.notes = "Enter notes here"
-        if let photo = photo {
-            newBook.photo = photo.jpegData(compressionQuality: 1.0)
-        }
-        do { //save it into coredata
-            try context.save()
-        } catch let error {
-            print("Error saving data: \(error)")
-        }
-        fetchBooks() //update the book data
-    }
-    */
 }

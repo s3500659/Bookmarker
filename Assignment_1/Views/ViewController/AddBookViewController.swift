@@ -30,13 +30,12 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         isbn.text = "ISBN: \(book.isbn)"
         image.image = UIImage(data: book.photo!)
         //disable add for existing books
-        /*
         for b in bookManager.getBooks{
             if b.isbn == book.isbn{
                 addButton.isEnabled = false
                 addButton.isHidden = true
             }
-        }*/
+        }
         //explicitly enable interaction in cells
         cell.contentView.isUserInteractionEnabled = true
         return cell
