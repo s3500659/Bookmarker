@@ -192,6 +192,7 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSR-YS-Mia">
                                             <rect key="frame" x="20" y="20" width="156" height="21"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="testBookTitle"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="ajQ-ns-Iz3"/>
                                             </constraints>
@@ -429,7 +430,6 @@
         <!--Students-->
         <scene sceneID="lbA-wR-Bbq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NGd-I1-zLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="xAK-CM-bPH" customClass="MasterViewControllerTableViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4OL-Gc-hnn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -464,6 +464,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Students" id="tKZ-6k-JON"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NGd-I1-zLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2874" y="1579"/>
         </scene>
@@ -476,7 +477,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="xAK-CM-bPH" kind="relationship" relationship="rootViewController" id="ih0-At-fLT"/>
+                        <segue destination="90P-76-bgh" kind="relationship" relationship="rootViewController" id="o15-Mw-hty"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5gW-gq-Xl5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -486,11 +487,10 @@
         <!--Students-->
         <scene sceneID="Hca-j9-MJf">
             <objects>
-                <splitViewController id="4BA-wQ-67R" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="StudentMasterViewControllerID" id="4BA-wQ-67R" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Students" id="uy7-2A-Ied" userLabel="Students"/>
                     <connections>
                         <segue destination="6Hk-Y3-6ko" kind="relationship" relationship="masterViewController" id="pgN-fU-Vgh"/>
-                        <segue destination="QB4-xZ-y1u" kind="relationship" relationship="detailViewController" id="toQ-RG-Y5P"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUb-3w-tmT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -500,7 +500,7 @@
         <!--The Team behind BookMarker-->
         <scene sceneID="Haa-Re-k4V">
             <objects>
-                <tableViewController id="90P-76-bgh" customClass="StudentInfoTableViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="StudentInfoTableViewControllerID" id="90P-76-bgh" customClass="StudentInfoTableViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="139" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fb4-rw-FOj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -652,13 +652,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="90P-76-bgh" kind="relationship" relationship="rootViewController" id="kDi-hG-rvd"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tdz-c2-xIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1807.5" y="2310.211267605634"/>
+            <point key="canvasLocation" x="302" y="2620"/>
         </scene>
         <!--Student Info Detail View Controller-->
         <scene sceneID="hdT-dX-3SF">
@@ -669,26 +666,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lion_king_1" translatesAutoresizingMaskIntoConstraints="NO" id="807-G0-DK5">
-                                <rect key="frame" x="16" y="64" width="100" height="100"/>
+                                <rect key="frame" x="16" y="20" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="1jG-5k-yWv"/>
                                     <constraint firstAttribute="width" constant="100" id="1us-WB-OmI"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKV-YI-Cpb">
-                                <rect key="frame" x="124" y="64" width="180" height="21"/>
+                                <rect key="frame" x="124" y="20" width="180" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="about" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="L33-y4-bUZ">
-                                <rect key="frame" x="124" y="93" width="180" height="144"/>
+                                <rect key="frame" x="124" y="49" width="180" height="144"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="hobbies" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uSa-cJ-XoH">
-                                <rect key="frame" x="16" y="245" width="288" height="84"/>
+                                <rect key="frame" x="16" y="201" width="288" height="84"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="84" id="MTX-9i-rgg"/>
@@ -697,7 +694,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="additional info" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="slE-Zq-jul">
-                                <rect key="frame" x="16" y="337" width="288" height="211"/>
+                                <rect key="frame" x="16" y="293" width="288" height="255"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -743,3 +740,4 @@
         <image name="sample" width="157.5" height="254"/>
     </resources>
 </document>
+

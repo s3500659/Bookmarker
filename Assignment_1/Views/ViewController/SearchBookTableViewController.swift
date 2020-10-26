@@ -11,7 +11,7 @@ import UIKit
 class SearchBookTableViewController: UITableViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
-    
+  
     var filteredData: [Book]!
     
     override func viewDidLoad() {
@@ -19,15 +19,16 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
         tableView.dataSource = self
         searchBar.delegate = self
         filteredData = BookDataViewModel.books
+
     }
-    
+
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // counts the number of books in the BookData file
         return filteredData.count
     }
-    
-    
+
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchBookCell", for: indexPath)
         let title = cell.viewWithTag(1000) as! UILabel
@@ -43,7 +44,7 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
         image.image = filteredData[indexPath.row].photo
         return cell
     }
-    
+
     /// This method updates filteredData based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredData=[]
@@ -55,13 +56,27 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
         tableView.reloadData()
     }
 
-    
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let selectedRow = self.tableView.indexPathForSelectedRow else {return}
+        guard let selectedRow = self.tableView.indexPathForSelectedRow else {
+            return
+        }
         let destination = segue.destination as? BookViewController
-        let selectedBook = filteredData[selectedRow.row]
-        destination?.book = selectedBook
+        //todo fix
+       // let selectedBook = BookDataViewModel.books[selectedRow.row]
+       // destination?.book = selectedBook
     }
+
+    // MARK: Private methods
+
+    /*
+    private func loadBookData() {
+        for i in BookDataViewModel.books {
+            data.append(i.title)
+            bookImageData.append(i.photo!)
+        }
+    }
+    */
 }
