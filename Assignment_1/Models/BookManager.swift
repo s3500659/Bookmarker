@@ -57,7 +57,7 @@ class BookManager {
 
 
     func removeFavourite(rowIndex: Int) {
-        context.delete(favouriteBooks[rowIndex])
+        favouriteBooks[rowIndex].favourite=false
         do { //save the change
             try context.save()
         } catch let error {
