@@ -23,7 +23,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var mapView: MKMapView!
     var bookStores: [MKPointAnnotation] = []
     let locationManager = CLLocationManager()
-    var mapChangedFromUserInteraction = false
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bookManager.favouriteCount()
@@ -112,9 +111,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 extension ProfileViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
+        if (status == .authorizedWhenInUse || status == .authorizedAlways) {
             locationManager.requestLocation()
         }
+        else {
+            let alert = UIAlertController(title: "Location Permission", message: "Location access is required to show Book stores close to you, please enable this in Settings", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -133,16 +137,12 @@ extension ProfileViewController : CLLocationManagerDelegate {
     // MARK: Private functions
     
     private func searchMapAreaForBookStores() {
-        print("searching...")
         mapView.removeAnnotations(bookStores)
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = "book store"
         request.region = mapView.region
         let search = MKLocalSearch(request: request)
-        search.start { response, _ in guard let response = response
-            else {
-                return
-            }
+        search.start { response, _ in guard let response = response else { return }
             for item in response.mapItems {
                 let annotation = MKPointAnnotation()
                 annotation.title = item.name
