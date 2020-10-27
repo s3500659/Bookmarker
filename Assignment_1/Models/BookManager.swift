@@ -107,7 +107,7 @@ class BookManager {
         if (book.photo != nil){
             image = UIImage(data: book.photo!)
         }
-        let localBook = createBook(title: book.title, author: book.author, totalPages: intmax_t(book.totalPages), currentPage: intmax_t(book.currentPage), photo: image, isbn: book.isbn, publisher: book.publisher, desc: book.description, needSave: true)
+        let localBook = createBook(title: book.title, author: book.author, totalPages: intmax_t(book.totalPages), currentPage: intmax_t(book.currentPage), photo: image, isbn: book.isbn, publisher: book.publisher, desc: book.desc, needSave: true)
         
         bookLibrary.append(localBook!)
         do { //save it into coredata
