@@ -12,43 +12,50 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
 
     @IBOutlet weak var searchBar: UISearchBar!
 
-    var data: [String] = []
-    var filteredData: [String]!
-    var bookImageData: [UIImage] = []
+    var filteredData: [Book] = []
+    let bookManager = BookManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //loadBookData()
         tableView.dataSource = self
         searchBar.delegate = self
-        filteredData = data
+        bookManager.loadBooks()
+        filteredData = bookManager.getBooks
     }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // counts the number of books in the BookData file
         return filteredData.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
-        cell.textLabel?.text = filteredData[indexPath.row]
-        cell.imageView?.image = bookImageData[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchBookCell", for: indexPath)
+        let title = cell.viewWithTag(1000) as! UILabel
+        let author = cell.viewWithTag(1001) as! UILabel
+        let progress = cell.viewWithTag(1002) as! UILabel
+        let progressView = cell.viewWithTag(1003) as! UIProgressView
+        let bookImage = cell.viewWithTag(1004) as! UIImageView
+        let book = filteredData[indexPath.row]
+        let currentProgress: Float = Float(book.currentPage) / Float(book.totalPages)
+        if let photo = book.photo {
+            bookImage.image = UIImage(data: photo)
+        }
+        title.text = book.title
+        author.text = book.author
+        progress.text = "Page \(book.currentPage) of \(book.totalPages)"
+        progressView.setProgress(currentProgress, animated: true)
         return cell
     }
 
     /// This method updates filteredData based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // When there is no text, filteredData is the same as the original data
-        // When user has entered text into the search box
-        // Use the filter method to iterate over all items in the data array
-        // For each item, return true if the item should be included and false if the
-        // item should NOT be included
-        filteredData = searchText.isEmpty ? data : data.filter({ (dataString: String) -> Bool in
-            // If dataItem matches the searchText, return true to include it
-            return dataString.range(of: searchText, options: .caseInsensitive) != nil
-        })
+        filteredData = []
+        for book in bookManager.getBooks {
+            if book.title.lowercased().contains(searchText.lowercased()) {
+                filteredData.append(book)
+            }
+        }
         tableView.reloadData()
     }
 
@@ -60,20 +67,8 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
             return
         }
         let destination = segue.destination as? BookViewController
-        //todo fix
-       // let selectedBook = BookDataViewModel.books[selectedRow.row]
-       // destination?.book = selectedBook
+        let selectedBook = filteredData[selectedRow.row]
+        destination?.book = selectedBook
     }
-
-    // MARK: Private methods
-
-    /*
-    private func loadBookData() {
-        for i in BookDataViewModel.books {
-            data.append(i.title)
-            bookImageData.append(i.photo!)
-        }
-    }
-    */
 }
 
