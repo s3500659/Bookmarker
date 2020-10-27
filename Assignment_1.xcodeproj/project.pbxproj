@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17E5BE5B2519FCEF00EF88FD /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5BE5A2519FCEF00EF88FD /* HomeController.swift */; };
 		17E5BE5F251A012F00EF88FD /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5BE5E251A012F00EF88FD /* BookTableViewCell.swift */; };
 		17E5BE61251A06A400EF88FD /* BookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5BE60251A06A400EF88FD /* BookTableViewController.swift */; };
 		8490B40E25424CD900D96DB4 /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490B40C25424CD900D96DB4 /* Book+CoreDataClass.swift */; };
@@ -58,7 +57,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		17E5BE5A2519FCEF00EF88FD /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		17E5BE5E251A012F00EF88FD /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 		17E5BE60251A06A400EF88FD /* BookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewController.swift; sourceTree = "<group>"; };
 		8490B40C25424CD900D96DB4 /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 				D8FE437C2532B00800C40BAF /* AddBookViewController.swift */,
 				D8E83EA7251D8C5B00E20352 /* StudentInfoTableViewController.swift */,
 				D8A7FC8525230202000B4B1D /* StudentInfoDetailViewController.swift */,
-				17E5BE5A2519FCEF00EF88FD /* HomeController.swift */,
 				F093EA5A25240013009F38C0 /* SearchBookTableViewController.swift */,
 				F077502125259D670004929C /* DetailSearchBooksViewController.swift */,
 				84F5ADEF252D1F2000CE7997 /* ProfileViewController.swift */,
@@ -371,7 +368,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17E5BE5B2519FCEF00EF88FD /* HomeController.swift in Sources */,
 				D8E83EA8251D8C5B00E20352 /* StudentInfoTableViewController.swift in Sources */,
 				D8A7FC8625230202000B4B1D /* StudentInfoDetailViewController.swift in Sources */,
 				D83B8D542505B650004F81B6 /* Assignment_1.xcdatamodeld in Sources */,
