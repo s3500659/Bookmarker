@@ -12,11 +12,17 @@ import UIKit
 
 
 class BookManager {
+    
+    public static let shared = BookManager()
 
 //ref to managed obj context
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var bookLibrary: [Book] = []
     private var favouriteBooks: [Book] = []
+    
+    private init() {
+        
+    }
 
     func loadBooks() {
         fetchBooks()

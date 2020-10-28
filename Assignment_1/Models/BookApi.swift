@@ -46,7 +46,7 @@ private struct bookApiData: Decodable {
 
 class requestBook {
     private var books: [Book] = []
-    private let bookManager = BookManager()
+    private let bookManager = BookManager.shared
     var delegate: Refresh?
     private let session = URLSession.shared
     private let apiKey = ""

@@ -82,7 +82,7 @@ class ProfilePopOverViewController: UIViewController, UITableViewDelegate, UITab
 
     var filteredData: [Book] = []
     var tempBookData: [Book] = [] //holds bookData to be added to favourites
-    let bookManager = BookManager()
+    let bookManager = BookManager.shared
 
 
     override func viewDidLoad() {

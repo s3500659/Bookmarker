@@ -86,7 +86,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var tempBookData: [Book] = [] //holds data that may be added to books
     var bookApi = bookViewModel() //api
-    let bookManager = BookManager()
+    let bookManager = BookManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()

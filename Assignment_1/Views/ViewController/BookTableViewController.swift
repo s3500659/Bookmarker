@@ -10,7 +10,7 @@ import UIKit
 
 class BookTableViewController: UITableViewController {
 
-    let bookManager = BookManager()
+    let bookManager = BookManager.shared
     override func viewDidLoad() {
         super.viewDidLoad()
         bookManager.loadBooks()

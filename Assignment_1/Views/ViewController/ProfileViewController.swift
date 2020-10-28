@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var booksFinishedCount: UILabel!
     @IBOutlet weak var favouriteBooks: UILabel!
     @IBOutlet weak var favouriteBooksTable: UITableView!
-    let bookManager = BookManager()
+    let bookManager = BookManager.shared
     
     // MapView variables and outlets
     @IBOutlet weak var mapView: MKMapView!
