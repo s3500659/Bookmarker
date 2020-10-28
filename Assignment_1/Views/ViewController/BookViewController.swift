@@ -81,7 +81,6 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         book?.notes = textView.text
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         notes.delegate = self

@@ -7,9 +7,23 @@
 //
 
 import UIKit
+import MapKit
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
+    
+    // Profile view variables and outlets
+    @IBOutlet weak var yourProfile: UILabel!
+    @IBOutlet weak var booksFinished: UILabel!
+    @IBOutlet weak var booksFinishedCount: UILabel!
+    @IBOutlet weak var favouriteBooks: UILabel!
+    @IBOutlet weak var favouriteBooksTable: UITableView!
+    let bookManager = BookManager()
+    
+    // MapView variables and outlets
+    @IBOutlet weak var mapView: MKMapView!
+    var bookStores: [MKPointAnnotation] = []
+    let locationManager = CLLocationManager()
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bookManager.favouriteCount()
     }
@@ -48,24 +62,21 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         booksFinishedCount.text = String(bookManager.favouriteCount())
     }
 
-    @IBOutlet weak var yourProfile: UILabel!
-
-    @IBOutlet weak var booksFinished: UILabel!
-
-    @IBOutlet weak var booksFinishedCount: UILabel!
-
-    @IBOutlet weak var favouriteBooks: UILabel!
-
-    @IBOutlet weak var favouriteBooksTable: UITableView!
-
     @IBAction func addBook(_ sender: Any) {
     }
 
-    let bookManager = BookManager()
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.didDragMap(_:)))
+        panGesture.delegate = self
+        mapView.addGestureRecognizer(panGesture)
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
+        
         favouriteBooksTable.delegate = self
         favouriteBooksTable.dataSource = self
         booksFinishedCount.text = String(bookManager.favouriteCount())
@@ -75,7 +86,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let _ = sender as? UITableViewCell else {
             return
@@ -87,5 +97,61 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let selectedBook = bookManager.getFavourite(index: selectedRow.row)
         destination!.book = selectedBook
     }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    @objc func didDragMap(_ sender: UIGestureRecognizer) {
+        if sender.state == .ended {
+            searchMapAreaForBookStores()
+        }
+    }
 }
 
+extension ProfileViewController : CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if (status == .authorizedWhenInUse || status == .authorizedAlways) {
+            locationManager.requestLocation()
+        }
+        else {
+            let alert = UIAlertController(title: "Location Permission", message: "Location access is required to show Book stores close to you, please enable this in Settings", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+            let region = MKCoordinateRegion(center: location.coordinate, span: span)
+            searchMapAreaForBookStores()
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error:: \(error)")
+    }
+    
+    // MARK: Private functions
+    
+    private func searchMapAreaForBookStores() {
+        mapView.removeAnnotations(bookStores)
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = "book store"
+        request.region = mapView.region
+        let search = MKLocalSearch(request: request)
+        search.start { response, _ in guard let response = response else { return }
+            for item in response.mapItems {
+                let annotation = MKPointAnnotation()
+                annotation.title = item.name
+                annotation.subtitle = "\(item.placemark.subThoroughfare ?? "") \(item.placemark.thoroughfare ?? "")"
+                annotation.coordinate = item.placemark.location!.coordinate
+                self.bookStores.append(annotation)
+                self.mapView.addAnnotation(annotation)
+            }
+            self.mapView.reloadInputViews()
+        }
+    }
+}
