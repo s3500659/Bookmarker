@@ -13,7 +13,7 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
     @IBOutlet weak var searchBar: UISearchBar!
 
     var filteredData: [Book] = []
-    let bookManager = BookManager()
+    let bookManager = BookManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,12 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
         searchBar.delegate = self
         bookManager.loadBooks()
         filteredData = bookManager.getBooks
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        bookManager.loadBooks()
+        filteredData = bookManager.getBooks
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
