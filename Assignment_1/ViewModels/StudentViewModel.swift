@@ -58,7 +58,5 @@ struct StudentViewModel {
         students.append(jordan)
         students.append(philip)
         students.append(josh)
-
-
     }
 }

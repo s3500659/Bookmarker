@@ -10,6 +10,8 @@ import UIKit
 
 class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
+    let bookManager = BookManager.shared
+    
     var book: Book?
 
     @IBOutlet weak var startDate: UILabel!
@@ -49,8 +51,13 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .none
         if let date = sender?.date {
-            book?.startDate = date
-            startDate.text = dateFormatter.string(from: date)
+            let (updatedBook, error) = bookManager.updateStartDate(book: book!, date: date)
+            if updatedBook {
+                startDate.text = dateFormatter.string(from: date)
+            }
+            else {
+                showError(error: error)
+            }
         }
     }
 
@@ -66,24 +73,26 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
-            if let book = self.book {
-                if let pageInput = textField?.text {
-                    book.currentPage=Int32(pageInput) ?? 0
-                }
-                self.progress.text = "\(book.currentPage) of \(book.totalPages)"
+            let pageInput = textField!.text
+            
+            let (updatedBook, error) = self.bookManager.updatePage(book: self.book!, page: Int32(pageInput!) ?? 0)
+            if updatedBook {
+                self.progress.text = "\(self.book?.currentPage ?? 0) of \(self.book?.totalPages ?? 0)"
+            }
+            else {
+                self.showError(error: error)
             }
         }))
         self.present(alert, animated: true, completion: nil)
     }
 
-    // notes text view
     func textViewDidChange(_ textView: UITextView) {
-        if let book = book {
-            book.notes = textView.text
+        let (updatedBook, error) = bookManager.updateNotes(book: book!, notes: textView.text)
+        if !updatedBook {
+            showError(error: error)
         }
     }
     
-    private let placeholderText = "Enter notes here"
     func textViewDidBeginEditing(_ textView: UITextView) {
         if notes.textColor == UIColor.lightGray {
             notes.text = nil
@@ -93,7 +102,6 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if notes.text == nil {
-            notes.text = placeholderText
             notes.textColor = UIColor.lightGray
         }
     }
@@ -102,17 +110,16 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
         super.viewDidLoad()
         notes.delegate = self
         if let book = book {
-            let formatter = DateFormatter()             // date text
-            formatter.dateFormat = "dd mm yyyy"
-            startDate.text = book.startDate == nil ? "not started" : String(formatter.string(from: book.startDate!))
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy"
+            startDate.text = book.startDate == nil ? "Not started" : String(formatter.string(from: book.startDate!))
             progress.text = "\(book.currentPage) of \(book.totalPages)"
             bookDescription.text = book.desc
             
-            // notes field
             if (book.notes == "" || book.notes == nil) {
                 notes.textColor = UIColor.lightGray
-                notes.text = placeholderText
-            } else {
+            }
+            else {
                 notes.text = book.notes
             }
             
@@ -122,5 +129,11 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
         }
     }
     
+    // MARK: Private funcs
+    
+    private func showError(error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
-

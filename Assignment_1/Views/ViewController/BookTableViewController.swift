@@ -13,12 +13,12 @@ class BookTableViewController: UITableViewController {
     let bookManager = BookManager.shared
     override func viewDidLoad() {
         super.viewDidLoad()
-        bookManager.loadBooks()
+        bookManager.fetchBooks()
     }
 
 
     override func viewWillAppear(_ animated: Bool) {
-        bookManager.loadBooks()
+        bookManager.fetchBooks()
         tableView.reloadData()
     }
 

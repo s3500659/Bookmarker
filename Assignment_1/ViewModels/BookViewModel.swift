@@ -12,7 +12,6 @@ import UIKit
 struct bookViewModel {
     private var model = requestBook.shared
 
-    //receive feedback from the api
     var delegate: Refresh? {
         get {
             return model.delegate

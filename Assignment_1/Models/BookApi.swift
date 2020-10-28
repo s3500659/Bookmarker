@@ -111,21 +111,20 @@ class requestBook {
         guard let responseItems = parsedResponse.items else{return}
         //create book objects and handle optionals
         for book in responseItems {
-            let description = book.volumeInfo.description ?? "no description"
+            let description = book.volumeInfo.description ?? "No Description"
             let pageCount = book.volumeInfo.pageCount ?? 0
-            let publisher = book.volumeInfo.publisher ?? "no publisher"
-            var authors="no authors"
+            let publisher = book.volumeInfo.publisher ?? "No Publisher(s)"
+            var authors = "No Author(s)"
             if let authorsList = book.volumeInfo.authors{
-                authors = authorsToString(authors: authorsList) ?? "no authors"
+                authors = authorsToString(authors: authorsList) ?? "No Author(s)"
             }
-            let isbn = book.volumeInfo.industryIdentifiers?[0].identifier ?? "no isbn"
+            let isbn = book.volumeInfo.industryIdentifiers?[0].identifier ?? "No ISBN"
             if let book = bookManager.createBook(title: book.volumeInfo.title, author: authors, totalPages: pageCount, currentPage: 0, photo: self.createPhoto(imageUrl: book.volumeInfo.imageLinks?.smallThumbnail), isbn: isbn, publisher: publisher, desc: description, needSave: false){
                 self.books.append(book)
             }
         }
     }
 
-    //MARK: -retrieve and parse data from the Google books API
     func fetchData(_ request: URLRequest) {
         let jsonDecoder = JSONDecoder()
         let task = session.dataTask(with: request, completionHandler: { data, response, downloadError in
@@ -134,7 +133,6 @@ class requestBook {
             } else {
                 do {
                     let parsedResponse = try jsonDecoder.decode(dataItems.self, from: data!)
-                    //parse the data into book objects
                     self.createBook(parsedResponse: parsedResponse)
                     DispatchQueue.main.async {
                         self.delegate?.updateUI()
@@ -146,9 +144,6 @@ class requestBook {
         })
         task.resume()
     }
-
-    private init() {}
-
     static let shared = requestBook()
 }
 
