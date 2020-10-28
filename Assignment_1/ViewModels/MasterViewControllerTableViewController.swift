@@ -9,8 +9,8 @@
 import UIKit
 
 class MasterViewControllerTableViewController: UITableViewController {
-    
-     private let viewModel = StudentViewModel()
+
+    private let viewModel = StudentViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,31 +24,30 @@ class MasterViewControllerTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     @IBOutlet weak var studentName: UITableViewCell!
-    
-   
+
 
     override func tableView(
-        _ tableView: UITableView,
-        numberOfRowsInSection section: Int)
-        -> Int {
-            return viewModel.students.count
+            _ tableView: UITableView,
+            numberOfRowsInSection section: Int)
+                    -> Int {
+        return viewModel.students.count
     }
 
     override func tableView(
-        _ tableView: UITableView,
-        cellForRowAt indexPath: IndexPath)
-        -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "StudentCell", for: indexPath)
-            let student = viewModel.students[indexPath.row]
-            
+            _ tableView: UITableView,
+            cellForRowAt indexPath: IndexPath)
+                    -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StudentCell", for: indexPath)
+        let student = viewModel.students[indexPath.row]
+
 //            cell.studentImage.image = student.image
 //            let monster = monsters[indexPath.row]
-            cell.textLabel?.text = student.fullName
+        cell.textLabel?.text = student.fullName
 
-            return cell
+        return cell
     }
 
-    
+
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cellIdentifier = "studentCell"
 //        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? StudentInfoTableViewCell else {
@@ -62,7 +61,6 @@ class MasterViewControllerTableViewController: UITableViewController {
 //
 //        return cell
 //    }
-    
 
 
     /*
@@ -119,14 +117,16 @@ class MasterViewControllerTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
+
     // MARK: - Navigation
-    
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard let selectedRow = self.tableView.indexPathForSelectedRow else {return}
-        
+
+        guard let selectedRow = self.tableView.indexPathForSelectedRow else {
+            return
+        }
+
         let destination = segue.destination as? StudentInfoDetailViewController
         let selectedStudent = viewModel.students[selectedRow.row]
         destination?.selectedStudent = selectedStudent
