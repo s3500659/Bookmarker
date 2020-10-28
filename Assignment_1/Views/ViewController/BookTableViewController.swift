@@ -18,6 +18,7 @@ class BookTableViewController: UITableViewController {
 
 
     override func viewWillAppear(_ animated: Bool) {
+        bookManager.loadBooks()
         tableView.reloadData()
     }
 
