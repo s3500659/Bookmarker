@@ -20,9 +20,6 @@ class BookManager {
     private var bookLibrary: [Book] = []
     private var favouriteBooks: [Book] = []
     
-    private init() {
-        
-    }
 
     func loadBooks() {
         fetchBooks()
