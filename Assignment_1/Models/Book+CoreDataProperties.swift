@@ -28,5 +28,5 @@ extension Book {
     @NSManaged public var title: String
     @NSManaged public var totalPages: Int32
     @NSManaged public var favourite: Bool
-    @NSManaged public var notes: String
+    @NSManaged public var notes: String?
 }
