@@ -98,6 +98,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         destination!.book = selectedBook
     }
     
+    // MARK: - Map
+
+    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
