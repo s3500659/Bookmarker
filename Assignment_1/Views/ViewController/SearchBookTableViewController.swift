@@ -25,6 +25,7 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         bookManager.loadBooks()
+        filteredData = bookManager.getBooks
         tableView.reloadData()
     }
 
