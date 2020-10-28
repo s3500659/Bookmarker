@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     var book: Book?
 
@@ -78,7 +78,24 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
 
     // notes text view
     func textViewDidChange(_ textView: UITextView) {
-        book?.notes = textView.text
+        if let book = book {
+            book.notes = textView.text
+        }
+    }
+    
+    private let placeholderText = "Enter notes here"
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if notes.textColor == UIColor.lightGray {
+            notes.text = nil
+            notes.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if notes.text == nil {
+            notes.text = placeholderText
+            notes.textColor = UIColor.lightGray
+        }
     }
 
     override func viewDidLoad() {
@@ -90,11 +107,20 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             startDate.text = book.startDate == nil ? "not started" : String(formatter.string(from: book.startDate!))
             progress.text = "\(book.currentPage) of \(book.totalPages)"
             bookDescription.text = book.desc
-            notes.text = book.notes
+            
+            // notes field
+            if (book.notes == "" || book.notes == nil) {
+                notes.textColor = UIColor.lightGray
+                notes.text = placeholderText
+            } else {
+                notes.text = book.notes
+            }
+            
             isbn.text = book.isbn
             publisher.text = book.publisher
             self.progress.accessibilityIdentifier = "progress-label"
         }
     }
+    
 }
 

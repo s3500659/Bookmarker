@@ -72,7 +72,7 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
         guard let selectedRow = self.tableView.indexPathForSelectedRow else {
             return
         }
-        let destination = segue.destination as? BookViewController
+        let destination = segue.destination as? BookDetailViewController
         let selectedBook = filteredData[selectedRow.row]
         destination?.book = selectedBook
     }
