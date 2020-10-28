@@ -12,13 +12,11 @@ class StudentInfoDetailViewController: UIViewController {
 
     var selectedStudent: Student?
 
-
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var studentName: UILabel!
     @IBOutlet weak var about: UITextView!
     @IBOutlet weak var hobbies: UITextView!
     @IBOutlet weak var additionalInfo: UITextView!
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +28,5 @@ class StudentInfoDetailViewController: UIViewController {
             hobbies.text = "Hobbies\n" + selectedStudent.hobbies
             additionalInfo.text = "Additional Information\n" + selectedStudent.additionalInfo
         }
-
-
     }
-
-
 }

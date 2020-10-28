@@ -11,7 +11,6 @@ import Foundation
 import CoreData
 import UIKit
 
-//todo make book
 extension Book {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Book> {

@@ -28,15 +28,12 @@ class ProfilePopOverViewController: UIViewController, UITableViewDelegate, UITab
         title.text = book.title
         author.text = book.author
         isbn.text = "ISBN: \(book.isbn)"
-     
-        //disable add for existing books
         for b in bookManager.getFavourites() {
             if filteredData[indexPath.row].isbn == b.isbn {
                 addButton.isEnabled = false
                 addButton.isHidden = true
             }
         }
-        //explicitly enable interaction in cells
         cell.contentView.isUserInteractionEnabled = true
         return cell
     }
@@ -55,8 +52,8 @@ class ProfilePopOverViewController: UIViewController, UITableViewDelegate, UITab
         let buttonPos = sender.convert(sender.bounds.origin, to: bookSearchTable)
         if let indexPath = bookSearchTable.indexPathForRow(at: buttonPos) {
             let currentCell = bookSearchTable.cellForRow(at: indexPath)
-            tempBookData.append(filteredData[indexPath.row])                  //if the element exists add it
-            let currentButton = currentCell!.viewWithTag(1005) as! UIButton   //hide the button
+            tempBookData.append(filteredData[indexPath.row])
+            let currentButton = currentCell!.viewWithTag(1005) as! UIButton
             currentButton.isHidden = true
         }
     }
@@ -67,7 +64,7 @@ class ProfilePopOverViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     @IBAction func doneButton(_ sender: Any) {
-        for book in tempBookData {         //add the selected books to favourites
+        for book in tempBookData {
             bookManager.addFavourite(book: book)
         }
         dismiss(animated: true, completion: nil)
@@ -81,7 +78,7 @@ class ProfilePopOverViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var bookSearchBar: UISearchBar!
 
     var filteredData: [Book] = []
-    var tempBookData: [Book] = [] //holds bookData to be added to favourites
+    var tempBookData: [Book] = []
     let bookManager = BookManager.shared
 
 
