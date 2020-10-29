@@ -18,16 +18,11 @@ class DetailSearchBooksViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         if let selectedBook = selectedBook {
             bookImage.image = selectedBook.image
             bookTitle.text = selectedBook.title
             bookAuthor.text = selectedBook.author
 
         }
-
-        // Do any additional setup after loading the view.
     }
-
-
 }

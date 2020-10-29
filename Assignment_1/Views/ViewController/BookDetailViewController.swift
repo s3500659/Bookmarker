@@ -8,8 +8,10 @@
 
 import UIKit
 
-class BookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
+    let bookManager = BookManager.shared
+    
     var book: Book?
 
     @IBOutlet weak var startDate: UILabel!
@@ -49,8 +51,13 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .none
         if let date = sender?.date {
-            book?.startDate = date
-            startDate.text = dateFormatter.string(from: date)
+            let (updatedBook, error) = bookManager.updateStartDate(book: book!, date: date)
+            if updatedBook {
+                startDate.text = dateFormatter.string(from: date)
+            }
+            else {
+                showError(error: error)
+            }
         }
     }
 
@@ -66,35 +73,67 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
-            if let book = self.book {
-                if let pageInput = textField?.text {
-                    book.currentPage=Int32(pageInput) ?? 0
-                }
-                self.progress.text = "\(book.currentPage) of \(book.totalPages)"
+            let pageInput = textField!.text
+            
+            let (updatedBook, error) = self.bookManager.updatePage(book: self.book!, page: Int32(pageInput!) ?? 0)
+            if updatedBook {
+                self.progress.text = "\(self.book?.currentPage ?? 0) of \(self.book?.totalPages ?? 0)"
+            }
+            else {
+                self.showError(error: error)
             }
         }))
         self.present(alert, animated: true, completion: nil)
     }
 
-    // notes text view
     func textViewDidChange(_ textView: UITextView) {
-        book?.notes = textView.text
+        let (updatedBook, error) = bookManager.updateNotes(book: book!, notes: textView.text)
+        if !updatedBook {
+            showError(error: error)
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if notes.textColor == UIColor.lightGray {
+            notes.text = nil
+            notes.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if notes.text == nil {
+            notes.textColor = UIColor.lightGray
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         notes.delegate = self
         if let book = book {
-            let formatter = DateFormatter()             // date text
-            formatter.dateFormat = "dd mm yyyy"
-            startDate.text = book.startDate == nil ? "not started" : String(formatter.string(from: book.startDate!))
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy"
+            startDate.text = book.startDate == nil ? "Not started" : String(formatter.string(from: book.startDate!))
             progress.text = "\(book.currentPage) of \(book.totalPages)"
             bookDescription.text = book.desc
-            notes.text = book.notes
+            
+            if (book.notes == "" || book.notes == nil) {
+                notes.textColor = UIColor.lightGray
+            }
+            else {
+                notes.text = book.notes
+            }
+            
             isbn.text = book.isbn
             publisher.text = book.publisher
             self.progress.accessibilityIdentifier = "progress-label"
         }
     }
+    
+    // MARK: Private funcs
+    
+    private func showError(error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
-

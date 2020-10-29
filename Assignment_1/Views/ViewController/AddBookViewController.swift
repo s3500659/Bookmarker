@@ -31,14 +31,12 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let photo = book.photo{
             image.image = UIImage(data: photo)
         }
-        //disable add for existing books
         for b in bookManager.getBooks{
             if b.isbn == book.isbn{
                 addButton.isEnabled = false
                 addButton.isHidden = true
             }
         }
-        //explicitly enable interaction in cells
         cell.contentView.isUserInteractionEnabled = true
         return cell
     }
@@ -48,9 +46,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         let buttonPos = sender.convert(sender.bounds.origin, to: bookSearchTable)
         if let indexPath = bookSearchTable.indexPathForRow(at: buttonPos) {
             let currentCell = bookSearchTable.cellForRow(at: indexPath)
-            //if the element exists add it
             tempBookData.append(bookApi.getBook(index: indexPath.row))
-            //hide the button
             let currentButton = currentCell!.viewWithTag(1005) as! UIButton
             currentButton.isHidden = true
         }
@@ -62,7 +58,6 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     @IBAction func doneButton(_ sender: Any) {
-        //add the selected books to books
         for book in self.tempBookData {
             self.bookManager.addBook(book: book)
         }
@@ -75,7 +70,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let searchTerm = searchBar.text else {
             return
         }
-        let searchType = searchSelection.selectedSegmentIndex         //get the index
+        let searchType = searchSelection.selectedSegmentIndex
         bookApi.searchBooks(searchTerm: searchTerm, queryType: searchType)
     }
 
@@ -84,8 +79,8 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var bookSearchBar: UISearchBar!
     @IBOutlet weak var searchSelection: UISegmentedControl!
 
-    var tempBookData: [Book] = [] //holds data that may be added to books
-    var bookApi = bookViewModel() //api
+    var tempBookData: [Book] = []
+    var bookApi = bookViewModel()
     let bookManager = BookManager.shared
 
     override func viewDidLoad() {
@@ -99,7 +94,6 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.preferredContentSize = self.view.systemLayoutSizeFitting(
-                UIView.layoutFittingCompressedSize)
+        self.preferredContentSize = self.view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
     }
 }

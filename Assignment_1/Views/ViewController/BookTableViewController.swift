@@ -13,12 +13,12 @@ class BookTableViewController: UITableViewController {
     let bookManager = BookManager.shared
     override func viewDidLoad() {
         super.viewDidLoad()
-        bookManager.loadBooks()
+        bookManager.fetchBooks()
     }
 
 
     override func viewWillAppear(_ animated: Bool) {
-        bookManager.loadBooks()
+        bookManager.fetchBooks()
         tableView.reloadData()
     }
 
@@ -68,7 +68,7 @@ class BookTableViewController: UITableViewController {
         super.prepare(for: segue, sender: sender)
 
         guard let selectedRow = self.tableView.indexPathForSelectedRow else {return}
-        let destination = segue.destination as? BookViewController
+        let destination = segue.destination as? BookDetailViewController
         let selectedBook = bookManager.getBook(indexRow: selectedRow.row)
         destination?.book = selectedBook
     }

@@ -19,12 +19,12 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
         super.viewDidLoad()
         tableView.dataSource = self
         searchBar.delegate = self
-        bookManager.loadBooks()
+        bookManager.fetchBooks()
         filteredData = bookManager.getBooks
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        bookManager.loadBooks()
+        bookManager.fetchBooks()
         filteredData = bookManager.getBooks
         tableView.reloadData()
     }
@@ -33,7 +33,6 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchBookCell", for: indexPath)
@@ -54,7 +53,6 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
         return cell
     }
 
-    /// This method updates filteredData based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredData = []
         for book in bookManager.getBooks {
@@ -72,7 +70,7 @@ class SearchBookTableViewController: UITableViewController, UISearchBarDelegate 
         guard let selectedRow = self.tableView.indexPathForSelectedRow else {
             return
         }
-        let destination = segue.destination as? BookViewController
+        let destination = segue.destination as? BookDetailViewController
         let selectedBook = filteredData[selectedRow.row]
         destination?.book = selectedBook
     }

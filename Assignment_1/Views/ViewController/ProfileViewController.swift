@@ -80,7 +80,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         favouriteBooksTable.delegate = self
         favouriteBooksTable.dataSource = self
         booksFinishedCount.text = String(bookManager.favouriteCount())
-        bookManager.loadBooks()
+        bookManager.fetchBooks()
         bookManager.loadFavourites()
     }
 
@@ -93,7 +93,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let selectedRow = self.favouriteBooksTable.indexPathForSelectedRow else {
             return
         }
-        let destination = segue.destination as? BookViewController
+        let destination = segue.destination as? BookDetailViewController
         let selectedBook = bookManager.getFavourite(index: selectedRow.row)
         destination!.book = selectedBook
     }

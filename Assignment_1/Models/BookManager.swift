@@ -10,20 +10,13 @@ import Foundation
 import CoreData
 import UIKit
 
-
 class BookManager {
     
     public static let shared = BookManager()
 
-//ref to managed obj context
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var bookLibrary: [Book] = []
     private var favouriteBooks: [Book] = []
-    
-
-    func loadBooks() {
-        fetchBooks()
-    }
 
     func favouriteCount() -> Int {
         return favouriteBooks.count
@@ -38,42 +31,30 @@ class BookManager {
     }
 
     func loadFavourites() {
-        favouriteBooks=[]
+        favouriteBooks = []
         for book in bookLibrary {
-            if book.favourite==true {
+            if book.favourite == true {
                 favouriteBooks.append(book)
             }
         }
     }
 
-
     func addFavourite(book: Book) {
         book.favourite = true
-        do { //save the change
-            try context.save()
-        } catch let error {
-            print("Error saving data: \(error)")
-        }
+        let (_, _) = saveBook()
         fetchBooks()
         loadFavourites()
     }
-
 
     func removeFavourite(rowIndex: Int) {
         favouriteBooks[rowIndex].favourite=false
-        do { //save the change
-            try context.save()
-        } catch let error {
-            print("Error saving data: \(error)")
-        }
-        //update the book data
+        let (_, _) = saveBook()
         fetchBooks()
         loadFavourites()
     }
 
-
     var getBooks: [Book] {
-        fetchBooks() //get the latest
+        fetchBooks()
         return bookLibrary
     }
 
@@ -95,7 +76,6 @@ class BookManager {
         return bookLibrary[indexRow]
     }
 
-//gets all the books from coredata
     func fetchBooks() {
         do {
             bookLibrary = try context.fetch(Book.fetchRequest()) 
@@ -106,14 +86,9 @@ class BookManager {
 
     func removeBook(rowIndex: Int) {
         context.delete(bookLibrary[rowIndex])
-        do { //save the change
-            try context.save()
-        } catch let error {
-            print("Error saving data: \(error)")
-        }
-        fetchBooks() //update the book data
+        let (_, _) = saveBook()
+        fetchBooks()
     }
-
 
     func addBook(book: Book) {
         var image: UIImage? = nil
@@ -123,21 +98,13 @@ class BookManager {
         let localBook = createBook(title: book.title, author: book.author, totalPages: intmax_t(book.totalPages), currentPage: intmax_t(book.currentPage), photo: image, isbn: book.isbn, publisher: book.publisher, desc: book.desc, needSave: true)
         
         bookLibrary.append(localBook!)
-        do { //save it into coredata
-            try context.save()
-        } catch let error {
-            print("Error saving data: \(error)")
-        }
-        fetchBooks() //update the book data
+        let (_, _) = saveBook()
+        fetchBooks()
     }
 
     func createBook(title: String, author: String, totalPages: intmax_t, currentPage: intmax_t, photo: UIImage?, isbn: String, publisher: String, desc: String, needSave:Bool) -> Book? {
-        
-        //create  a new book
         let newBook = Book(needSave: needSave, context: context)
-        //current page can't be less than zero, total pages can't be less than current pages, title must exist
         guard (currentPage >= 0 && currentPage <= totalPages && !title.isEmpty) else {
-            //todo handle
             print("Invalid book")
             return nil
         }
@@ -148,22 +115,46 @@ class BookManager {
         newBook.isbn = isbn
         newBook.publisher = publisher
         newBook.desc = desc
-        newBook.notes = "Enter notes here"
+        newBook.notes = nil
         if let photo = photo {
             newBook.photo = photo.jpegData(compressionQuality: 1.0)
         }
         return newBook
     }
 
-    func updateStart() {
-
+    func updateStartDate(book: Book, date: Date) -> (Bool, String) {
+        if date > Date() {
+            return (false, "Start date cannot be greater than today")
+        }
+        book.startDate = date
+        let (savedBook, error) = saveBook()
+        return (savedBook, error)
     }
 
-    func updateNotes() {
-
+    func updateNotes(book: Book, notes: String) -> (Bool, String) {
+        if book.notes != notes {
+            book.notes = notes
+            let (savedBook, error) = saveBook()
+            return (savedBook, error)
+        }
+        return (true, "")
     }
 
-    func updatePage() {
-
+    func updatePage(book: Book, page: Int32) -> (Bool, String) {
+        if page > book.totalPages {
+            return (false, "Current page cannot be greater than the total pages")
+        }
+        book.currentPage = page
+        let (savedBook, error) = saveBook()
+        return (savedBook, error)
+    }
+    
+    private func saveBook() -> (Bool, String) {
+        do {
+            try context.save()
+        } catch let error {
+            return (false, error.localizedDescription)
+        }
+        return (true, "")
     }
 }

@@ -14,24 +14,16 @@ class BookTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-
-    // This will be a concatentation of currentPages and totalPages
-    // so it reads 'Page 10 of 100'
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
-
-    // This will be a % of the book completed like 'currentPages' / 'totalPages' * 100
     @IBOutlet weak var completedProgressView: UIProgressView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }
