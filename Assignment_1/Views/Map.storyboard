@@ -1,43 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9ht-WL-VOj">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17502"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map-->
         <scene sceneID="Zf3-BA-Xrv">
             <objects>
-                <viewController id="9ht-WL-VOj" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Map" title="Map" id="9ht-WL-VOj" customClass="MapViewController" customModule="Assignment_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LnR-zf-edY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EdE-8T-WjE">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdE-8T-WjE">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Book Store Map" id="svD-hr-jfK"/>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" fixedFrame="YES" text="Search a store" translatesAutoresizingMaskIntoConstraints="NO" id="1UN-5y-mif">
-                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <searchBar contentMode="redraw" text="Search a store" translatesAutoresizingMaskIntoConstraints="NO" id="1UN-5y-mif">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QBJ-Sc-Mmz">
-                                <rect key="frame" x="20" y="132" width="374" height="730"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QBJ-Sc-Mmz">
+                                <rect key="frame" x="20" y="154" width="374" height="728"/>
                             </mapView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Tnp-lk-7Yr"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="QBJ-Sc-Mmz" firstAttribute="top" secondItem="1UN-5y-mif" secondAttribute="bottom" constant="10" id="3F6-eH-5xr"/>
+                            <constraint firstItem="QBJ-Sc-Mmz" firstAttribute="leading" secondItem="Tnp-lk-7Yr" secondAttribute="leading" constant="20" id="NIx-fm-HED"/>
+                            <constraint firstItem="1UN-5y-mif" firstAttribute="top" secondItem="Tnp-lk-7Yr" secondAttribute="top" constant="44" id="P5B-C7-1Nf"/>
+                            <constraint firstItem="Tnp-lk-7Yr" firstAttribute="trailing" secondItem="QBJ-Sc-Mmz" secondAttribute="trailing" constant="20" id="Pat-3d-L0g"/>
+                            <constraint firstItem="1UN-5y-mif" firstAttribute="leading" secondItem="Tnp-lk-7Yr" secondAttribute="leading" id="WRS-pO-FRQ"/>
+                            <constraint firstItem="EdE-8T-WjE" firstAttribute="top" secondItem="Tnp-lk-7Yr" secondAttribute="top" id="XQB-TX-Cz3"/>
+                            <constraint firstItem="Tnp-lk-7Yr" firstAttribute="trailing" secondItem="EdE-8T-WjE" secondAttribute="trailing" id="ak5-I1-duV"/>
+                            <constraint firstItem="EdE-8T-WjE" firstAttribute="leading" secondItem="Tnp-lk-7Yr" secondAttribute="leading" id="btD-oS-PIt"/>
+                            <constraint firstItem="QBJ-Sc-Mmz" firstAttribute="bottom" secondItem="Tnp-lk-7Yr" secondAttribute="bottom" constant="20" id="hKV-rS-zgf"/>
+                            <constraint firstItem="Tnp-lk-7Yr" firstAttribute="trailing" secondItem="1UN-5y-mif" secondAttribute="trailing" id="lK8-fI-5pt"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="QBJ-Sc-Mmz" id="ImT-e1-irA"/>
+                        <outlet property="searchBar" destination="1UN-5y-mif" id="ePj-bM-Jmm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3rh-C3-umW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
