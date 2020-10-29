@@ -174,27 +174,24 @@ class BookManager {
 
     func updateNotes(note: String, book: Book) {
         guard let index = findBook(book: book) else{return}
-        if !note.isEmpty{
-            bookLibrary[index].notes=note
-            do { //save it into coredata
-                try context.save()
-            } catch let error {
-                print("Error saving data: \(error)")
-            }
-            fetchBooks()
+        bookLibrary[index].notes=note
+        do { //save it into coredata
+            try context.save()
+        } catch let error {
+            print("Error saving data: \(error)")
         }
+        fetchBooks()
     }
     
     func updateProgress(page:Int32,book:Book) {
         guard let index = findBook(book: book) else{return}
-        if page <= book.totalPages && page>0{
-            bookLibrary[index].currentPage=page
-            do { //save it into coredata
-                try context.save()
-            } catch let error {
-                print("Error saving data: \(error)")
-            }
-            fetchBooks()
+        bookLibrary[index].currentPage=page
+        do { //save it into coredata
+            try context.save()
+        } catch let error {
+            print("Error saving data: \(error)")
+        }
+        fetchBooks()
         }
     }
-}
+

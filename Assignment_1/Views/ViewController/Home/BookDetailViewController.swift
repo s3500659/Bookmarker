@@ -69,8 +69,11 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
             let textField = alert?.textFields![0]
             if let book = self.book {
                 if let pageInput = textField?.text {
-                    book.currentPage=Int32(pageInput) ?? 0
-                    self.bookManager.updateProgress(page: book.currentPage, book: book)
+                    let page = Int32(pageInput) ?? 0
+                    if page<=book.totalPages && page>0{
+                        book.currentPage=page
+                        self.bookManager.updateProgress(page: book.currentPage, book: book)
+                    }
                 }
                 self.progress.text = "\(book.currentPage) of \(book.totalPages)"
             }
@@ -81,12 +84,13 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
     // notes text view
     func textViewDidChange(_ textView: UITextView) {
         if let book = book {
-            book.notes = textView.text
-            bookManager.updateNotes(note: textView.text, book: book)
+            if(!textView.text.isEmpty){
+                book.notes = textView.text
+                bookManager.updateNotes(note: textView.text, book: book)
+            }
         }
     }
     private let placeholderText = "Enter notes here"
-     /*
     func textViewDidBeginEditing(_ textView: UITextView) {
         if notes.textColor == UIColor.lightGray {
             notes.text = nil
@@ -100,7 +104,6 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
             notes.textColor = UIColor.lightGray
         }
     }
-     */
     override func viewDidLoad() {
         super.viewDidLoad()
         notes.delegate = self
@@ -110,7 +113,6 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
             startDate.text = book.startDate == nil ? "not started" : String(formatter.string(from: book.startDate!))
             progress.text = "\(book.currentPage) of \(book.totalPages)"
             bookDescription.text = book.desc
-            
             // notes field
             if (book.notes == "" || book.notes == nil) {
                 notes.textColor = UIColor.lightGray
@@ -118,7 +120,6 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
             } else {
                 notes.text = book.notes
             }
-            
             isbn.text = book.isbn
             publisher.text = book.publisher
             self.progress.accessibilityIdentifier = "progress-label"

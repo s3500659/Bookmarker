@@ -376,7 +376,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
             endingLineNumber = "105"
-            landmarkName = "addBook(book:)"
+            landmarkName = "removeBook(rowIndex:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
