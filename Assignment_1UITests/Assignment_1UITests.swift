@@ -12,6 +12,7 @@ import XCTest
 class Assignment_1UITests: XCTestCase {
     
     override func setUp() {
+
         super.setUp()
 
         // In UI tests it is usually best to stop immediately when a failure occurs.
@@ -117,15 +118,20 @@ class Assignment_1UITests: XCTestCase {
         XCTAssert(progressLabel.label.prefix(2) == textToEnter)
 
 
-
+    }
+    
+    func testAddingBook () {
+        
+        let app = XCUIApplication()
+        app.navigationBars["My Books"].buttons["Add"].tap()
+        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .searchField).element.tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.cells.containing(.staticText, identifier:"The Filming of Gone with the Wind")/*[[".cells.containing(.staticText, identifier:\"ISBN: 0865546215\")",".cells.containing(.staticText, identifier:\"The Filming of Gone with the Wind\")"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.staticTexts["Herb Bridges\t"].swipeUp()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["The Making of Gone With The Wind"]/*[[".cells.staticTexts[\"The Making of Gone With The Wind\"]",".staticTexts[\"The Making of Gone With The Wind\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
         
         
         
- 
-
-
-
-
     }
 
 

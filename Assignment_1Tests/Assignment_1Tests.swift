@@ -16,13 +16,6 @@ class Assignment_1Tests: XCTestCase {
    
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        // init(name:String, fullName:String, studentNumber:String, description:String, image:UIImage, hobbies:String, additionalInfo:String)
-
-//        testStudent = Student(name: "testStudentName", fullName: "full name", studentNumber: "s123456", description: "test desciption", image: UIImage(named: "h_g_wells")!, hobbies: "testing hobby", additionalInfo: "I like making unit tests")
-       
-//        testStudent = Student(name: "testStudentName", fullName: "full name", studentNumber: "s123456", description: "test desciption", image: testImage, hobbies: "testing hobby", additionalInfo: "I like making unit tests")
-//        var studentName = testStudent.name
     }
 
     override func tearDown() {

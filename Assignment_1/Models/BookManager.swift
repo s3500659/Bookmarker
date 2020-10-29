@@ -80,6 +80,16 @@ class BookManager {
     func getCount() -> Int {
         return bookLibrary.count
     }
+    
+    func checkBookTitleInLibrary (bookTitle: String) -> Bool {
+        for book in bookLibrary {
+            if book.title == bookTitle {
+                return true
+            }
+        }
+        return false
+       
+    }
 
     public func getBook(indexRow: Int) -> Book {
         return bookLibrary[indexRow]

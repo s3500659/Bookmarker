@@ -23,7 +23,7 @@
 		D83B8D542505B650004F81B6 /* Assignment_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D83B8D522505B650004F81B6 /* Assignment_1.xcdatamodeld */; };
 		D83B8D562505B654004F81B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D83B8D552505B654004F81B6 /* Assets.xcassets */; };
 		D83B8D592505B654004F81B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D83B8D572505B654004F81B6 /* LaunchScreen.storyboard */; };
-		D83B8D642505B654004F81B6 /* Assignment_1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83B8D632505B654004F81B6 /* Assignment_1Tests.swift */; };
+		D83B8D642505B654004F81B6 /* Assignment_1Tests Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83B8D632505B654004F81B6 /* Assignment_1Tests Student.swift */; };
 		D83B8D6F2505B654004F81B6 /* Assignment_1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83B8D6E2505B654004F81B6 /* Assignment_1UITests.swift */; };
 		D8A7FC8625230202000B4B1D /* StudentInfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7FC8525230202000B4B1D /* StudentInfoDetailViewController.swift */; };
 		D8A7FC8A2526F24D000B4B1D /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7FC892526F24D000B4B1D /* StudentViewModel.swift */; };
@@ -76,7 +76,7 @@
 		D83B8D582505B654004F81B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D83B8D5A2505B654004F81B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D83B8D5F2505B654004F81B6 /* Assignment_1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Assignment_1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D83B8D632505B654004F81B6 /* Assignment_1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment_1Tests.swift; sourceTree = "<group>"; };
+		D83B8D632505B654004F81B6 /* Assignment_1Tests Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment_1Tests Student.swift"; sourceTree = "<group>"; };
 		D83B8D652505B654004F81B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D83B8D6A2505B654004F81B6 /* Assignment_1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Assignment_1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D83B8D6E2505B654004F81B6 /* Assignment_1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment_1UITests.swift; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		D83B8D622505B654004F81B6 /* Assignment_1Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D83B8D632505B654004F81B6 /* Assignment_1Tests.swift */,
+				D83B8D632505B654004F81B6 /* Assignment_1Tests Student.swift */,
 				D83B8D652505B654004F81B6 /* Info.plist */,
 			);
 			path = Assignment_1Tests;
@@ -397,7 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D83B8D642505B654004F81B6 /* Assignment_1Tests.swift in Sources */,
+				D83B8D642505B654004F81B6 /* Assignment_1Tests Student.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
