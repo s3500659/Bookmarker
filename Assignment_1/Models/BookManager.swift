@@ -12,14 +12,14 @@ import UIKit
 
 
 class BookManager {
-    
+
     public static let shared = BookManager()
 
 //ref to managed obj context
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var bookLibrary: [Book] = []
     private var favouriteBooks: [Book] = []
-    
+
 
     func loadBooks() {
         fetchBooks()
@@ -38,9 +38,9 @@ class BookManager {
     }
 
     func loadFavourites() {
-        favouriteBooks=[]
+        favouriteBooks = []
         for book in bookLibrary {
-            if book.favourite==true {
+            if book.favourite == true {
                 favouriteBooks.append(book)
             }
         }
@@ -60,7 +60,7 @@ class BookManager {
 
 
     func removeFavourite(rowIndex: Int) {
-        favouriteBooks[rowIndex].favourite=false
+        favouriteBooks[rowIndex].favourite = false
         do { //save the change
             try context.save()
         } catch let error {
@@ -88,7 +88,7 @@ class BookManager {
 //gets all the books from coredata
     func fetchBooks() {
         do {
-            bookLibrary = try context.fetch(Book.fetchRequest()) 
+            bookLibrary = try context.fetch(Book.fetchRequest())
         } catch let error {
             print("Error getting books: \(error)")
         }
@@ -107,11 +107,11 @@ class BookManager {
 
     func addBook(book: Book) {
         var image: UIImage? = nil
-        if (book.photo != nil){
+        if (book.photo != nil) {
             image = UIImage(data: book.photo!)
         }
         let localBook = createBook(title: book.title, author: book.author, totalPages: intmax_t(book.totalPages), currentPage: intmax_t(book.currentPage), photo: image, isbn: book.isbn, publisher: book.publisher, desc: book.desc, needSave: true)
-        
+
         bookLibrary.append(localBook!)
         do { //save it into coredata
             try context.save()
@@ -121,14 +121,12 @@ class BookManager {
         fetchBooks() //update the book data
     }
 
-    func createBook(title: String, author: String, totalPages: intmax_t, currentPage: intmax_t, photo: UIImage?, isbn: String, publisher: String, desc: String, needSave:Bool) -> Book? {
-        
+
+    func createBook(title: String, author: String, totalPages: intmax_t, currentPage: intmax_t, photo: UIImage?, isbn: String, publisher: String, desc: String, needSave: Bool) -> Book? {
         //create  a new book
         let newBook = Book(needSave: needSave, context: context)
         //current page can't be less than zero, total pages can't be less than current pages, title must exist
         guard (currentPage >= 0 && currentPage <= totalPages && !title.isEmpty) else {
-            //todo handle
-            print("Invalid book")
             return nil
         }
         newBook.title = title
@@ -145,15 +143,58 @@ class BookManager {
         return newBook
     }
 
-    func updateStart() {
-
+    private func compare(b1: Book, b2: Book) -> Bool {
+        return b1.title == b2.title && b1.publisher == b2.publisher && b1.photo == b2.photo &&
+                b1.totalPages == b2.totalPages && b1.author == b2.author && b1.desc == b2.desc &&
+                b1.isbn == b2.isbn
     }
 
-    func updateNotes() {
-
+    func findBook(book: Book) -> Int? {
+        var i=0
+        for b in bookLibrary {
+            if(compare(b1: b, b2: book)){
+                return i;
+            }
+            i+=1
+        }
+        return nil
     }
 
-    func updatePage() {
+    func updateStart(start:Date,book:Book) {
+        guard let index = findBook(book: book) else{return}
+        bookLibrary[index].startDate=start
+        do { //save it into coredata
+            try context.save()
+        } catch let error {
+            print("Error saving data: \(error)")
+        }
+        fetchBooks()
+      
+    }
 
+    func updateNotes(note: String, book: Book) {
+        guard let index = findBook(book: book) else{return}
+        if !note.isEmpty{
+            bookLibrary[index].notes=note
+            do { //save it into coredata
+                try context.save()
+            } catch let error {
+                print("Error saving data: \(error)")
+            }
+            fetchBooks()
+        }
+    }
+    
+    func updateProgress(page:Int32,book:Book) {
+        guard let index = findBook(book: book) else{return}
+        if page <= book.totalPages && page>0{
+            bookLibrary[index].currentPage=page
+            do { //save it into coredata
+                try context.save()
+            } catch let error {
+                print("Error saving data: \(error)")
+            }
+            fetchBooks()
+        }
     }
 }

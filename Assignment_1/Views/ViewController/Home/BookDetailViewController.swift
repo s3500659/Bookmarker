@@ -21,7 +21,7 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
 
     private var toolBar = UIToolbar()
     private var datePicker = UIDatePicker()
-
+    private let bookManager = BookManager.shared
 
     // issue: if you click done without using the date picker, then the dateChanged func won't execute and date label won't update.
     @IBAction func startDateBtn(_ sender: Any) {
@@ -51,6 +51,7 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
         if let date = sender?.date {
             book?.startDate = date
             startDate.text = dateFormatter.string(from: date)
+            bookManager.updateStart(start:date,book:book!)
         }
     }
 
@@ -69,6 +70,7 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
             if let book = self.book {
                 if let pageInput = textField?.text {
                     book.currentPage=Int32(pageInput) ?? 0
+                    self.bookManager.updateProgress(page: book.currentPage, book: book)
                 }
                 self.progress.text = "\(book.currentPage) of \(book.totalPages)"
             }
@@ -80,10 +82,11 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
     func textViewDidChange(_ textView: UITextView) {
         if let book = book {
             book.notes = textView.text
+            bookManager.updateNotes(note: textView.text, book: book)
         }
     }
-    
     private let placeholderText = "Enter notes here"
+     /*
     func textViewDidBeginEditing(_ textView: UITextView) {
         if notes.textColor == UIColor.lightGray {
             notes.text = nil
@@ -97,7 +100,7 @@ class BookDetailViewController: UIViewController, UITextFieldDelegate, UINavigat
             notes.textColor = UIColor.lightGray
         }
     }
-
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         notes.delegate = self
