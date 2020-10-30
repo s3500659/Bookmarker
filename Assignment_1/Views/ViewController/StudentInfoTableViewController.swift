@@ -8,12 +8,14 @@
 
 import UIKit
 
-class StudentInfoTableViewController: UITableViewController {
+class StudentInfoTableViewController: UITableViewController, UISplitViewControllerDelegate {
 
     private let viewModel = StudentViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        splitViewController?.delegate = self
+        splitViewController?.preferredDisplayMode = .allVisible
 
     }
 
@@ -42,19 +44,31 @@ class StudentInfoTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "studentDetail") as! StudentInfoDetailViewController
+        vc.selectedStudent = viewModel.students[indexPath.row]
+        splitViewController?.showDetailViewController(vc, sender: nil)
+        
+    }
+    
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return true
+    }
+    
 
 
     // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        guard let selectedRow = self.tableView.indexPathForSelectedRow else {
-            return
-        }
-
-        let destination = segue.destination as? StudentInfoDetailViewController
-        let selectedStudent = viewModel.students[selectedRow.row]
-        destination?.selectedStudent = selectedStudent
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//        guard let selectedRow = self.tableView.indexPathForSelectedRow else {
+//            return
+//        }
+//
+//        let destination = segue.destination as? StudentInfoDetailViewController
+//        let selectedStudent = viewModel.students[selectedRow.row]
+//        destination?.selectedStudent = selectedStudent
+//    }
 }
 
 
