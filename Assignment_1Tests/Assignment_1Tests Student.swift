@@ -9,14 +9,13 @@
 import XCTest
 @testable import Assignment_1
 
-class Assignment_1Tests: XCTestCase {
+class Assignment_1Tests_Student: XCTestCase {
     
-    var model = requestBook.shared
-    var bookModel = BookManager.shared
     //    let testImage = UIImage(named: "h_g_wells")!
     var testStudent: Student = Student(name: "testStudentName", fullName: "full name", studentNumber: "s123456", description: "test desciption", image: UIImage(named: "h_g_wells")!, hobbies: "testing hobby", additionalInfo: "I like making unit tests")
     
-    
+    var testStudents: [Student] = []
+    var viewModel = StudentViewModel()
     
     override func setUp() {
     }
@@ -27,52 +26,73 @@ class Assignment_1Tests: XCTestCase {
     
     func testValidStudentName() {
         //test that Student object can be created with a first name
-        let expectedName: String = "testStudentName"
+        let expectedResult: String = "testStudentName"
         XCTAssertNotNil(testStudent.name)
-        XCTAssertTrue(testStudent.name == expectedName, "Student name is not working correctly, expected: \(expectedName) is not the same as actual name: \(testStudent.name)")
+        XCTAssertTrue(testStudent.name == expectedResult, "Student name is not working correctly, expected: \(expectedResult) is not the same as actual Name: \(testStudent.name)")
         
     }
     
     func testValidStudentFullName() {
-        //test that Student object can be created with a first name
-        let expectedFullName: String = "full name"
+        //test that Student object can be created with a full name
+        let expectedResult: String = "full name"
         XCTAssertNotNil(testStudent.fullName)
-        XCTAssertTrue(testStudent.fullName == expectedFullName, "Student fullname is not working correctly, expected: \(expectedFullName) is not the same as actual name: \(testStudent.fullName)")
+        XCTAssertTrue(testStudent.fullName == expectedResult, "Student fullname is not working correctly, expected: \(expectedResult) is not the same as actual Full Name: \(testStudent.fullName)")
         
     }
     
-    func testCreateBook() {
-        // details for new book
-        let bookTitle: String = "Test Book"
-        let bookAuthor: String = "test author"
-        let bookTotPgs: Int = 200
-        let bookCurrPg: Int = 1
-        let bookImg = UIImage(named: "h_g_wells")!
-        let bookISBN = "123456"
-        let bookPub = "test publisher"
-        let bookDesc = "test description"
-//        let countBooksBeforeAdding: Int = bookModel.getCount()
-
-        // create new book
-        guard let newBook = bookModel.createBook(title: bookTitle, author: bookAuthor, totalPages: bookTotPgs, currentPage: bookCurrPg, photo: bookImg, isbn: bookISBN, publisher: bookPub, desc: bookDesc, needSave: true) else { return }
-        print(newBook.description)
-        // run tests on the new book for each attribute
-        XCTAssertTrue(newBook.title == bookTitle, "Book Title is not working correctly, expected: \(bookTitle) is not the same as actual name: \(newBook.title)")
-        XCTAssertTrue(newBook.author == bookAuthor, "Book Author is not working correctly, expected: \(bookAuthor) is not the same as actual Author: \(newBook.author)")
-        XCTAssertTrue(newBook.totalPages == bookTotPgs, "Book Total Pages is not working correctly, expected: \(bookTotPgs) is not the same as actual Total Pages: \(newBook.totalPages)")
-        XCTAssertTrue(newBook.currentPage == bookCurrPg, "Book Current Page is not working correctly, expected: \(bookCurrPg) is not the same as actual Current Page: \(newBook.currentPage)")
-        XCTAssertTrue(newBook.isbn == bookISBN, "Book ISBN is not working correctly, expected: \(bookISBN) is not the same as actual ISBN: \(newBook.isbn)")
-        XCTAssertTrue(newBook.publisher == bookPub, "Book Publisher is not working correctly, expected: \(bookPub) is not the same as actual Publisher: \(newBook.publisher)")
-        XCTAssertTrue(newBook.desc == bookDesc, "Book Description is not working correctly, expected: \(bookDesc) is not the same as actual Description: \(newBook.desc)")
-        // add new book
-        bookModel.addBook(book: newBook)
-        // Test that New Book has been added correctly
-        let bookFoundResult = bookModel.checkBookTitleInLibrary(bookTitle: newBook.title)
-        XCTAssertTrue(bookFoundResult, "Book Description is not working correctly, expected: \(bookDesc) is not the same as actual Description: \(newBook.desc)")
-//      // delete the book that was added so we don't end up with lots of test books
-        bookModel.removeBook(rowIndex: bookModel.getCount()-1)
-
+    func testValidStudentNumber() {
+        //test that Student object can be created with a student number
+        let expectedResult: String = "s123456"
+        XCTAssertNotNil(testStudent.studentNumber)
+        XCTAssertTrue(testStudent.studentNumber == expectedResult, "Student Number is not working correctly, expected: \(expectedResult) is not the same as actual Student Number: \(testStudent.studentNumber)")
+        
     }
+    
+    
+    func testValidDescription() {
+        //test that Student object can be created with a description
+        let expectedResult: String = "test desciption"
+
+        XCTAssertNotNil(testStudent.description)
+        XCTAssertTrue(testStudent.description == expectedResult, "Student Description is not working correctly, expected: \(expectedResult) is not the same as actual Description: \(testStudent.description)")
+        
+    }
+    
+    func testValidImage() {
+        //test that Student object can be created with a image
+        let expectedResult: UIImage = UIImage(named: "h_g_wells")!
+        XCTAssertNotNil(testStudent.image)
+        XCTAssertTrue(testStudent.image == expectedResult, "Student image is not working correctly, expected: \(expectedResult) is not the same as actual Description: \(testStudent.image)")
+        
+    }
+    
+    func testValidHobbies() {
+        //test that Student object can be created with hobbies
+        let expectedResult: String = "testing hobby"
+        XCTAssertNotNil(testStudent.hobbies)
+        XCTAssertTrue(testStudent.hobbies == expectedResult, "Student Hobbies is not working correctly, expected: \(expectedResult) is not the same as actual Hobbies: \(testStudent.hobbies)")
+        
+    }
+    
+    func testValidAdditionInfo() {
+        //test that Student object can be created with a additional info
+        let expectedResult: String =  "I like making unit tests"
+        XCTAssertNotNil(testStudent.additionalInfo)
+        XCTAssertTrue(testStudent.additionalInfo == expectedResult, "testing Additional Info is not working correctly, expected: \(expectedResult) is not the same as actual Addtional Infor: \(testStudent.additionalInfo)")
+        
+    }
+    
+    func testPopStudents() {
+        //test that Student object can be created with a description
+        let expectedResult: Int =  4
+        let viewModel = StudentViewModel()
+        let numStudents = viewModel.students.count
+//        XCTAssertNotNil(testStudent.description)
+        XCTAssertTrue(numStudents == expectedResult, "Problem with the Student View Model - did not create all 4 Students, expected: \(expectedResult) is not the same as actual Number Students: \(numStudents)")
+        
+    }
+       
+
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

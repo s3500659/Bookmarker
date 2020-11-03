@@ -17,7 +17,7 @@ class BookManager {
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var bookLibrary: [Book] = []
     private var favouriteBooks: [Book] = []
-
+    // tested
     func favouriteCount() -> Int {
         return favouriteBooks.count
     }
@@ -29,7 +29,7 @@ class BookManager {
     func getFavourite(index: Int) -> Book {
         return favouriteBooks[index]
     }
-
+    // tested
     func loadFavourites() {
         favouriteBooks = []
         for book in bookLibrary {
@@ -38,14 +38,14 @@ class BookManager {
             }
         }
     }
-
+    // tested
     func addFavourite(book: Book) {
         book.favourite = true
         let (_, _) = saveBook()
         fetchBooks()
         loadFavourites()
     }
-
+    // tested
     func removeFavourite(rowIndex: Int) {
         favouriteBooks[rowIndex].favourite=false
         let (_, _) = saveBook()
@@ -57,11 +57,11 @@ class BookManager {
         fetchBooks()
         return bookLibrary
     }
-
+    // tested
     func getCount() -> Int {
         return bookLibrary.count
     }
-    
+    // tested
     func checkBookTitleInLibrary (bookTitle: String) -> Bool {
         for book in bookLibrary {
             if book.title == bookTitle {
@@ -83,13 +83,13 @@ class BookManager {
             print("Error getting books: \(error)")
         }
     }
-
+    //tested
     func removeBook(rowIndex: Int) {
         context.delete(bookLibrary[rowIndex])
         let (_, _) = saveBook()
         fetchBooks()
     }
-
+    //tested
     func addBook(book: Book) {
         var image: UIImage? = nil
         if (book.photo != nil){
@@ -101,7 +101,7 @@ class BookManager {
         let (_, _) = saveBook()
         fetchBooks()
     }
-
+    //tested
     func createBook(title: String, author: String, totalPages: intmax_t, currentPage: intmax_t, photo: UIImage?, isbn: String, publisher: String, desc: String, needSave:Bool) -> Book? {
         let newBook = Book(needSave: needSave, context: context)
         guard (currentPage >= 0 && currentPage <= totalPages && !title.isEmpty) else {
@@ -121,7 +121,7 @@ class BookManager {
         }
         return newBook
     }
-
+    // tested positive
     func updateStartDate(book: Book, date: Date) -> (Bool, String) {
         if date > Date() {
             return (false, "Start date cannot be greater than today")
@@ -130,7 +130,7 @@ class BookManager {
         let (savedBook, error) = saveBook()
         return (savedBook, error)
     }
-
+    // tested positve 
     func updateNotes(book: Book, notes: String) -> (Bool, String) {
         if book.notes != notes {
             book.notes = notes
@@ -139,7 +139,7 @@ class BookManager {
         }
         return (true, "")
     }
-
+    // tested positve
     func updatePage(book: Book, page: Int32) -> (Bool, String) {
         if page > book.totalPages {
             return (false, "Current page cannot be greater than the total pages")
@@ -148,7 +148,7 @@ class BookManager {
         let (savedBook, error) = saveBook()
         return (savedBook, error)
     }
-    
+    // tested
     private func saveBook() -> (Bool, String) {
         do {
             try context.save()
