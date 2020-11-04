@@ -115,7 +115,7 @@ class BookManager {
         newBook.isbn = isbn
         newBook.publisher = publisher
         newBook.desc = desc
-        newBook.notes = nil
+        newBook.notes = ""
         if let photo = photo {
             newBook.photo = photo.jpegData(compressionQuality: 1.0)
         }
