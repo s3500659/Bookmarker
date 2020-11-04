@@ -67,11 +67,14 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
         guard let searchTerm = searchBar.text else {
             return
         }
         let searchType = searchSelection.selectedSegmentIndex
+        createSpinnerView()
         bookApi.searchBooks(searchTerm: searchTerm, queryType: searchType)
+        
     }
 
     @IBOutlet weak var bookSearchTable: UITableView!
@@ -95,5 +98,20 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.preferredContentSize = self.view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+    }
+    
+    private func createSpinnerView() {
+        let child = SpinnerViewController()
+        
+        addChild(child)
+        child.view.frame = view.frame
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+            child.willMove(toParent: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParent()
+        }
     }
 }

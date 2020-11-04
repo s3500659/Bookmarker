@@ -16,12 +16,10 @@ class BookTableViewController: UITableViewController {
         bookManager.fetchBooks()
     }
 
-
     override func viewWillAppear(_ animated: Bool) {
         bookManager.fetchBooks()
         tableView.reloadData()
     }
-
 
     // MARK: - Table view data source
 
@@ -60,10 +58,7 @@ class BookTableViewController: UITableViewController {
         }
     }
 
-
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
