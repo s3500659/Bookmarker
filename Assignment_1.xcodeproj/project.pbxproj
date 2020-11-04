@@ -38,7 +38,6 @@
 		F093EA5B25240013009F38C0 /* SearchBookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093EA5A25240013009F38C0 /* SearchBookTableViewController.swift */; };
 		F0AE51822532A30200FE8150 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0AE51802532A30200FE8150 /* Search.storyboard */; };
 		F0EE2C5E2532DCA100A0C816 /* MasterViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EE2C5D2532DCA100A0C816 /* MasterViewControllerTableViewController.swift */; };
-		F0EE2C602532DFC200A0C816 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EE2C5F2532DFC200A0C816 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,7 +95,6 @@
 		F093EA5A25240013009F38C0 /* SearchBookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookTableViewController.swift; sourceTree = "<group>"; };
 		F0AE51812532A30200FE8150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Assignment_1/Views/Base.lproj/Search.storyboard; sourceTree = "<group>"; };
 		F0EE2C5D2532DCA100A0C816 /* MasterViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MasterViewControllerTableViewController.swift; path = Assignment_1/ViewModels/MasterViewControllerTableViewController.swift; sourceTree = SOURCE_ROOT; };
-		F0EE2C5F2532DFC200A0C816 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = Assignment_1/ViewModels/DetailViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +142,6 @@
 		84E3B2522533326F0057BC1A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				F0EE2C5F2532DFC200A0C816 /* DetailViewController.swift */,
 				F0EE2C5D2532DCA100A0C816 /* MasterViewControllerTableViewController.swift */,
 				17E5BE5E251A012F00EF88FD /* BookTableViewCell.swift */,
 				D8E83EAB251D94D000E20352 /* StudentInfoTableViewCell.swift */,
@@ -387,7 +384,6 @@
 				84F5ADF0252D1F2000CE7997 /* ProfileViewController.swift in Sources */,
 				D8E83EAA251D8CCA00E20352 /* Student.swift in Sources */,
 				8490B42325424E7A00D96DB4 /* BookManager.swift in Sources */,
-				F0EE2C602532DFC200A0C816 /* DetailViewController.swift in Sources */,
 				8490B40F25424CD900D96DB4 /* Book+CoreDataProperties.swift in Sources */,
 				8490B40E25424CD900D96DB4 /* Book+CoreDataClass.swift in Sources */,
 				D8DE6B9F25524CBA00184DE5 /* SpinnerViewController.swift in Sources */,
