@@ -100,7 +100,7 @@ class AddBookViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.preferredContentSize = self.view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
     }
     
-    func createSpinnerView() {
+    private func createSpinnerView() {
         let child = SpinnerViewController()
         
         addChild(child)

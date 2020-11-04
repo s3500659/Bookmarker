@@ -19,7 +19,6 @@ class StudentInfoTableViewController: UITableViewController, UISplitViewControll
 
     }
 
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -29,7 +28,6 @@ class StudentInfoTableViewController: UITableViewController, UISplitViewControll
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.students.count
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "studentCell"
@@ -49,26 +47,12 @@ class StudentInfoTableViewController: UITableViewController, UISplitViewControll
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "studentDetail") as! StudentInfoDetailViewController
         vc.selectedStudent = viewModel.students[indexPath.row]
         splitViewController?.showDetailViewController(vc, sender: nil)
-        
     }
     
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         return true
     }
     
-
-
-    // MARK: - Navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//        guard let selectedRow = self.tableView.indexPathForSelectedRow else {
-//            return
-//        }
-//
-//        let destination = segue.destination as? StudentInfoDetailViewController
-//        let selectedStudent = viewModel.students[selectedRow.row]
-//        destination?.selectedStudent = selectedStudent
-//    }
 }
 
 
